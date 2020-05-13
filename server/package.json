@@ -1,0 +1,54 @@
+{
+	"name": "overwatchmen-server",
+	"version": "1.19.0",
+	"private": true,
+	"scripts": {
+		"start": "npm run build && npm run serve",
+		"serve": "node dist/index.js",
+		"serve:dev": "cross-env NODE_ENV=development npm run serve",
+		"serve:production": "cross-env NODE_ENV=production npm run serve",
+		"dev": "ts-node-dev src/index.ts",
+		"build": "tsc -p tsconfig.json",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "jest --coverage",
+		"lint": "eslint 'src/**/*.ts'"
+	},
+	"dependencies": {
+		"apollo-datasource": "^0.7.0",
+		"apollo-server": "^2.12.0",
+		"cross-env": "^7.0.2",
+		"dotenv-flow": "^3.1.0",
+		"graphql": "14.6.0",
+		"module-alias": "^2.2.2",
+		"moment": "^2.24.0",
+		"pg": "^8.2.0",
+		"reflect-metadata": "^0.1.13",
+		"ts-node": "^8.6.2",
+		"ts-node-dev": "^1.0.0-pre.44",
+		"typeorm": "^0.2.24",
+		"typescript": "^3.8.3"
+	},
+	"devDependencies": {
+		"@types/dotenv-flow": "^3.0.0",
+		"@types/eslint": "^6.8.0",
+		"@types/express": "^4.17.6",
+		"@types/graphql": "^14.5.0",
+		"@types/jest": "^25.2.1",
+		"@types/jwt-decode": "^2.2.1",
+		"@types/module-alias": "^2.0.0",
+		"@types/moment": "^2.13.0",
+		"@types/node": "^13.1.7",
+		"@types/pg": "^7.14.3",
+		"@typescript-eslint/eslint-plugin": "^2.0.0",
+		"@typescript-eslint/parser": "^2.0.0",
+		"apollo": "^2.27.0",
+		"apollo-server-testing": "^2.9.16",
+		"eslint": "^6.8.0",
+		"jest": "^25.3.0",
+		"ts-jest": "^25.2.0"
+	},
+	"_moduleAliases": {
+		"@": "dist"
+	}
+}
