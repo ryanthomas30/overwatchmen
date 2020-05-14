@@ -49,6 +49,9 @@
 		"nodemon": "^2.0.4",
 		"ts-jest": "^25.2.0"
 	},
+	"resolutions": { 
+		"tslib": "1.11.2"
+	},
 	"_moduleAliases": {
 		"@": "dist"
 	}
