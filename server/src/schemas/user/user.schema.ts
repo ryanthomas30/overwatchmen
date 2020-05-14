@@ -16,6 +16,6 @@ export const User = gql`
 
 export const userResolvers: IResolvers<any, Context> = {
 	Query: {
-		user: (_, { userId }) => ({ id: userId }),
+		user: (_, { userId }, { dataSources }) => dataSources.userService.getUser(userId),
 	},
 }

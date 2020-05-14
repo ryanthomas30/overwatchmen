@@ -4,10 +4,13 @@ import { createConnection } from 'typeorm'
 
 /* SCHEMAS & DATASOURCES */
 import {
+	/* Root */
 	Root,
 	rootResolvers,
+	/* User */
 	User,
 	userResolvers,
+	UserService,
 } from '@/schemas'
 
 /* DIRECTIVES */
@@ -23,7 +26,7 @@ import { context } from '@/context'
  * Object containing all data sources injected into the `Context` by Apollo Server
  */
 export interface DataSources {
-
+	userService: UserService
 }
 
 export const typeDefs = [
@@ -40,10 +43,12 @@ export const resolvers = [
 ]
 
 export const dataSources = {
-
+	userService: new UserService()
 }
 
 export const run = async () => {
+	await createConnection()
+
 	const server = new ApolloServer({
 		typeDefs,
 		resolvers,
@@ -51,8 +56,6 @@ export const run = async () => {
 		schemaDirectives,
 		dataSources: () => dataSources,
 	})
-
-	await createConnection()
 
 	const { url } = await server.listen()
 
