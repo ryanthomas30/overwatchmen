@@ -3,11 +3,11 @@
 	"version": "1.19.0",
 	"private": true,
 	"scripts": {
-		"start": "npm run build && npm run serve",
+		"start": "yarn build && yarn serve",
 		"serve": "node dist/index.js",
-		"serve:dev": "cross-env NODE_ENV=development npm run serve",
-		"serve:production": "cross-env NODE_ENV=production npm run serve",
-		"dev": "nodemon",
+		"serve:dev": "cross-env NODE_ENV=development yarn serve",
+		"serve:production": "cross-env NODE_ENV=production yarn serve",
+		"dev": "yarn build && concurrently \"tsc -w\" \"nodemon\" -n tsc,nodemon -c cyan,green",
 		"build": "tsc -p tsconfig.json",
 		"test": "jest",
 		"test:watch": "jest --watch",
@@ -44,12 +44,13 @@
 		"@typescript-eslint/parser": "^2.0.0",
 		"apollo": "^2.27.0",
 		"apollo-server-testing": "^2.9.16",
+		"concurrently": "^5.2.0",
 		"eslint": "^6.8.0",
 		"jest": "^25.3.0",
 		"nodemon": "^2.0.4",
 		"ts-jest": "^25.2.0"
 	},
-	"resolutions": { 
+	"resolutions": {
 		"tslib": "1.11.2"
 	},
 	"_moduleAliases": {
