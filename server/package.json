@@ -7,7 +7,7 @@
 		"serve": "node dist/index.js",
 		"serve:dev": "cross-env NODE_ENV=development npm run serve",
 		"serve:production": "cross-env NODE_ENV=production npm run serve",
-		"dev": "ts-node-dev src/index.ts",
+		"dev": "nodemon",
 		"build": "tsc -p tsconfig.json",
 		"test": "jest",
 		"test:watch": "jest --watch",
