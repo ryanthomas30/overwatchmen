@@ -12,7 +12,7 @@
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
-		"lint": "eslint 'src/**/*.ts'"
+		"lint": "eslint src/**/*.ts"
 	},
 	"dependencies": {
 		"apollo-datasource": "^0.7.0",
@@ -24,8 +24,6 @@
 		"moment": "^2.24.0",
 		"pg": "^8.2.0",
 		"reflect-metadata": "^0.1.13",
-		"ts-node": "^8.6.2",
-		"ts-node-dev": "^1.0.0-pre.44",
 		"typeorm": "^0.2.24",
 		"typescript": "^3.8.3"
 	},

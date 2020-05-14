@@ -43,7 +43,7 @@ export const resolvers = [
 ]
 
 export const dataSources = {
-	userService: new UserService()
+	userService: new UserService(),
 }
 
 export const run = async () => {
