@@ -4,9 +4,6 @@ dotenv.config()
 import "reflect-metadata";
 import 'module-alias/register'
 
-import { server } from './server'
+import { run } from './server'
 
-server.listen().then(({ url }) => {
-	// eslint-disable-next-line
-	console.log(`🚀  Server ready at ${url}`)
-})
+run()
