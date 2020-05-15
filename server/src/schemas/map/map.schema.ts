@@ -1,20 +1,20 @@
 import { gql, IResolvers } from 'apollo-server'
 import { Context } from '@/context'
 
-export const Hero = gql`
+export const Map = gql`
 	#Operations
 	extend type Query {
-		hero(heroId: ID!): Hero
+		map(mapId: ID!): Map
 	}
 
 	#Model
-	type Hero {
+	type Map {
 		id: ID!
 		name: String!
 	}
 `
 
-export const heroResolvers: IResolvers<any, Context> = {
+export const mapResolvers: IResolvers<any, Context> = {
 	Query: {
 	},
 }
