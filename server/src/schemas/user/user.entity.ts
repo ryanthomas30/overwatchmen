@@ -1,10 +1,13 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm'
 
 @Entity()
 export class User extends BaseEntity {
 
 	@PrimaryGeneratedColumn()
-	id!: string
+	id!: number
+
+	@Column()
+	firebaseId!: string
 
 	@Column()
 	fullName!: string
@@ -12,9 +15,6 @@ export class User extends BaseEntity {
 	@Column()
 	email!: string
 
-	@Column()
-	createdAt!: string
-
-	@Column({ default: false })
-	deleted!: boolean
+	@CreateDateColumn()
+	createdAt!: Date
 }

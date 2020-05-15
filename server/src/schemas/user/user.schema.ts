@@ -11,6 +11,8 @@ export const User = gql`
 	# Model
 	type User {
 		id: ID!
+		fullName: String!
+		email: String!
 	}
 `
 
