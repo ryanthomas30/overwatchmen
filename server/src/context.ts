@@ -16,7 +16,12 @@ interface ExpressContext {
  * Context object produced by `ContextFunction`.
  */
 export interface ProducedContext {
+	user: ContextUser
+}
+
+export interface ContextUser {
 	userId: string
+	roles: string[]
 }
 
 /**
@@ -36,5 +41,10 @@ export interface Context extends ProducedContext {
 export const context: ContextFunction<ExpressContext, ProducedContext> = ({ req, connection }) => {
 	if (connection) return connection.context
 	const userId = req.headers.userid || ''
-	return { userId }
+	return {
+		user: {
+			userId,
+			roles: [],
+		},
+	}
 }

@@ -1,10 +1,10 @@
 import { gql } from 'apollo-server'
-import requireAuth from './requireAuth'
+import hasRole from './hasRole'
 
 export const SchemaDirectives = gql`
-	directive @requireAuth(role: String) on FIELD_DEFINITION
+	directive @hasRole(role: String) on FIELD_DEFINITION
 `
 
 export const schemaDirectives = {
-	requireAuth,
+	hasRole,
 }

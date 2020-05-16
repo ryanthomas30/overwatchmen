@@ -24,4 +24,7 @@ export const rootResolvers: IResolvers = {
 	},
 }
 
+export * from './hero'
+export * from './map'
+export * from './match'
 export * from './user'

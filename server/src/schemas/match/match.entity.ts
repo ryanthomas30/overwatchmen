@@ -1,4 +1,5 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { User } from '../user/user.entity'
 
 enum Role {
 	TANK = 'tank',
@@ -35,4 +36,7 @@ export class Match extends BaseEntity {
 
 	@Column('date')
 	matchTime!: Date
+
+	@ManyToOne(() => User, user => user.matches)
+	user!: User
 }

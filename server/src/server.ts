@@ -7,6 +7,18 @@ import {
 	/* Root */
 	Root,
 	rootResolvers,
+	/* Hero */
+	Hero,
+	heroResolvers,
+	HeroService,
+	/* Map */
+	Map,
+	mapResolvers,
+	MapService,
+	/* Match */
+	Match,
+	matchResolvers,
+	MatchService,
 	/* User */
 	User,
 	userResolvers,
@@ -26,11 +38,17 @@ import { context } from '@/context'
  * Object containing all data sources injected into the `Context` by Apollo Server
  */
 export interface DataSources {
+	heroService: HeroService
+	mapService: MapService
+	matchService: MatchService
 	userService: UserService
 }
 
 export const typeDefs = [
 	Root,
+	Hero,
+	Map,
+	Match,
 	User,
 	Scalars,
 	SchemaDirectives,
@@ -38,11 +56,17 @@ export const typeDefs = [
 
 export const resolvers = [
 	rootResolvers,
+	heroResolvers,
+	mapResolvers,
+	matchResolvers,
 	userResolvers,
 	scalarResolvers as IResolvers,
 ]
 
 export const dataSources = {
+	heroService: new HeroService(),
+	mapService: new MapService(),
+	matchService: new MatchService(),
 	userService: new UserService(),
 }
 

@@ -1,6 +1,8 @@
 import { SchemaDirectiveVisitor, AuthenticationError, defaultMergedResolver } from 'apollo-server'
 import { GraphQLField } from 'graphql'
 
+import { Context } from '@/context'
+
 /**
  * Schema directive that checks the user's role(s) from the context
  * against the required role(s) provided in the directive argument.
@@ -9,7 +11,7 @@ import { GraphQLField } from 'graphql'
  * This user will pass the authorization check.
  * ## Schema
  * ```
- * transactions: [Transaction] @requireAuth(role: "admin")
+ * transactions: [Transaction] @hasRole(role: "admin")
  * ```
  * ## User
  * ```
@@ -19,14 +21,14 @@ import { GraphQLField } from 'graphql'
  * }
  * ```
  */
-class RequireAuth extends SchemaDirectiveVisitor {
-	visitFieldDefinition(field: GraphQLField<any, any>) {
+class HasRole extends SchemaDirectiveVisitor {
+	visitFieldDefinition(field: GraphQLField<any, Context>) {
 		const { resolve = defaultMergedResolver } = field
 		const { role } = this.args
-		field.resolve = async (...args: any) => {
+		field.resolve = async (...args) => {
 			const [, , { user }] = args
 			if (user) {
-				if (role && (!user.role || !user.role.includes(role))) {
+				if (role && (!user.roles || !user.roles.includes(role))) {
 					throw new AuthenticationError(`This resource requires role "${role}" to be viewed.`)
 				} else {
 					const result = await resolve.apply(this, args)
@@ -39,4 +41,4 @@ class RequireAuth extends SchemaDirectiveVisitor {
 	}
 }
 
-export default RequireAuth
+export default HasRole
