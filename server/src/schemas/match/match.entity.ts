@@ -1,13 +1,13 @@
 import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
 import { User } from '../user/user.entity'
 
-enum Role {
+export enum Role {
 	TANK = 'tank',
 	DAMAGE = 'damage',
 	SUPPORT = 'support',
 }
 
-enum Result {
+export enum MatchResult {
 	WIN = 'win',
 	LOSS = 'loss',
 	DRAW = 'draw',
@@ -30,9 +30,9 @@ export class Match extends BaseEntity {
 
 	@Column({
 		type: 'enum',
-		enum: Result,
+		enum: MatchResult,
 	})
-	result!: Result
+	result!: MatchResult
 
 	@Column('date')
 	matchTime!: Date

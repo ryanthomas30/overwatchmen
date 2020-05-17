@@ -10,6 +10,7 @@ export const User = gql`
 	}
 
 	extend type Mutation {
+		"""Create a new user."""
 		createUser(newUser: NewUser!): User!
 	}
 
