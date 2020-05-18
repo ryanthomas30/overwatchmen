@@ -28,7 +28,7 @@ export class MatchService extends DataSource<ProducedContext> {
 		})
 		if (!user) throw new ApolloError('User does not exist')
 
-		const map = newMatch.mapId ? await Map.findOne({ where: { id: newMatch.mapId } }) : undefined
+		const map = await Map.findOne({ where: { id: newMatch.mapId } })
 		const heroes = await Hero.findByIds([ newMatch.heroIds ])
 
 		const match = {
