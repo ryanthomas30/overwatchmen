@@ -42,14 +42,5 @@ export class MatchService extends DataSource<ProducedContext> {
 		}
 
 		Match.create(match)
-
-		// Find heroes
-		// Find map
-		// Create match
-		// Add heroes to match
-		// Add map to match
-		// Save match
-		// Add match to user.matches
-		// Save user
 	}
 }
