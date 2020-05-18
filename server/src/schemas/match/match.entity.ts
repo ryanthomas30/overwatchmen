@@ -37,7 +37,7 @@ export class Match extends BaseEntity {
 	result!: MatchResult
 
 	@Column('date')
-	matchTime!: Date
+	endTime!: Date
 
 	@ManyToOne(() => User, user => user.matches)
 	user!: User

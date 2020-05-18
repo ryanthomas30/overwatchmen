@@ -28,7 +28,7 @@ export const Match = gql`
 		"""Whether the match was a win, loss, or draw."""
 		result: MatchResult!
 		"""When the match was played."""
-		matchTime: DateTime!
+		endTime: DateTime!
 	}
 
 	input NewMatch {
@@ -37,7 +37,7 @@ export const Match = gql`
 		role: Role!
 		skillRating: Int!
 		result: MatchResult!
-		matchTime: DateTime!
+		endTime: DateTime!
 	}
 
 	enum Role {
