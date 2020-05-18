@@ -22,25 +22,34 @@ export class MatchService extends DataSource<ProducedContext> {
 	}
 
 	async addToUser(newMatch: NewMatch, userId: string) {
+
+		const { mapId, heroIds, ...newMatchRest } = newMatch
+
 		const user = await User.findOne({
 			where: { id: userId },
-			relations: [ 'matches' ],
+			relations: ['matches'],
 		})
+
 		if (!user) throw new ApolloError('User does not exist')
 
-		const map = await Map.findOne({ where: { id: newMatch.mapId } })
-		const heroes = await Hero.findByIds([ newMatch.heroIds ])
+		const map = await Map.findOne({ where: { id: mapId } })
+		const heroes = await Hero.findByIds(heroIds ?? [])
 
-		const match = {
-			role: newMatch.role,
-			result: newMatch.result,
-			endTime: newMatch.endTime,
-			user: user,
-			map: map,
-			heroes: heroes,
-			skillRating: newMatch.skillRating,
+		const match = Match.create({
+			...newMatchRest,
+			user,
+			map,
+			heroes,
+		})
+
+		try {
+			const createdMatch = await match.save()
+			return createdMatch
+		} catch (error) {
+			switch (error.code) {
+				default:
+					throw new ApolloError('An error occurred when creating this user')
+			}
 		}
-
-		Match.create(match)
 	}
 }
