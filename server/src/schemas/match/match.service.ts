@@ -48,7 +48,7 @@ export class MatchService extends DataSource<ProducedContext> {
 		} catch (error) {
 			switch (error.code) {
 				default:
-					throw new ApolloError('An error occurred when creating this user')
+					throw new ApolloError('An error occurred when creating this match')
 			}
 		}
 	}
