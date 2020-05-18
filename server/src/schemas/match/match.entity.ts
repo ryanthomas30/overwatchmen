@@ -28,7 +28,7 @@ export class Match extends BaseEntity {
 	role!: Role
 
 	@Column()
-	skillRating!: number
+	skillRating?: number
 
 	@Column({
 		type: 'enum',
@@ -37,17 +37,17 @@ export class Match extends BaseEntity {
 	result!: MatchResult
 
 	@Column('date')
-	matchTime!: Date
+	endTime!: Date
 
 	@ManyToOne(() => User, user => user.matches)
 	user!: User
 
 	@ManyToOne(() => Map)
-	map!: Map
+	map?: Map
 
 	@ManyToMany(() => Hero)
 	@JoinTable({
 		name: 'match_hero',
 	})
-	heroes!: Hero[]
+	heroes?: Hero[]
 }

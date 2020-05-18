@@ -3,14 +3,16 @@ import { DataSource } from 'apollo-datasource'
 import { Match, Role, MatchResult } from './match.entity'
 import { User } from '../user/user.entity'
 import { ProducedContext } from '@/context'
+import { Map } from '../map/map.entity'
+import { Hero } from '../hero/hero.entity'
 
 interface NewMatch {
 	mapId?: number
 	heroIds?: number[]
-	role: Role[]
-	skillRating: number
+	role: Role
+	skillRating?: number
 	result: MatchResult
-	matchTime: string
+	endTime: Date
 }
 
 export class MatchService extends DataSource<ProducedContext> {
@@ -20,18 +22,35 @@ export class MatchService extends DataSource<ProducedContext> {
 	}
 
 	async addToUser(newMatch: NewMatch, userId: string) {
-		const user = await User.find({
+
+		const { mapId, heroIds, ...newMatchDetails } = newMatch
+
+		const user = await User.findOne({
 			where: { id: userId },
 			relations: ['matches'],
 		})
+
 		if (!user) throw new ApolloError('User does not exist')
-		// Find heroes
-		// Find map
-		// Create match
-		// Add heroes to match
-		// Add map to match
-		// Save match
-		// Add match to user.matches
-		// Save user
+
+		const map = await Map.findOne({ where: { id: mapId } })
+		const heroes = await Hero.findByIds(heroIds ?? [])
+
+		const match = Match.create({
+			...newMatchDetails,
+			user,
+			map,
+			heroes,
+		})
+
+		try {
+			const createdMatch = await match.save()
+			return createdMatch
+		} catch (error) {
+			switch (error.code) {
+				default:
+					throw new ApolloError('An error occurred when creating this match')
+			}
+		}
 	}
+
 }
