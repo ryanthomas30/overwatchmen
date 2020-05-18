@@ -22,31 +22,27 @@ export class MatchService extends DataSource<ProducedContext> {
 	}
 
 	async addToUser(newMatch: NewMatch, userId: string) {
-		const user = await User.find({
+		const user = await User.findOne({
 			where: { id: userId },
 			relations: [ 'matches' ],
 		})
 		if (!user) throw new ApolloError('User does not exist')
 
-		const match = new Match()
-		match.role = newMatch.role
-		match.result = newMatch.result
-		match.endTime = newMatch.endTime
-		match.user = user
+		const map = newMatch.mapId ? await Map.findOne({ where: { id: newMatch.mapId } }) : undefined
+		const heroes = await Hero.findByIds([ newMatch.heroIds ])
 
-		if (newMatch.mapId) match.map = await Map.find({ where: { id: newMatch.mapId } })
-
-		if (newMatch.heroIds) {
-			match.heroes = await Promise.all(
-				newMatch.heroIds.map(heroId =>
-					Hero.find({
-						where: { id: heroId },
-					})),
-			)
+		const match = {
+			role: newMatch.role,
+			result: newMatch.result,
+			endTime: newMatch.endTime,
+			user: user,
+			map: map,
+			heroes: heroes,
+			skillRating: newMatch.skillRating,
 		}
 
-		if (match.skillRating) match.skillRating = newMatch.skillRating
-		match.save()
+		Match.create(match)
+
 		// Find heroes
 		// Find map
 		// Create match
