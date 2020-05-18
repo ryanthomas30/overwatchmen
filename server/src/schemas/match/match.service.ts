@@ -16,6 +16,13 @@ interface NewMatch {
 }
 
 export class MatchService extends DataSource<ProducedContext> {
+	getOne(matchId:number) {
+		return Match.findOne({ where: { id: matchId } })
+	}
+
+	getAll() {
+		return Match.find()
+	}
 
 	getAllByUser(userId: string) {
 		return Match.find({ where: { user: userId } })
