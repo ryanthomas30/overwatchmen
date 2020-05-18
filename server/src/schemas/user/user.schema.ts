@@ -42,6 +42,6 @@ export const userResolvers: IResolvers<any, Context> = {
 		createUser: (_, { newUser }, { dataSources }) => dataSources.userService.create(newUser),
 	},
 	User: {
-		matches: (_, { userId }, { dataSources }) => dataSources.matchService.getByUser(userId),
+		matches: (_, { userId }, { dataSources }) => dataSources.matchService.getAllByUser(userId),
 	},
 }
