@@ -6,7 +6,7 @@ export const Match = gql`
 	extend type Query {
 		"""Get a match by its ID."""
 		match(matchId: ID!): Match
-    matches: [Match]
+		matches: [Match]
 	}
 
 	extend type Mutation {
@@ -57,7 +57,7 @@ export const Match = gql`
 export const matchResolvers: IResolvers<any, Context> = {
 	Query: {
 		match: (_, { matchId }, { dataSources }) => dataSources.matchService.getOne(matchId),
-		matches: (_, {}, { dataSources }) => dataSources.matchService.getAll(),
+		matches: (_, __, { dataSources }) => dataSources.matchService.getAll(),
 	},
 	Mutation: {
 		addMatchToUser: (_, { newMatch, userId }, { dataSources }) => dataSources.matchService.addToUser(newMatch, userId),

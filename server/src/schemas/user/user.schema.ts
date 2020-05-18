@@ -36,12 +36,12 @@ export const User = gql`
 
 export const userResolvers: IResolvers<any, Context> = {
 	Query: {
-		user: (_, { userId }, { dataSources }) => dataSources.userService.get(userId),
+		user: (_, { userId }, { dataSources }) => dataSources.userService.getOne(userId),
 	},
 	Mutation: {
 		createUser: (_, { newUser }, { dataSources }) => dataSources.userService.create(newUser),
 	},
 	User: {
-		matches: (_, { userId }, { dataSources }) => dataSources.matchService.getAllByUser(userId),
+		matches: ({ id }, _, { dataSources }) => dataSources.matchService.getAllByUser(id),
 	},
 }

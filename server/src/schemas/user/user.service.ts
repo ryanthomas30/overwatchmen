@@ -10,7 +10,7 @@ interface NewUser {
 
 export class UserService extends DataSource<ProducedContext> {
 
-	get(userId: string) {
+	getOne(userId: string) {
 		return User.findOne({ where: { id: userId } })
 	}
 
