@@ -23,7 +23,7 @@ export class MatchService extends DataSource<ProducedContext> {
 
 	async addToUser(newMatch: NewMatch, userId: string) {
 
-		const { mapId, heroIds, ...newMatchRest } = newMatch
+		const { mapId, heroIds, ...newMatchDetails } = newMatch
 
 		const user = await User.findOne({
 			where: { id: userId },
@@ -36,7 +36,7 @@ export class MatchService extends DataSource<ProducedContext> {
 		const heroes = await Hero.findByIds(heroIds ?? [])
 
 		const match = Match.create({
-			...newMatchRest,
+			...newMatchDetails,
 			user,
 			map,
 			heroes,
@@ -52,4 +52,5 @@ export class MatchService extends DataSource<ProducedContext> {
 			}
 		}
 	}
+
 }
