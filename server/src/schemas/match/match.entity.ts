@@ -1,5 +1,7 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm'
 import { User } from '../user/user.entity'
+import { Map } from '../map/map.entity'
+import { Hero } from '../hero/hero.entity'
 
 export enum Role {
 	TANK = 'tank',
@@ -39,4 +41,13 @@ export class Match extends BaseEntity {
 
 	@ManyToOne(() => User, user => user.matches)
 	user!: User
+
+	@ManyToOne(() => Map)
+	map!: Map
+
+	@ManyToMany(() => Hero)
+	@JoinTable({
+		name: 'match_hero',
+	})
+	heroes!: Hero[]
 }
