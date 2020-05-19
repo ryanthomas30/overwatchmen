@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Redirect, match } from 'react-router-dom'
+// import { Switch, Route, Redirect, match } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Header, Flexbox, Logo } from '../components'
@@ -24,7 +24,10 @@ const Main = () => (
 			</Flexbox>
 
 		</MainHeader>
-		<Flexbox >
+		<Flexbox
+			align='center'
+			justify='center'
+		>
 			Main
 		</Flexbox>
 	</div>
