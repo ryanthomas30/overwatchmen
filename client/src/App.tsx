@@ -1,18 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to Overwatchmen. It's time to raise your APM
-        </p>
-      </header>
-    </div>
-  );
-}
+import { Flexbox } from './components'
 
-export default App;
+/* Routes */
+import Login from './pages/Login'
+import Main from './pages/Main'
+import NotFound from './pages/NotFound'
+
+/* Auth HoC */
+import { UnAuth } from './components'
+
+import { useFirebaseAuthListener, AuthProvider } from './firebase'
+
+const App = () =>
+	// const firebaseUser = useFirebaseAuthListener()
+	 (
+		// <AuthProvider value={firebaseUser} >
+		<Flexbox
+			className='app'
+			justify='center'
+			align='center'
+		>
+			<Switch>
+				<Route
+					exact
+					path='/'
+					component={UnAuth(Login)}
+				/>
+
+				<Route
+					path='/app'
+					component={Main}
+				/>
+				<Route component={NotFound} />
+			</Switch>
+		</Flexbox>
+		// </AuthProvider>
+	)
+
+export default App
