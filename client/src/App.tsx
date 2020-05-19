@@ -11,11 +11,11 @@ import NotFound from './pages/NotFound'
 /* Auth HoC */
 import { UnAuth } from './components'
 
-import { useFirebaseAuthListener, AuthProvider } from './firebase'
+// import { useFirebaseAuthListener, AuthProvider } from './firebase'
 
 const App = () =>
 	// const firebaseUser = useFirebaseAuthListener()
-	 (
+	(
 		// <AuthProvider value={firebaseUser} >
 		<Flexbox
 			className='app'

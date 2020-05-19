@@ -7,7 +7,7 @@ import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
 /* Firebase */
-import Firebase, { FirebaseProvider } from './firebase'
+// import Firebase, { FirebaseProvider } from './firebase'
 
 /* Stylesheet */
 import './styles/index.scss'
