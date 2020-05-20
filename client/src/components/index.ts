@@ -5,6 +5,7 @@ import Header from './Header'
 import Icon from './Icon'
 import Link from './Link'
 import Logo from './Logo'
+import Page from './Page'
 import Title from './Title'
 
 export {
@@ -15,6 +16,7 @@ export {
 	Icon,
 	Link,
 	Logo,
+	Page,
 	Title,
 }
 

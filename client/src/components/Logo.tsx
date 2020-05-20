@@ -42,6 +42,7 @@ const Logo = ({ image = true, title = true, scale = 1 }: Props) => {
 			<Title
 				size={TITLE_SIZE * scale}
 				italic
+				color='white'
 			>
 				Overwatchmen
 			</Title>
