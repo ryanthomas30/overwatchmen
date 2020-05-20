@@ -12,7 +12,7 @@ const MainHeader = styled(Header)`
 const Main = () => (
 	<div className='page' >
 		<MainHeader
-			paddingVertical='medium'
+			paddingVertical='small'
 			paddingHorizontal='large'
 		>
 			<Flexbox

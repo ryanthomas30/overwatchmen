@@ -1,7 +1,9 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
 
 import { Flexbox } from './components'
+import { theme } from './constants'
 
 /* Routes */
 import Login from './pages/Login'
@@ -17,25 +19,27 @@ const App = () =>
 	// const firebaseUser = useFirebaseAuthListener()
 	(
 		// <AuthProvider value={firebaseUser} >
-		<Flexbox
-			className='app'
-			justify='center'
-			align='center'
-		>
-			<Switch>
-				<Route
-					exact
-					path='/'
-					component={UnAuth(Login)}
-				/>
+		<ThemeProvider theme={theme} >
+			<Flexbox
+				className='app'
+				justify='center'
+				align='center'
+			>
+				<Switch>
+					<Route
+						exact
+						path='/'
+						component={UnAuth(Login)}
+					/>
 
-				<Route
-					path='/app'
-					component={Main}
-				/>
-				<Route component={NotFound} />
-			</Switch>
-		</Flexbox>
+					<Route
+						path='/app'
+						component={Main}
+					/>
+					<Route component={NotFound} />
+				</Switch>
+			</Flexbox>
+		</ThemeProvider>
 		// </AuthProvider>
 	)
 
