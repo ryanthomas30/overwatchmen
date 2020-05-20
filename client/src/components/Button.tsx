@@ -1,5 +1,5 @@
-import React, { CSSProperties, ReactNode } from 'react'
-import styled from 'styled-components'
+import React, { CSSProperties, ReactNode, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 import Flexbox from './Flexbox'
@@ -22,12 +22,13 @@ export interface ButtonProps {
 
 const UnstyledButton = (props: ButtonProps) => {
 	const { children, label, path, onClick, full, disabled, icon, type = 'button', style, className } = props
+	const theme = useContext(ThemeContext)
 	const labelNode = (!!children || !!label) && <Flexbox>{children || label}</Flexbox>
 	const iconNode = !!icon && (
 		<Flexbox>
 			<Icon
 				icon={icon}
-				color='white'
+				color={theme.yellow}
 			/>
 		</Flexbox>
 	)
@@ -64,34 +65,26 @@ const UnstyledButton = (props: ButtonProps) => {
 	return buttonInner
 }
 
-const colorMap: any = {
-	primary: '#875FC0',
-	secondary: '#FBAF00',
-}
-
-const getColor = (color: string) => color in colorMap ? colorMap[color] : color
-
 const Button = styled(UnstyledButton)`
 	user-select: none;
 	border-style: none;
 	cursor: pointer;
 	padding: 0px 20px;
-	border-radius: 8px;
+	border-radius: 10px;
 	min-width: 74px;
-	height: 34px;
-	background-color: ${({ color = 'primary' }) => getColor(color)};
+	height: 44px;
+	background-color: white;
 	transition: all ease-in-out 200ms;
 	opacity: ${({ disabled }) => disabled ? 0.6 : 'inherit'};
-	&:hover {
-		filter: brightness(110%)
-	}
 	&:focus {
 		outline: none;
 	}
 	/* Button Text */
-	color: white;
-	font-size: 12px;
-	font-weight: 600;
+	color: ${({ theme }) => theme.yellow};
+	font-family: 'Koverwatch';
+	font-size: 24px;
+	letter-spacing: 2px;
+	font-style: italic;
 	white-space: nowrap;
 `
 

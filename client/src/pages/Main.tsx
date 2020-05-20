@@ -2,7 +2,7 @@ import React from 'react'
 // import { Switch, Route, Redirect, match } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Header, Flexbox, Logo, Card } from '../components'
+import { Header, Flexbox, Logo, Card, Button } from '../components'
 
 const MainHeader = styled(Header)`
 	background-color: #FA9C1E;
@@ -14,6 +14,7 @@ const Main = () => (
 		<MainHeader
 			paddingVertical='small'
 			paddingHorizontal='large'
+			justify='between'
 		>
 			<Flexbox
 				direction='row'
@@ -22,6 +23,9 @@ const Main = () => (
 			>
 				<Logo />
 			</Flexbox>
+			<Button
+				label='Add Match'
+			/>
 
 		</MainHeader>
 		<Flexbox
