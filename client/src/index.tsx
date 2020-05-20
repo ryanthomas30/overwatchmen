@@ -7,7 +7,7 @@ import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
 /* Firebase */
-// import Firebase, { FirebaseProvider } from './firebase'
+import Firebase, { FirebaseProvider } from './firebase'
 
 /* Font Awesome Icons */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -28,11 +28,11 @@ library.add(faTrash, faPlus)
 
 ReactDOM.render(
 	<React.StrictMode>
-		{/* <FirebaseProvider value={new Firebase()} > */}
-		<Router history={history} >
-			<App />
-		</Router>
-		{/* </FirebaseProvider> */}
+		<FirebaseProvider value={new Firebase()} >
+			<Router history={history} >
+				<App />
+			</Router>
+		</FirebaseProvider>
 	</React.StrictMode>,
 	document.getElementById('root'),
 )
