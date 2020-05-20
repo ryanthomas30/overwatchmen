@@ -2,7 +2,8 @@ import React from 'react'
 import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Header, Flexbox, Logo, Button } from '../components'
+import { useFirebase } from '../firebase'
+import { Header, Flexbox, Logo, Button, Auth } from '../components'
 
 /* Routes */
 import Home from './Home'
@@ -14,6 +15,12 @@ const MainHeader = styled(Header)`
 
 const Main = () => {
 	const { path } = useRouteMatch()
+	const firebase = useFirebase()
+
+	const signOut = async () => {
+		await firebase.signOut()
+	}
+
 	return (
 		<div className='page' >
 			<MainHeader
@@ -28,16 +35,25 @@ const Main = () => {
 				>
 					<Logo />
 				</Flexbox>
-				<Button
-					label='Add Match'
-				/>
+				<Flexbox
+					direction='row'
+					marginBetween='small'
+				>
+					<Button
+						label='Add Match'
+					/>
+					<Button
+						label='Logout'
+						onClick={signOut}
+					/>
+				</Flexbox>
 
 			</MainHeader>
 			<Flexbox align='center' >
 				<Switch>
 					<Route
 						path={`${path}/home`}
-						component={Home}
+						component={Auth(Home, 'Home')}
 					/>
 					<Redirect
 						from={path}

@@ -150,7 +150,7 @@
 			}
 		],
 		"linebreak-style": [
-			"off",
+			"error",
 			"unix"
 		],
 		"max-len": [

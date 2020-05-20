@@ -13,34 +13,34 @@ import NotFound from './pages/NotFound'
 /* Auth HoC */
 import { UnAuth } from './components'
 
-// import { useFirebaseAuthListener, AuthProvider } from './firebase'
+import { useFirebaseAuthListener, AuthProvider } from './firebase'
 
-const App = () =>
-	// const firebaseUser = useFirebaseAuthListener()
-	(
-		// <AuthProvider value={firebaseUser} >
-		<ThemeProvider theme={theme} >
-			<Flexbox
-				className='app'
-				justify='center'
-				align='center'
-			>
-				<Switch>
-					<Route
-						exact
-						path='/'
-						component={UnAuth(Login)}
-					/>
-
-					<Route
-						path='/app'
-						component={Main}
-					/>
-					<Route component={NotFound} />
-				</Switch>
-			</Flexbox>
-		</ThemeProvider>
-		// </AuthProvider>
+const App = () => {
+	const firebaseUser = useFirebaseAuthListener()
+	return (
+		<AuthProvider value={firebaseUser} >
+			<ThemeProvider theme={theme} >
+				<Flexbox
+					className='app'
+					justify='center'
+					align='center'
+				>
+					<Switch>
+						<Route
+							exact
+							path='/'
+							component={UnAuth(Login)}
+						/>
+						<Route
+							path='/app'
+							component={Main}
+						/>
+						<Route component={NotFound} />
+					</Switch>
+				</Flexbox>
+			</ThemeProvider>
+		</AuthProvider>
 	)
+}
 
 export default App
