@@ -9,6 +9,10 @@ import { createBrowserHistory } from 'history'
 /* Firebase */
 // import Firebase, { FirebaseProvider } from './firebase'
 
+/* Font Awesome Icons */
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons'
+
 /* Stylesheet */
 import './styles/index.scss'
 
@@ -19,6 +23,8 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 
 const history = createBrowserHistory()
+
+library.add(faTrash, faPlus)
 
 ReactDOM.render(
 	<React.StrictMode>
