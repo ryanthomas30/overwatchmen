@@ -10,10 +10,6 @@ const Login = () => {
 		signInOptions: [firebase.googleProvider.providerId],
 	}
 
-	const signOut = async () => {
-		await firebase.auth.signOut()
-	}
-
 	return (
 		<div>
 
@@ -21,7 +17,6 @@ const Login = () => {
 				uiConfig={uiConfig}
 				firebaseAuth={firebase.auth}
 			/>
-			<button onClick={signOut}> sign out</button>
 		</div>
 	)
 }
