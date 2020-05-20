@@ -1,6 +1,7 @@
 import React, { ReactNode, CSSProperties } from 'react'
 
 import styled from 'styled-components'
+import { theme } from '../constants'
 
 type Props = {
 	children?: ReactNode
@@ -27,12 +28,11 @@ const Title = ({ children, tag = 'h1', className, style }: Props) => {
 
 const styledTitle = styled(Title)`
 	margin: 0px;
-	color: ${({ color = 'white' }) => color};
+	color: ${({ color = theme.gray }) => color};
 	font-size: ${({ size }) => `${size}px`};
 	user-select: none;
 	font-family: 'Koverwatch';
 	letter-spacing: 1px;
-	font-size: 48px;
 	font-style: ${({ italic }) => italic ? 'italic' : 'normal'};
 	font-weight: normal;
 `
