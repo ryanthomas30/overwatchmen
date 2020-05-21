@@ -2,6 +2,7 @@ import Button from './Button'
 import Card from './Card'
 import Flexbox from './Flexbox'
 import Header from './Header'
+import HeroBadge from './HeroBadge'
 import Icon from './Icon'
 import Link from './Link'
 import Logo from './Logo'
@@ -13,6 +14,7 @@ export {
 	Card,
 	Flexbox,
 	Header,
+	HeroBadge,
 	Icon,
 	Link,
 	Logo,
