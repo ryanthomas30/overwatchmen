@@ -11,14 +11,14 @@ interface LogoComponentProps {
 }
 
 export const LogoImage = ({ size = 72 }: LogoComponentProps) => (
-	<div>
+	<>
 		<img
 			src={logo}
 			width={size}
 			height={size}
 			alt='overwatchmen_logo'
 		/>
-	</div>
+	</>
 )
 
 interface Props {
