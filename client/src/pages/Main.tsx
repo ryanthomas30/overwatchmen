@@ -7,6 +7,7 @@ import { Header, Flexbox, Logo, Button, Auth } from '../components'
 
 /* Routes */
 import Home from './Home'
+import AddMatch from './AddMatch'
 
 const MainHeader = styled(Header)`
 	background-color: #FA9C1E;
@@ -41,6 +42,7 @@ const Main = () => {
 				>
 					<Button
 						label='Add Match'
+						path='/app/match/new'
 					/>
 					<Button
 						label='Logout'
@@ -54,6 +56,10 @@ const Main = () => {
 					<Route
 						path={`${path}/home`}
 						component={Auth(Home, 'Home')}
+					/>
+					<Route
+						path={`${path}/match/new`}
+						component={Auth(AddMatch, 'Add Match')}
 					/>
 					<Redirect
 						from={path}

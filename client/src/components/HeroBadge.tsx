@@ -96,6 +96,7 @@ const HeroBadge = ({ hero, className }: Props) => {
 
 const StyledHeroBadge = styled(HeroBadge)`
 	border-radius: 50%;
+	overflow: hidden;
 	background-color: ${({ theme, active }) => active ? theme.yellow : theme.gray};
 `
 

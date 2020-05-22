@@ -10,7 +10,7 @@ export const Auth = (ComposedComponent: any, title?: string) => {
 		const history = useHistory()
 
 		useEffect(() => {
-			document.title = title ? `Overwatchmen | ${title}` : 'Overwatchmen'
+			document.title = title ? `${title} | Overwatchmen` : 'Overwatchmen'
 			if (!authUser) setLoginRedirect(match.path)
 			else if (loginRedirect) {
 				setLoginRedirect('')

@@ -31,6 +31,7 @@ export interface FlexboxProps {
 	direction?: 'row' | 'column'
 	justify?: 'start' | 'end' | 'between' | 'center'
 	align?: 'start' | 'end' | 'center' | 'baseline'
+	center?: boolean
 	wrap?: boolean
 	/* Margin */
 	margin?: Size
@@ -73,6 +74,7 @@ const Flexbox = (props: FlexboxProps) => {
 		children,
 		justify = '',
 		align = 'start',
+		center,
 		wrap = true,
 		/* Margin */
 		margin,
@@ -110,8 +112,8 @@ const Flexbox = (props: FlexboxProps) => {
 	} = props
 
 	/* FLEX */
-	const justifyContent = getSpacing(justify)
-	const alignItems = getSpacing(align)
+	const justifyContent = center ? getSpacing('center') : getSpacing(justify)
+	const alignItems = center ? getSpacing('center') : getSpacing(align)
 	const flexWrap = wrap ? 'wrap' : 'nowrap'
 
 	/* FULL, HEIGHT, WIDTH */

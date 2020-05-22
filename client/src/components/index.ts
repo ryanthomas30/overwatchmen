@@ -7,6 +7,7 @@ import Icon from './Icon'
 import Link from './Link'
 import Logo from './Logo'
 import Page from './Page'
+import RoleBadge from './RoleBadge'
 import Title from './Title'
 
 export {
@@ -19,6 +20,7 @@ export {
 	Link,
 	Logo,
 	Page,
+	RoleBadge,
 	Title,
 }
 
