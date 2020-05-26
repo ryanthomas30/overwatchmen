@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Card, Title, Page, Header, RoleBadge, Flexbox } from '../components'
+import { Card, Title, Page, Header, RoleBadge, Flexbox, NumberInput, Form } from '../components'
 
 const RoleGrid = styled.div`
 	display: grid;
@@ -10,59 +10,137 @@ const RoleGrid = styled.div`
 	grid-template-columns: repeat(3, 1fr);
 `
 
-const AddMatch = () => (
-	<Page
-		align='center'
-		justify='center'
-		padding='large'
-		marginBetween='medium'
-	>
-		<Header >
-			<Title
-				tag='h1'
-				italic
-				color='white'
+const ResultGrid = styled.div`
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 48px;
+`
+
+const AddMatch = () => {
+	const initialValues = {
+		skillRating: null,
+	}
+
+	const onSubmit = (values: typeof initialValues) => {
+		console.log('values:', values)
+	}
+
+	return (
+		<Page>
+			<Form
+				initialValues={initialValues}
+				onSubmit={onSubmit}
 			>
-				Role
-			</Title>
-		</Header>
-		<Card
-			full
-		>
-			<RoleGrid>
 				<Flexbox
-					center
-					padding='medium'
+					align='center'
+					justify='center'
+					padding='large'
+					marginBetween='medium'
 				>
-					<RoleBadge
-						role='tank'
-						active
-					/>
+					<Header>
+						<Title
+							tag='h1'
+							italic
+							color='white'
+						>
+							Role
+						</Title>
+					</Header>
+					<ResultGrid>
+						<Card
+							center
+							padding='medium'
+						>
+							<RoleBadge
+								role='tank'
+								active
+							/>
+						</Card>
+						<Card
+							center
+							padding='medium'
+						>
+							<RoleBadge role='damage' />
+						</Card>
+						<Card
+							center
+							padding='medium'
+						>
+							<RoleBadge role='support' />
+						</Card>
+					</ResultGrid>
+					<Header>
+						<Title
+							tag='h1'
+							italic
+							color='white'
+						>
+							Heroes
+						</Title>
+					</Header>
+					<Header>
+						<Title
+							tag='h1'
+							italic
+							color='white'
+						>
+							Map
+						</Title>
+					</Header>
+					<Header>
+						<Title
+							tag='h1'
+							italic
+							color='white'
+						>
+							Skill Rating
+						</Title>
+					</Header>
+					<Flexbox
+						align='start'
+						full='horizontal'
+					>
+						<NumberInput
+							name='skillRating'
+							width={300}
+							placeHolder='Enter a skill rating'
+						/>
+					</Flexbox>
+					<Header>
+						<Title
+							tag='h1'
+							italic
+							color='white'
+						>
+							Match Result
+						</Title>
+					</Header>
+					<ResultGrid>
+						<Card
+							center
+							padding='medium'
+						>
+							<Title italic >Win</Title>
+						</Card>
+						<Card
+							center
+							padding='medium'
+						>
+							<Title italic >Loss</Title>
+						</Card>
+						<Card
+							center
+							padding='medium'
+						>
+							<Title italic >Draw</Title>
+						</Card>
+					</ResultGrid>
 				</Flexbox>
-				<Flexbox
-					center
-					padding='medium'
-				>
-					<RoleBadge role='damage' />
-				</Flexbox>
-				<Flexbox
-					center
-					padding='medium'
-				>
-					<RoleBadge role='support' />
-				</Flexbox>
-			</RoleGrid>
-		</Card>
-		<Header>
-			<Title
-				tag='h1'
-				italic
-				color='white'
-			>
-				Map
-			</Title>
-		</Header>
-	</Page>
-)
+			</Form>
+		</Page>
+	)
+}
 
 export default AddMatch
