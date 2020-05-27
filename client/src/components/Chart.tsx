@@ -24,7 +24,7 @@ const data = {
 }
 
 const Chart = () => (
-	<div style={{ backgroundColor: 'white' }}>
+	<Flexbox full >
 		<h2>Line Example</h2>
 		<Line data={data} />
 		<RoleGrid>
@@ -50,7 +50,7 @@ const Chart = () => (
 				<RoleBadge role='support' />
 			</Flexbox>
 		</RoleGrid>
-	</div>
+	</Flexbox>
 )
 
 export default Chart

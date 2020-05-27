@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { Card, Title, Page, HeroBadge } from '../components'
+import { Card, Title, Page, HeroBadge, Chart } from '../components'
 
 const Home = () => (
 	<Page
 		align='center'
 		justify='center'
 		padding='large'
+		marginBetween='medium'
 	>
 		<Card
 			full
@@ -24,6 +25,13 @@ const Home = () => (
 				hero='zenyatta'
 				active
 			/>
+		</Card>
+		<Card
+			full
+			padding='medium'
+			justify='between'
+		>
+			<Chart />
 		</Card>
 	</Page>
 )
