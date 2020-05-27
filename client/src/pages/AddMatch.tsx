@@ -1,14 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 import { Card, Title, Page, Header, RoleBadge, Flexbox, NumberInput, Form } from '../components'
 
 const RoleGrid = styled.div`
-	display: grid;
-	width: 100%;
-	height: 100%;
-	grid-template-columns: repeat(3, 1fr);
-`
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(3, 1fr);
+`;
 
 const ResultGrid = styled.div`
 	display: grid;
@@ -143,4 +143,4 @@ const AddMatch = () => {
 	)
 }
 
-export default AddMatch
+export default AddMatch;

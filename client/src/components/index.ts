@@ -1,5 +1,6 @@
 import Button from './Button'
 import Card from './Card'
+import Chart from './Chart'
 import Flexbox from './Flexbox'
 import Form from './Form'
 import Header from './Header'
@@ -16,6 +17,7 @@ import Title from './Title'
 export {
 	Button,
 	Card,
+	Chart,
 	Flexbox,
 	Form,
 	Header,
