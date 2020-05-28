@@ -1,9 +1,19 @@
+import React from 'react'
 import styled from 'styled-components'
 import Flexbox from './Flexbox'
+import { theme } from '../constants'
 
-const Card = styled(Flexbox)`
+interface CardProps {
+	active: boolean
+}
+
+const Card = ({ active, ...rest } : any) => (
+	<Flexbox {...rest} />
+)
+
+const StyledCard = styled(Card)`
 	border-radius: 15px;
-	background-color: white;
+	background-color: ${({ active }) => active ? theme.yellow : 'white'};
 `
 
-export default Card
+export default StyledCard
