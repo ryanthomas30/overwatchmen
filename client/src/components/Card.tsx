@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import Flexbox from './Flexbox'
+import Flexbox, { FlexboxProps } from './Flexbox'
 import { theme } from '../constants'
 
-interface CardProps {
+interface CardProps extends FlexboxProps{
 	active: boolean
 }
 
-const Card = ({ active, ...rest } : any) => (
+const Card = ({ active, ...rest } : CardProps) => (
 	<Flexbox {...rest} />
 )
 
