@@ -2,12 +2,12 @@ import { gql, IResolvers } from 'apollo-server'
 import { Context } from '@/context'
 
 export const Hero = gql`
-	#Operations
+	# Operations
 	extend type Query {
 		hero(heroId: ID!): Hero
 	}
 
-	#Model
+	# Model
 	type Hero {
 		id: ID!
 		name: String!
