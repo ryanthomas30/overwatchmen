@@ -1,6 +1,7 @@
 import React from 'react'
 import { Header, Title, Card, ResultGrid } from '.'
 import { useFormikContext, useField } from 'formik'
+import { theme } from '../constants'
 
 const MatchResult = ({ name = 'result' }:any) => {
 	const [field] = useField(name)
@@ -9,6 +10,7 @@ const MatchResult = ({ name = 'result' }:any) => {
 	const handleSelect = (value:string )=> {
 		setFieldValue(name, value)
 	}
+
 	return (
 		<>
 			<Header>
@@ -29,7 +31,7 @@ const MatchResult = ({ name = 'result' }:any) => {
 				>
 					<Title
 						italic
-						color={field.value === 'win' ? 'white' : undefined}
+						color={field.value === 'win' ? 'white' : theme.gray}
 					>
 						Win
 
@@ -43,7 +45,7 @@ const MatchResult = ({ name = 'result' }:any) => {
 				>
 					<Title
 						italic
-						color={field.value === 'loss' ? 'white' : undefined}
+						color={field.value === 'loss' ? 'white' : theme.gray}
 					>
 						Loss
 					</Title>
@@ -56,7 +58,7 @@ const MatchResult = ({ name = 'result' }:any) => {
 				>
 					<Title
 						italic
-						color={field.value === 'draw' ? 'white' : undefined}
+						color={field.value === 'draw' ? 'white' : theme.gray}
 					>
 						Draw
 					</Title>
