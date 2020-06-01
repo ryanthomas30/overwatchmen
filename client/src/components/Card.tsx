@@ -4,10 +4,11 @@ import Flexbox, { FlexboxProps } from './Flexbox'
 import { theme } from '../constants'
 
 interface CardProps extends FlexboxProps{
-	active: boolean
+	active?: boolean
+	key?: string
 }
 
-const Card = ({ active, ...rest } : CardProps) => (
+const Card = ({ active, key, ...rest } : CardProps) => (
 	<Flexbox {...rest} />
 )
 

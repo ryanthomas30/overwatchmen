@@ -24,7 +24,7 @@ import { ReactComponent as Winston } from '../assets/playerIcons/winston.svg'
 import { ReactComponent as Zarya } from '../assets/playerIcons/zarya.svg'
 import { ReactComponent as Zenyatta } from '../assets/playerIcons/zenyatta.svg'
 
-type HeroName =
+export type HeroName =
 	'bastion'
 	| 'dva'
 	| 'genji'
