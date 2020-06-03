@@ -18,8 +18,10 @@ import SkillRatingInput from './SkillRatingInput'
 import MapSelector from './MapSelector'
 import HeroSelector from './HeroSelector'
 import RoleSelector from './RoleSelector'
+import MapCard from './MapCard'
 
 export {
+	MapCard,
 	RoleSelector,
 	HeroSelector,
 	MapSelector,
