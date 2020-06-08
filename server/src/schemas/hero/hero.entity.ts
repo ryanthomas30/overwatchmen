@@ -1,4 +1,5 @@
 import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Role } from '../match/match.entity'
 
 @Entity()
 export class Hero extends BaseEntity {
@@ -7,4 +8,7 @@ export class Hero extends BaseEntity {
 
 	@Column()
 	name!: string
+
+	@Column()
+	role!: Role
 }
