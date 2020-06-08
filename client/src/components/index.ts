@@ -12,8 +12,22 @@ import Page from './Page'
 import RoleBadge from './RoleBadge'
 import TextInput from './TextInput'
 import Title from './Title'
+import ResultGrid from './ResultGrid'
+import MatchResult from './MatchResult'
+import SkillRatingInput from './SkillRatingInput'
+import MapSelector from './MapSelector'
+import HeroSelector from './HeroSelector'
+import RoleSelector from './RoleSelector'
+import MapCard from './MapCard'
 
 export {
+	MapCard,
+	RoleSelector,
+	HeroSelector,
+	MapSelector,
+	SkillRatingInput,
+	MatchResult,
+	ResultGrid,
 	Button,
 	Card,
 	Flexbox,

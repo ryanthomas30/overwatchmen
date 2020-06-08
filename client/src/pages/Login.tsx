@@ -30,7 +30,7 @@ const Login = () => {
 	const firebase = useFirebase()
 	const uiConfig = {
 		signInFlow: 'popup',
-		signInSuccessUrl: '/app',
+		signInSuccessUrl: '/',
 		signInOptions: [firebase.googleProvider.providerId],
 	}
 
@@ -72,6 +72,7 @@ const Login = () => {
 						<img
 							src='https://picsum.photos/280/400'
 							object-fit='cover'
+							alt='login_image'
 						/>
 					</ImageSection>
 

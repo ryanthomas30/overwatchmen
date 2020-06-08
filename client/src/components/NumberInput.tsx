@@ -13,7 +13,7 @@ interface NumberInput extends FlexboxProps {
 	placeHolder?: string
 }
 
-const NumberInput = ({ placeHolder, name, min = 1, max = 5000, step = 10, ...other }: NumberInput) => {
+const NumberInput = ({ placeHolder, name, min = 0, max = 5000, step = 10, ...other }: NumberInput) => {
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
