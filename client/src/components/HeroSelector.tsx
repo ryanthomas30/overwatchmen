@@ -4,24 +4,51 @@ import { HeroName } from './HeroBadge'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
-const heroes : HeroName[] = ['bastion', 'dva', 'genji', 'hanzo', 'junkrat', 'lucio', 'mccree', 'mei', 'mercy', 'pharah', 'reaper', 'reinhardt', 'roadhog', 'soldier76', 'symmetra', 'torbjorn', 'tracer', 'widowmaker', 'winston', 'zarya', 'zenyatta']
+const heroes: HeroName[] = [
+	'bastion',
+	'dva',
+	'genji',
+	'hanzo',
+	'junkrat',
+	'lucio',
+	'mccree',
+	'mei',
+	'mercy',
+	'pharah',
+	'reaper',
+	'reinhardt',
+	'roadhog',
+	'soldier76',
+	'symmetra',
+	'torbjorn',
+	'tracer',
+	'widowmaker',
+	'winston',
+	'zarya',
+	'zenyatta',
+]
 
 const HeroGrid = styled.div`
-  display:grid;
-  width:100%;
-  height:100%;
-  grid-auto-flow:column;
-  gap: 10px;
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	gap: 10px;
 `
-const HeroSelector = () => {
-	const [field] = useField('heroIds')
+
+interface Props {
+	name?: string
+}
+
+const HeroSelector = ({ name = 'heroIds' }: Props) => {
+	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
 	const handleSelect = (value: HeroName) => {
 		if (field.value.includes(value)) {
-			setFieldValue('heroIds', field.value.filter((hero:HeroName) => hero !== value))
+			setFieldValue(name, field.value.filter((hero: HeroName) => hero !== value))
 		} else {
-			setFieldValue('heroIds', [...field.value, value])
+			setFieldValue(name, [...field.value, value])
 		}
 	}
 
@@ -37,11 +64,10 @@ const HeroSelector = () => {
 				</Title>
 			</Header>
 			<HeroGrid>
-
 				{heroes.map(hero =>(
 					<Card
 						key={hero}
-						padding='medium'
+						padding='small'
 						center
 						marginBetween='small'
 						onClick={()=> { handleSelect(hero) }}
@@ -49,16 +75,15 @@ const HeroSelector = () => {
 						<HeroBadge
 							hero={hero}
 							active={field.value.includes(hero)}
+							size={72}
 						/>
-						<Title tag='h2'>
+						<Title tag='h4' >
 							{hero}
 						</Title>
 					</Card>))}
-
 			</HeroGrid>
 		</>
 	)
 }
 
 export default HeroSelector
-

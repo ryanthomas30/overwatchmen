@@ -4,7 +4,7 @@ import { Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, Match
 
 const AddMatch = () => {
 	const initialValues = {
-		skillRating: undefined,
+		skillRating: 0,
 		heroIds: [],
 		mapId: '',
 		role: '',

@@ -75,17 +75,17 @@ interface Props {
 	hero: HeroName
 	active?: boolean
 	className?: string
+	size?: number
 }
 
-const HeroBadge = ({ hero, className }: Props) => {
-
+const HeroBadge = ({ hero, size = 72, className }: Props) => {
 	const HeroSVG = heroMap[hero]
 	return (
 		<Flexbox
 			align='center'
 			justify='center'
-			height={72}
-			width={72}
+			height={size}
+			width={size}
 			padding='small'
 			className={className}
 		>

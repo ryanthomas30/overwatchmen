@@ -99,9 +99,7 @@
 		"array-bracket-spacing": 2,
 		"array-element-newline": [
 			"error",
-			{
-				"multiline": true
-			}
+			"consistent"
 		],
 		"arrow-body-style": ["error", "as-needed"],
 		"block-spacing": [
