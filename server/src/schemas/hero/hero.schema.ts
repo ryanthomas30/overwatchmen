@@ -2,28 +2,29 @@ import { gql, IResolvers } from 'apollo-server'
 import { Context } from '@/context'
 
 export const Hero = gql`
+
 	# Operations
 	extend type Query {
 		hero(heroId: ID!): Hero
-    heroes: [Hero]
+		heroes: [Hero]
 	}
 
-  extend type Mutation {
-    createHero(newHero:NewHero!): Hero!
-  }
+	extend type Mutation {
+		createHero(newHero: NewHero!): Hero!
+	}
 
 	# Model
 	type Hero {
 		id: ID!
 		name: String!
-    role: Role!
+		role: Role!
 	}
 
-  enum Role {
-    tank
-    damage
-    support
-  }
+	input NewHero {
+		name: String!
+		role: Role!
+	}
+
 `
 
 export const heroResolvers: IResolvers<any, Context> = {

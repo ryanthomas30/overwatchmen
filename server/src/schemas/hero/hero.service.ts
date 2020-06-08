@@ -8,15 +8,16 @@ interface NewHero {
 	name: string
 	role: Role
 }
+
 export class HeroService extends DataSource<ProducedContext> {
 	getAll() {
 		return Hero.find()
 	}
-	getOne(heroId:number) {
+	getOne(heroId: number) {
 		return Hero.findOne({ where: { id: heroId } })
 	}
 
-	async create(newHero:NewHero) {
+	async create(newHero: NewHero) {
 		const hero = Hero.create({
 			...newHero,
 		})
