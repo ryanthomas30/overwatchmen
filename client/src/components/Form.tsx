@@ -8,7 +8,10 @@ const Form = ({ children, ...other }: FormikConfig<any>) => (
 	<Formik {...other} >
 		{(props) =>
 			<form
-				onSubmit={(e) => e.preventDefault()}
+				onSubmit={(e) => {
+					e.preventDefault()
+					if (!props.isSubmitting) { props.handleSubmit() }
+				}}
 				style={{ width: '100%' }}
 			>
 				{isFunction(children)

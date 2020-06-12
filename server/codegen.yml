@@ -1,0 +1,7 @@
+schema: schema.json
+generates:
+  ./src/generated/index.ts:
+    plugins:
+      - add: '/* eslint-disable */'
+      - typescript
+      - typescript-resolvers

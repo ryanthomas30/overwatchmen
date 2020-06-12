@@ -79,6 +79,9 @@ export const run = async () => {
 		context,
 		schemaDirectives,
 		dataSources: () => dataSources,
+		engine: {
+			experimental_schemaReporting: true,
+		},
 	})
 
 	const { url } = await server.listen()

@@ -24,7 +24,7 @@ import { ReactComponent as Winston } from '../assets/playerIcons/winston.svg'
 import { ReactComponent as Zarya } from '../assets/playerIcons/zarya.svg'
 import { ReactComponent as Zenyatta } from '../assets/playerIcons/zenyatta.svg'
 
-type HeroName =
+export type HeroName =
 	'bastion'
 	| 'dva'
 	| 'genji'
@@ -75,17 +75,17 @@ interface Props {
 	hero: HeroName
 	active?: boolean
 	className?: string
+	size?: number
 }
 
-const HeroBadge = ({ hero, className }: Props) => {
-
+const HeroBadge = ({ hero, size = 72, className }: Props) => {
 	const HeroSVG = heroMap[hero]
 	return (
 		<Flexbox
 			align='center'
 			justify='center'
-			height={72}
-			width={72}
+			height={size}
+			width={size}
 			padding='small'
 			className={className}
 		>
