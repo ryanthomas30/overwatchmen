@@ -1,6 +1,6 @@
 module.exports = {
-	service: {
-		name: 'overwatchmen',
-		localSchemaFile: 'src/apollo/schema.json',
+	client: {
+		name: 'Overwatchmen Web',
+		service: 'overwatchmen',
 	},
 }
