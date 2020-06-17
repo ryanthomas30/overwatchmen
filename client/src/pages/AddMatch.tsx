@@ -1,6 +1,18 @@
 import React from 'react'
+import { useQuery, gql } from '@apollo/client'
+import { Heroes } from '../model'
 
 import { Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
+
+export const GET_HEROES = gql`
+	query Heroes {
+		heroes {
+			id
+			name
+			role
+		}
+	}
+`
 
 const AddMatch = () => {
 	const initialValues = {
@@ -14,6 +26,13 @@ const AddMatch = () => {
 
 	const onSubmit = (values: typeof initialValues) => {
 		console.log('values:', values)
+	}
+
+	const { loading, error, data } = useQuery<Heroes>(GET_HEROES)
+
+	if (!loading) {
+		console.log('error:', error)
+		console.log('data:', data!.heroes)
 	}
 
 	return (

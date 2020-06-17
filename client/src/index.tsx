@@ -6,6 +6,10 @@ import ReactDOM from 'react-dom'
 import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
+/* Apollo */
+import { apolloClient } from './apollo'
+import { ApolloProvider } from '@apollo/client'
+
 /* Firebase */
 import Firebase, { FirebaseProvider } from './firebase'
 
@@ -29,9 +33,11 @@ library.add(faTrash, faPlus)
 ReactDOM.render(
 	<React.StrictMode>
 		<FirebaseProvider value={new Firebase()} >
-			<Router history={history} >
-				<App />
-			</Router>
+			<ApolloProvider client={apolloClient} >
+				<Router history={history} >
+					<App />
+				</Router>
+			</ApolloProvider>
 		</FirebaseProvider>
 	</React.StrictMode>,
 	document.getElementById('root'),

@@ -3,6 +3,7 @@ import { Hero } from './hero.entity'
 import { ProducedContext } from '@/context'
 import { Role } from '../match/match.entity'
 import { ApolloError } from 'apollo-server'
+import { removeUndefined } from '@/util'
 
 interface NewHero {
 	name: string
@@ -10,8 +11,8 @@ interface NewHero {
 }
 
 export class HeroService extends DataSource<ProducedContext> {
-	getAll() {
-		return Hero.find()
+	getAll(role?: Role) {
+		return Hero.find({ where: removeUndefined({ role }) })
 	}
 	getOne(heroId: number) {
 		return Hero.findOne({ where: { id: heroId } })

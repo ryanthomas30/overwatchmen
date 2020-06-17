@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Flexbox from './Flexbox'
 
 const Page = styled(Flexbox)`
-	width: 1400px;
+	max-width: 1400px;
+	width: 100%;
 `
 
 export default Page

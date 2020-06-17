@@ -6,7 +6,7 @@ export const Hero = gql`
 	# Operations
 	extend type Query {
 		hero(heroId: ID!): Hero
-		heroes: [Hero]
+		heroes(role: Role): [Hero]
 	}
 
 	extend type Mutation {
@@ -30,7 +30,7 @@ export const Hero = gql`
 export const heroResolvers: IResolvers<any, Context> = {
 	Query: {
 		hero: (_, { heroId }, { dataSources }) => dataSources.heroService.getOne(heroId),
-		heroes: (_, __, { dataSources }) => dataSources.heroService.getAll(),
+		heroes: (_, { role }, { dataSources }) => dataSources.heroService.getAll(role),
 	},
 	Mutation: {
 		createHero: (_, { newHero }, { dataSources }) => dataSources.heroService.create(newHero),
