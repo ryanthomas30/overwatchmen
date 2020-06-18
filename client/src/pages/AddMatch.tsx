@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
-import { Heroes } from '../model'
+import { Heroes, Heroes_heroes } from '../model'
 import { HeroName } from '../model'
 
 import { Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
@@ -30,7 +30,7 @@ const AddMatch = () => {
 	}
 
 	const { loading, error, data } = useQuery<Heroes>(GET_HEROES)
-
+	console.log('data:', data)
 	if (!loading) {
 		console.log('error:', error)
 		console.log('data:', data!.heroes)
@@ -50,7 +50,7 @@ const AddMatch = () => {
 				>
 					<RoleSelector name='role' />
 					{ !loading &&
-						<HeroSelector heroes={(data?.heroes?.map(hero => hero?.name) as HeroName[] )} />
+						<HeroSelector heroes={(data?.heroes?.map(hero => hero) as Heroes_heroes[] )} />
 					}
 					<MapSelector />
 					<SkillRatingInput />

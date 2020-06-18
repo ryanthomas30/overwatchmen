@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header, Title, HeroBadge, Card } from '.'
-import { HeroName } from '../model'
+import { HeroName, Heroes_heroes } from '../model'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
@@ -14,16 +14,17 @@ const HeroGrid = styled.div`
 
 interface Props {
 	name?: string
-	heroes: HeroName[]
+	heroes: Heroes_heroes[]
 }
 
 const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
+	console.log('heroes:', heroes)
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
-	const handleSelect = (value: HeroName) => {
+	const handleSelect = (value: String) => {
 		if (field.value.includes(value)) {
-			setFieldValue(name, field.value.filter((hero: HeroName) => hero !== value))
+			setFieldValue(name, field.value.filter((hero: String) => hero !== value))
 		} else {
 			setFieldValue(name, [...field.value, value])
 		}
@@ -43,19 +44,19 @@ const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
 			<HeroGrid>
 				{heroes.map(hero =>(
 					<Card
-						key={hero}
+						key={hero.id}
 						padding='small'
 						center
 						marginBetween='small'
-						onClick={()=> { handleSelect(hero) }}
+						onClick={()=> { handleSelect(hero.id) }}
 					>
 						<HeroBadge
-							hero={hero}
-							active={field.value.includes(hero)}
+							hero={hero.name}
+							active={field.value.includes(hero.id)}
 							size={72}
 						/>
 						<Title tag='h4' >
-							{hero}
+							{hero.name}
 						</Title>
 					</Card>))}
 			</HeroGrid>
