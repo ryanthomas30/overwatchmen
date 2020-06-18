@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Card, Title, Page, HeroBadge } from '../components'
+import { Card, Title, Page } from '../components'
 
 const Home = () => (
 	<Page
@@ -20,10 +20,6 @@ const Home = () => (
 			>
 				Home
 			</Title>
-			<HeroBadge
-				hero='zenyatta'
-				active
-			/>
 		</Card>
 	</Page>
 )

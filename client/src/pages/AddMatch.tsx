@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import { Heroes } from '../model'
+import { HeroName } from '../model'
 
 import { Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
 
@@ -48,7 +49,9 @@ const AddMatch = () => {
 					marginBetween='medium'
 				>
 					<RoleSelector name='role' />
-					<HeroSelector />
+					{ !loading &&
+						<HeroSelector heroes={(data?.heroes?.map(hero => hero?.name) as HeroName[] )} />
+					}
 					<MapSelector />
 					<SkillRatingInput />
 					<MatchResult />

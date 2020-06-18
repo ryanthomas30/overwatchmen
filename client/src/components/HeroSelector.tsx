@@ -1,46 +1,23 @@
 import React from 'react'
 import { Header, Title, HeroBadge, Card } from '.'
-import { HeroName } from './HeroBadge'
+import { HeroName } from '../model'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
-
-const heroes: HeroName[] = [
-	'bastion',
-	'dva',
-	'genji',
-	'hanzo',
-	'junkrat',
-	'lucio',
-	'mccree',
-	'mei',
-	'mercy',
-	'pharah',
-	'reaper',
-	'reinhardt',
-	'roadhog',
-	'soldier76',
-	'symmetra',
-	'torbjorn',
-	'tracer',
-	'widowmaker',
-	'winston',
-	'zarya',
-	'zenyatta',
-]
 
 const HeroGrid = styled.div`
 	display: grid;
 	width: 100%;
 	height: 100%;
-	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
 	gap: 10px;
 `
 
 interface Props {
 	name?: string
+	heroes: HeroName[]
 }
 
-const HeroSelector = ({ name = 'heroIds' }: Props) => {
+const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
