@@ -1,7 +1,6 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import { Heroes, Heroes_heroes } from '../model'
-import { HeroName } from '../model'
 
 import { Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
 
@@ -33,7 +32,7 @@ const AddMatch = () => {
 	console.log('data:', data)
 	if (!loading) {
 		console.log('error:', error)
-		console.log('data:', data!.heroes)
+		console.log('data:', data?.heroes)
 	}
 
 	return (

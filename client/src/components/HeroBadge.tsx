@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Flexbox from './Flexbox'
 import { HeroName } from '../model'
-import { ReactComponent as Bastion, ReactComponent } from '../assets/playerIcons/bastion.svg'
+import { ReactComponent as Bastion } from '../assets/playerIcons/bastion.svg'
 import { ReactComponent as Dva } from '../assets/playerIcons/dva.svg'
 import { ReactComponent as Genji } from '../assets/playerIcons/genji.svg'
 import { ReactComponent as Hanzo } from '../assets/playerIcons/hanzo.svg'
@@ -32,7 +32,7 @@ const heroMap = {
 	Bastion,
 	Brigitte: Mercy,
 	Doomfist: Mercy,
-	'D.Va': Dva,
+	'D__Va': Dva,
 	Echo: Mercy,
 	Genji,
 	Hanzo,
@@ -48,14 +48,14 @@ const heroMap = {
 	Reinhardt,
 	Roadhog,
 	Sigma: Mercy,
-	'Soldier 76': Soldier76,
+	'Soldier_76': Soldier76,
 	Sombra: Mercy,
 	Symmetra,
 	Torbjorn,
 	Tracer,
 	Widowmaker,
 	Winston,
-	'Wrecking Ball': Mercy,
+	'Wrecking_Ball': Mercy,
 	Zarya,
 	Zenyatta,
 }

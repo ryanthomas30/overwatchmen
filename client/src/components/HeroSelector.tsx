@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header, Title, HeroBadge, Card } from '.'
-import { HeroName, Heroes_heroes } from '../model'
+import { Heroes_heroes } from '../model'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
@@ -18,6 +18,7 @@ interface Props {
 }
 
 const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
+	const replaceUnderscores = (string:string) => string.replace('__', '.').replace('_', ' ')
 	console.log('heroes:', heroes)
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
@@ -56,7 +57,7 @@ const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
 							size={72}
 						/>
 						<Title tag='h4' >
-							{hero.name}
+							{replaceUnderscores(hero.name)}
 						</Title>
 					</Card>))}
 			</HeroGrid>

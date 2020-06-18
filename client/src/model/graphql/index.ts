@@ -10,7 +10,7 @@
 export interface Heroes_heroes {
   __typename: "Hero";
   id: string;
-  name: string;
+  name: HeroName;
   role: Role;
 }
 
@@ -26,6 +26,41 @@ export interface Heroes {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+export enum HeroName {
+  Ana = "Ana",
+  Ashe = "Ashe",
+  Baptiste = "Baptiste",
+  Bastion = "Bastion",
+  Brigitte = "Brigitte",
+  D__Va = "D__Va",
+  Doomfist = "Doomfist",
+  Echo = "Echo",
+  Genji = "Genji",
+  Hanzo = "Hanzo",
+  Junkrat = "Junkrat",
+  Lucio = "Lucio",
+  McCree = "McCree",
+  Mei = "Mei",
+  Mercy = "Mercy",
+  Moira = "Moira",
+  Orisa = "Orisa",
+  Pharah = "Pharah",
+  Reaper = "Reaper",
+  Reinhardt = "Reinhardt",
+  Roadhog = "Roadhog",
+  Sigma = "Sigma",
+  Soldier_76 = "Soldier_76",
+  Sombra = "Sombra",
+  Symmetra = "Symmetra",
+  Torbjorn = "Torbjorn",
+  Tracer = "Tracer",
+  Widowmaker = "Widowmaker",
+  Winston = "Winston",
+  Wrecking_Ball = "Wrecking_Ball",
+  Zarya = "Zarya",
+  Zenyatta = "Zenyatta",
+}
 
 export enum Role {
   damage = "damage",
