@@ -80,7 +80,7 @@ export const run = async () => {
 		schemaDirectives,
 		dataSources: () => dataSources,
 		engine: {
-			experimental_schemaReporting: true,
+			reportSchema: true,
 		},
 	})
 
