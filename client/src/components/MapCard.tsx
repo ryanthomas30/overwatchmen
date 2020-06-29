@@ -2,18 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import { Card, Flexbox, Title } from '.'
 import { FlexboxProps } from './Flexbox'
+import { replaceUnderscores } from '../utility'
 
 interface MapCardProps {
-	mapName: string
-	handleSelect: (mapName:string) => void
-	field: any
+	mapName?: string
+	handleSelect: (mapName:string | undefined) => void
+	field?: any
 	className?: string
+	id?: string
 }
 
-const MapCard = ({ mapName, handleSelect, field, className }:MapCardProps) => (
+const MapCard = ({ mapName, handleSelect, field, className, id }:MapCardProps) => (
 	<Card
 		center
-		onClick={() => { handleSelect(mapName) }}
+		onClick={() => { handleSelect(id) }}
 		className={className}
 	>
 		<img
@@ -32,7 +34,7 @@ const MapCard = ({ mapName, handleSelect, field, className }:MapCardProps) => (
 				tag='h2'
 				color='white'
 			>
-				{mapName}
+				{replaceUnderscores(mapName)}
 			</Title>
 		</MapTitleCard>
 	</Card>

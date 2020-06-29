@@ -1,7 +1,19 @@
 import React from 'react'
+import { useQuery, gql } from '@apollo/client'
+import { Maps, Maps_maps } from '../model'
 import { Header, Title, MapCard } from '.'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
+
+export const GET_MAPS = gql`
+  query Maps {
+    maps {
+      id
+      name
+      type
+    }
+  }
+`
 
 const MapGrid = styled.div`
 	display:grid;
@@ -10,36 +22,19 @@ const MapGrid = styled.div`
 	gap:10px;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 `
-const maps = [
-	'Hanamura',
-	'Horizon Lunar Colony',
-	'Paris',
-	'Temple of Anubis',
-	'Volskaya Industries',
-	'Dorado',
-	'Havana',
-	'Junkertown',
-	'Rialto',
-	'Route66',
-	'Watchpoint: Gibraltar',
-	'Blizzard World',
-	'Eichenwalde',
-	'Hollywood',
-	"King's Row",
-	'Numbani',
-	'Busan',
-	'Ilios',
-	'Lijang Tower',
-	'Nepal',
-	'Oasis',
-]
 
 const MapSelector = () => {
 	const [field] = useField('mapId')
 	const { setFieldValue } = useFormikContext()
 
-	const handleSelect = (map: string) => {
+	const handleSelect = (map: string|undefined) => {
 		setFieldValue('mapId', map)
+	}
+
+	const { loading, error, data } = useQuery<Maps>(GET_MAPS)
+	if (!loading) {
+		console.log('error:', error)
+		console.log('data:', data?.maps)
 	}
 
 	return (
@@ -54,10 +49,11 @@ const MapSelector = () => {
 				</Title>
 			</Header>
 			<MapGrid>
-				{maps.map(mapName => (
+				{data?.maps?.map(map => (
 					<MapCard
-						key={mapName}
-						mapName={mapName}
+						key={map?.name}
+						id={map?.id}
+						mapName={map?.name}
 						handleSelect={handleSelect}
 						field={field}
 					/>
