@@ -18,6 +18,6 @@ export class Map extends BaseEntity {
 	})
 	type!: MapType
 
-	@Column()
+	@Column({ unique: true })
 	name!: string
 }

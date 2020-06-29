@@ -15,7 +15,7 @@ export const Map = gql`
 	# Model
 	type Map {
 		id: ID!
-		name: String!
+		name: MapName!
 		type: MapType!
 	}
 
@@ -29,6 +29,30 @@ export const Map = gql`
 		escort
 		assault
 		hybrid
+	}
+
+	enum MapName {
+		Hanamura
+		Horizon_Lunar_Colony
+		Paris
+		Temple_of_Anubis
+		Volskaya_Industries
+		Dorado
+		Havana
+		Junkertown
+		Rialto
+		Route_66
+		Watchpoint_Gibraltar
+		Blizzard_World
+		Eichenwalde
+		Hollywood
+		Kings_Row
+		Numbani
+		Busan
+		Ilios
+		Lijiang_Tower
+		Nepal
+		Oasis
 	}
 `
 

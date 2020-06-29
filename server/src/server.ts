@@ -81,6 +81,7 @@ export const run = async () => {
 		dataSources: () => dataSources,
 		engine: {
 			reportSchema: true,
+			apiKey: process.env.APOLLO_KEY,
 		},
 	})
 

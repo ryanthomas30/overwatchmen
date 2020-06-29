@@ -24,7 +24,7 @@ const maps = [
 	'Watchpoint: Gibraltar',
 	'Blizzard World',
 	'Eichenwalde',
-	'Holywood',
+	'Hollywood',
 	"King's Row",
 	'Numbani',
 	'Busan',

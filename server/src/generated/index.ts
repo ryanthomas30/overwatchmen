@@ -24,16 +24,75 @@ export enum CacheControlScope {
 export type Hero = {
   __typename?: 'Hero';
   id: Scalars['ID'];
-  name: Scalars['String'];
+  name: HeroName;
   role: Role;
 };
+
+export enum HeroName {
+  Ana = 'Ana',
+  Ashe = 'Ashe',
+  Baptiste = 'Baptiste',
+  Bastion = 'Bastion',
+  Brigitte = 'Brigitte',
+  Doomfist = 'Doomfist',
+  DVa = 'D__Va',
+  Echo = 'Echo',
+  Genji = 'Genji',
+  Hanzo = 'Hanzo',
+  Junkrat = 'Junkrat',
+  Lucio = 'Lucio',
+  McCree = 'McCree',
+  Mei = 'Mei',
+  Mercy = 'Mercy',
+  Moira = 'Moira',
+  Orisa = 'Orisa',
+  Pharah = 'Pharah',
+  Reaper = 'Reaper',
+  Reinhardt = 'Reinhardt',
+  Roadhog = 'Roadhog',
+  Sigma = 'Sigma',
+  Soldier_76 = 'Soldier_76',
+  Sombra = 'Sombra',
+  Symmetra = 'Symmetra',
+  Torbjorn = 'Torbjorn',
+  Tracer = 'Tracer',
+  Widowmaker = 'Widowmaker',
+  Winston = 'Winston',
+  WreckingBall = 'Wrecking_Ball',
+  Zarya = 'Zarya',
+  Zenyatta = 'Zenyatta'
+}
 
 export type Map = {
   __typename?: 'Map';
   id: Scalars['ID'];
-  name: Scalars['String'];
+  name: MapName;
   type: MapType;
 };
+
+export enum MapName {
+  Hanamura = 'Hanamura',
+  HorizonLunarColony = 'Horizon_Lunar_Colony',
+  Paris = 'Paris',
+  TempleOfAnubis = 'Temple_of_Anubis',
+  VolskayaIndustries = 'Volskaya_Industries',
+  Dorado = 'Dorado',
+  Havana = 'Havana',
+  Junkertown = 'Junkertown',
+  Rialto = 'Rialto',
+  Route_66 = 'Route_66',
+  WatchpointGibraltar = 'Watchpoint_Gibraltar',
+  BlizzardWorld = 'Blizzard_World',
+  Eichenwalde = 'Eichenwalde',
+  Hollywood = 'Hollywood',
+  KingsRow = 'Kings_Row',
+  Numbani = 'Numbani',
+  Busan = 'Busan',
+  Ilios = 'Ilios',
+  LijiangTower = 'Lijiang_Tower',
+  Nepal = 'Nepal',
+  Oasis = 'Oasis'
+}
 
 export enum MapType {
   Control = 'control',
@@ -143,6 +202,11 @@ export type Query = {
 
 export type QueryHeroArgs = {
   heroId: Scalars['ID'];
+};
+
+
+export type QueryHeroesArgs = {
+  role?: Maybe<Role>;
 };
 
 
@@ -261,8 +325,10 @@ export type ResolversTypes = {
   String: ResolverTypeWrapper<Scalars['String']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Hero: ResolverTypeWrapper<Hero>;
+  HeroName: HeroName;
   Role: Role;
   Map: ResolverTypeWrapper<Map>;
+  MapName: MapName;
   MapType: MapType;
   Match: ResolverTypeWrapper<Match>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
@@ -305,14 +371,14 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 
 export type HeroResolvers<ContextType = any, ParentType extends ResolversParentTypes['Hero'] = ResolversParentTypes['Hero']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['HeroName'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['Role'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
 export type MapResolvers<ContextType = any, ParentType extends ResolversParentTypes['Map'] = ResolversParentTypes['Map']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['MapName'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['MapType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
@@ -339,7 +405,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   testQuery?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   hero?: Resolver<Maybe<ResolversTypes['Hero']>, ParentType, ContextType, RequireFields<QueryHeroArgs, 'heroId'>>;
-  heroes?: Resolver<Maybe<Array<Maybe<ResolversTypes['Hero']>>>, ParentType, ContextType>;
+  heroes?: Resolver<Maybe<Array<Maybe<ResolversTypes['Hero']>>>, ParentType, ContextType, RequireFields<QueryHeroesArgs, never>>;
   map?: Resolver<Maybe<ResolversTypes['Map']>, ParentType, ContextType, RequireFields<QueryMapArgs, 'mapId'>>;
   maps?: Resolver<Maybe<Array<Maybe<ResolversTypes['Map']>>>, ParentType, ContextType>;
   match?: Resolver<Maybe<ResolversTypes['Match']>, ParentType, ContextType, RequireFields<QueryMatchArgs, 'matchId'>>;

@@ -20,41 +20,41 @@ export const Hero = gql`
 		role: Role!
 	}
 
-  enum HeroName {
-    Ana
-    Ashe
-    Baptiste
-    Bastion
-    Brigitte
-    Doomfist
-    D__Va
-    Echo
-    Genji
-    Hanzo
-    Junkrat
-    Lucio
-    McCree
-    Mei
-    Mercy
-    Moira
-    Orisa
-    Pharah
-    Reaper
-    Reinhardt
-    Roadhog
-    Sigma
-    Soldier_76
-    Sombra
-    Symmetra
-    Torbjorn
-    Tracer
-    Widowmaker
-    Winston
-    Wrecking_Ball
-    Zarya
-    Zenyatta
-    
-  }
+	enum HeroName {
+		Ana
+		Ashe
+		Baptiste
+		Bastion
+		Brigitte
+		Doomfist
+		D__Va
+		Echo
+		Genji
+		Hanzo
+		Junkrat
+		Lucio
+		McCree
+		Mei
+		Mercy
+		Moira
+		Orisa
+		Pharah
+		Reaper
+		Reinhardt
+		Roadhog
+		Sigma
+		Soldier_76
+		Sombra
+		Symmetra
+		Torbjorn
+		Tracer
+		Widowmaker
+		Winston
+		Wrecking_Ball
+		Zarya
+		Zenyatta
+	}
+
 	input NewHero {
 		name: String!
 		role: Role!
