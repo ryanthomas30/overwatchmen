@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Title, ResultGrid, RoleBadge, Card } from '.'
+import { Header, Title, SelectorGrid, RoleBadge, Card } from '.'
 import { useField, useFormikContext } from 'formik'
 
 interface Props {
@@ -19,12 +19,11 @@ const RoleSelector = ({ name = 'role' }: Props) => {
 				<Title
 					tag='h1'
 					italic
-					color='white'
 				>
 					Role
 				</Title>
 			</Header>
-			<ResultGrid>
+			<SelectorGrid>
 
 				<Card
 					center
@@ -59,7 +58,7 @@ const RoleSelector = ({ name = 'role' }: Props) => {
 					/>
 				</Card>
 
-			</ResultGrid>
+			</SelectorGrid>
 		</>
 	)
 }

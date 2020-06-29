@@ -53,7 +53,10 @@ const AddMatch = () => {
 					<MapSelector />
 					<SkillRatingInput />
 					<MatchResult />
-					<Button type='submit'>
+					<Button
+						type='submit'
+						primary
+					>
 						Add Match
 					</Button>
 				</Flexbox>

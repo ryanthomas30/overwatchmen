@@ -5,14 +5,16 @@ const Input = styled.input`
 	padding: 16px 20px;
 	border: none;
 	border-radius: 10px;
-	background-color: white;
+	background-color: #FEFEFE;
 	transition: all 200ms ease-in-out;
 	font-family: 'Koverwatch';
 	font-style: italic;
 	font-size: 28px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 	&:focus {
 		outline: none;
-		background-color: #F0F0F0;
+		background-color: white;
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	}
 `
 

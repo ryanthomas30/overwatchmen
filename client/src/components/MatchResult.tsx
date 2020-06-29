@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Title, Card, ResultGrid } from '.'
+import { Header, Title, Card, SelectorGrid } from '.'
 import { useFormikContext, useField } from 'formik'
 import { theme } from '../constants'
 
@@ -17,12 +17,11 @@ const MatchResult = ({ name = 'result' }:any) => {
 				<Title
 					tag='h1'
 					italic
-					color='white'
 				>
 					Match Result
 				</Title>
 			</Header>
-			<ResultGrid>
+			<SelectorGrid>
 				<Card
 					center
 					padding='medium'
@@ -63,7 +62,7 @@ const MatchResult = ({ name = 'result' }:any) => {
 						Draw
 					</Title>
 				</Card>
-			</ResultGrid>
+			</SelectorGrid>
 		</>
 	)
 }

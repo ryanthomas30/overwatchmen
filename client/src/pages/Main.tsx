@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom'
+import { Switch, Route, Redirect, useRouteMatch, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { useFirebase } from '../firebase'
@@ -10,13 +10,14 @@ import Home from './Home'
 import AddMatch from './AddMatch'
 
 const MainHeader = styled(Header)`
-	background-color: #FA9C1E;
+	background-color: ${({ theme }) => theme.lightBlue};
 	color: white;
 `
 
 const Main = () => {
 	const { path } = useRouteMatch()
 	const firebase = useFirebase()
+	const history = useHistory()
 
 	const signOut = async () => {
 		await firebase.signOut()
@@ -34,7 +35,7 @@ const Main = () => {
 					align='center'
 					marginBetween='small'
 				>
-					<Logo />
+					<Logo onClick={() => history.push('/')} />
 				</Flexbox>
 				<Flexbox
 					direction='row'

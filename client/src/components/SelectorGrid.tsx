@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const ResultGrid = styled.div`
+const SelectorGrid = styled.div`
 	display: grid;
 	width: 100%;
 	height: 100%;
@@ -8,4 +8,4 @@ const ResultGrid = styled.div`
 	gap: 48px;
 `
 
-export default ResultGrid
+export default SelectorGrid

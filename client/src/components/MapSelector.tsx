@@ -43,7 +43,6 @@ const MapSelector = () => {
 				<Title
 					tag='h1'
 					italic
-					color='white'
 				>
 					Map
 				</Title>

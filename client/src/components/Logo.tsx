@@ -25,9 +25,10 @@ interface Props {
 	image?: boolean
 	title?: boolean
 	scale?: number
+	onClick?: (event?: any) => void
 }
 
-const Logo = ({ image = true, title = true, scale = 1 }: Props) => {
+const Logo = ({ image = true, title = true, scale = 1, onClick }: Props) => {
 	const IMAGE_SIZE = 44
 	const TITLE_SIZE = 48
 	const MARGIN_BETWEEN = 12
@@ -36,6 +37,7 @@ const Logo = ({ image = true, title = true, scale = 1 }: Props) => {
 			direction='row'
 			align='center'
 			marginBetween={MARGIN_BETWEEN * scale}
+			onClick={onClick}
 		>
 			{image && <LogoImage size={IMAGE_SIZE * scale} />}
 			{title &&

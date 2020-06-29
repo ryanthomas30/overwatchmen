@@ -12,7 +12,7 @@ import Page from './Page'
 import RoleBadge from './RoleBadge'
 import TextInput from './TextInput'
 import Title from './Title'
-import ResultGrid from './ResultGrid'
+import SelectorGrid from './SelectorGrid'
 import MatchResult from './MatchResult'
 import SkillRatingInput from './SkillRatingInput'
 import MapSelector from './MapSelector'
@@ -27,7 +27,7 @@ export {
 	MapSelector,
 	SkillRatingInput,
 	MatchResult,
-	ResultGrid,
+	SelectorGrid,
 	Button,
 	Card,
 	Flexbox,

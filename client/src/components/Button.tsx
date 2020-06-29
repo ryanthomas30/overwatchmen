@@ -13,6 +13,7 @@ export interface ButtonProps {
 	onClick?: (event?: any) => void
 	icon?: IconProp
 	color?: string
+	primary?: boolean
 	full?: boolean
 	disabled?: boolean
 	type?: 'button' | 'reset' | 'submit'
@@ -73,19 +74,23 @@ const Button = styled(UnstyledButton)`
 	border-radius: 10px;
 	min-width: 74px;
 	height: 44px;
-	background-color: white;
+	background-color: ${({ theme, primary }) => primary ? theme.lightBlue : 'white'};
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 	transition: all ease-in-out 200ms;
 	opacity: ${({ disabled }) => disabled ? 0.6 : 'inherit'};
 	&:focus {
 		outline: none;
 	}
 	/* Button Text */
-	color: ${({ theme }) => theme.yellow};
+	color: ${({ theme, primary }) => primary ? 'white' : theme.gray};
 	font-family: 'Koverwatch';
 	font-size: 24px;
 	letter-spacing: 2px;
 	font-style: italic;
 	white-space: nowrap;
+	&:hover {
+		color: ${({ theme, primary }) => primary ? 'white' : theme.yellow};
+	}
 `
 
 export default Button

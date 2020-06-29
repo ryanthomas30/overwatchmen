@@ -37,7 +37,6 @@ const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
 				<Title
 					tag='h1'
 					italic
-					color='white'
 				>
 					Heroes
 				</Title>

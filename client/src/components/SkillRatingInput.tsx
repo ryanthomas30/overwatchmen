@@ -7,7 +7,6 @@ const SkillRatingInput = () => (
 			<Title
 				tag='h1'
 				italic
-				color='white'
 			>
 				Skill Rating
 			</Title>
