@@ -25,7 +25,7 @@ const MapCard = ({ mapName, handleSelect, field, className, id }:MapCardProps) =
 			style={{ objectFit: 'cover' }}
 		/>
 		<MapTitleCard
-			active={field.value === mapName}
+			active={field.value === id}
 			paddingVertical={7}
 			paddingHorizontal={12}
 		>
