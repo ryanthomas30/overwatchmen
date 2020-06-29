@@ -1,52 +1,36 @@
 import React from 'react'
 import { Header, Title, HeroBadge, Card } from '.'
-import { HeroName } from './HeroBadge'
+import { Heroes_heroes } from '../model'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
-
-const heroes: HeroName[] = [
-	'bastion',
-	'dva',
-	'genji',
-	'hanzo',
-	'junkrat',
-	'lucio',
-	'mccree',
-	'mei',
-	'mercy',
-	'pharah',
-	'reaper',
-	'reinhardt',
-	'roadhog',
-	'soldier76',
-	'symmetra',
-	'torbjorn',
-	'tracer',
-	'widowmaker',
-	'winston',
-	'zarya',
-	'zenyatta',
-]
 
 const HeroGrid = styled.div`
 	display: grid;
 	width: 100%;
 	height: 100%;
-	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
 	gap: 10px;
 `
 
 interface Props {
 	name?: string
+	heroes: Heroes_heroes[]
 }
 
-const HeroSelector = ({ name = 'heroIds' }: Props) => {
+const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
+	const replaceUnderscores = (string:string) => string.replace(/(__|_)/g, (m) => {
+		switch (m) {
+			case '__': return '.'
+			case '_': return ' '
+			default: return ''
+		}
+	})
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
-	const handleSelect = (value: HeroName) => {
+	const handleSelect = (value: string) => {
 		if (field.value.includes(value)) {
-			setFieldValue(name, field.value.filter((hero: HeroName) => hero !== value))
+			setFieldValue(name, field.value.filter((hero: string) => hero !== value))
 		} else {
 			setFieldValue(name, [...field.value, value])
 		}
@@ -66,19 +50,19 @@ const HeroSelector = ({ name = 'heroIds' }: Props) => {
 			<HeroGrid>
 				{heroes.map(hero =>(
 					<Card
-						key={hero}
+						key={hero.id}
 						padding='small'
 						center
 						marginBetween='small'
-						onClick={()=> { handleSelect(hero) }}
+						onClick={()=> { handleSelect(hero.id) }}
 					>
 						<HeroBadge
-							hero={hero}
-							active={field.value.includes(hero)}
+							hero={hero.name}
+							active={field.value.includes(hero.id)}
 							size={72}
 						/>
 						<Title tag='h4' >
-							{hero}
+							{replaceUnderscores(hero.name)}
 						</Title>
 					</Card>))}
 			</HeroGrid>
