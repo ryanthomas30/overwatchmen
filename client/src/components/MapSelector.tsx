@@ -27,7 +27,7 @@ const MapSelector = () => {
 	const [field] = useField('mapId')
 	const { setFieldValue } = useFormikContext()
 
-	const handleSelect = (map: string|undefined) => {
+	const handleSelect = (map?: string) => {
 		setFieldValue('mapId', map)
 	}
 

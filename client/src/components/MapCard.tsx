@@ -6,7 +6,7 @@ import { replaceUnderscores } from '../utility'
 
 interface MapCardProps {
 	mapName?: string
-	handleSelect: (mapName:string | undefined) => void
+	handleSelect: (mapName?:string) => void
 	field?: any
 	className?: string
 	id?: string
