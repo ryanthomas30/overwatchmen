@@ -18,7 +18,13 @@ interface Props {
 }
 
 const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
-	const replaceUnderscores = (string:string) => string.replace('__', '.').replace('_', ' ')
+	const replaceUnderscores = (string:string) => string.replace(/(__|_)/g, (m) => {
+		switch (m) {
+			case '__': return '.'
+			case '_': return ' '
+			default: return ''
+		}
+	})
 	console.log('heroes:', heroes)
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
