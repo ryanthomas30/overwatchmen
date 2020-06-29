@@ -25,13 +25,12 @@ const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
 			default: return ''
 		}
 	})
-	console.log('heroes:', heroes)
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
-	const handleSelect = (value: String) => {
+	const handleSelect = (value: string) => {
 		if (field.value.includes(value)) {
-			setFieldValue(name, field.value.filter((hero: String) => hero !== value))
+			setFieldValue(name, field.value.filter((hero: string) => hero !== value))
 		} else {
 			setFieldValue(name, [...field.value, value])
 		}
