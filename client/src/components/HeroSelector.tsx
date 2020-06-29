@@ -18,7 +18,7 @@ interface Props {
 }
 
 const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
-	const replaceUnderscores = (string:string) => string.replace(/(__|_)/g, (m) => {
+	const replaceUnderscores = (string: string) => string.replace(/(__|_)/g, (m) => {
 		switch (m) {
 			case '__': return '.'
 			case '_': return ' '
