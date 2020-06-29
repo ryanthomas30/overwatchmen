@@ -19,8 +19,10 @@ import MapSelector from './MapSelector'
 import HeroSelector from './HeroSelector'
 import RoleSelector from './RoleSelector'
 import MapCard from './MapCard'
+import DateTimePicker from './DateTimePicker'
 
 export {
+	DateTimePicker,
 	MapCard,
 	RoleSelector,
 	HeroSelector,

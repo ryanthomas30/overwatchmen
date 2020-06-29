@@ -1,15 +1,25 @@
 import React from 'react'
+import moment from 'moment'
 
-import { Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
+import { DateTimePicker, Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
+
+interface FormValues {
+	skillRating: number
+	heroIds: string[]
+	mapId: string
+	role: string
+	result: string
+	endTime: string | moment.Moment
+}
 
 const AddMatch = () => {
-	const initialValues = {
+	const initialValues:FormValues = {
 		skillRating: 0,
 		heroIds: [],
 		mapId: '',
 		role: '',
 		result: '',
-		endTime: new Date(),
+		endTime: moment(),
 	}
 
 	const onSubmit = (values: typeof initialValues) => {
@@ -33,6 +43,7 @@ const AddMatch = () => {
 					<MapSelector />
 					<SkillRatingInput />
 					<MatchResult />
+					<DateTimePicker />
 					<Button
 						type='submit'
 						primary
