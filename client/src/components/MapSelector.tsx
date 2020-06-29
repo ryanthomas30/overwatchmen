@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
-import { Maps, Maps_maps } from '../model'
+import { Maps } from '../model'
 import { Header, Title, MapCard } from '.'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
