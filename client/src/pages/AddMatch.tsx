@@ -9,17 +9,17 @@ interface FormValues {
 	mapId: string
 	role: string
 	result: string
-	endTime: string | moment.Moment
+	endTime: Date
 }
 
 const AddMatch = () => {
-	const initialValues:FormValues = {
+	const initialValues: FormValues = {
 		skillRating: 0,
 		heroIds: [],
 		mapId: '',
 		role: '',
 		result: '',
-		endTime: moment(),
+		endTime: new Date(),
 	}
 
 	const onSubmit = (values: typeof initialValues) => {
@@ -43,7 +43,7 @@ const AddMatch = () => {
 					<MapSelector />
 					<SkillRatingInput />
 					<MatchResult />
-					<DateTimePicker />
+					<DateTimeSelector />
 					<Button
 						type='submit'
 						primary
@@ -51,7 +51,6 @@ const AddMatch = () => {
 						Add Match
 					</Button>
 				</Flexbox>
-
 			</Form>
 		</Page>
 	)

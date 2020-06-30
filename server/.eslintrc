@@ -201,6 +201,7 @@
 				}
 			}
 		],
-		"@typescript-eslint/class-name-casing": "error"
+		"@typescript-eslint/class-name-casing": "error",
+		"@typescript-eslint/type-annotation-spacing": "error"
 	}
 }

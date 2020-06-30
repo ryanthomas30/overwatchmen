@@ -1,5 +1,1 @@
-import replaceUnderscores from './replaceUnderscores'
-
-export {
-	replaceUnderscores,
-}
+export * from './replaceUnderscores'
