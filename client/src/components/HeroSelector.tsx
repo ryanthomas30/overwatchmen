@@ -3,6 +3,7 @@ import { Header, Title, HeroBadge, Card } from '.'
 import { Heroes_heroes } from '../model'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
+import { replaceUnderscores } from '../utility'
 
 const HeroGrid = styled.div`
 	display: grid;
@@ -18,13 +19,7 @@ interface Props {
 }
 
 const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
-	const replaceUnderscores = (string: string) => string.replace(/(__|_)/g, (m) => {
-		switch (m) {
-			case '__': return '.'
-			case '_': return ' '
-			default: return ''
-		}
-	})
+
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
 

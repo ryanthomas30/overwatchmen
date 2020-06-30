@@ -4,6 +4,26 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: Maps
+// ====================================================
+
+export interface Maps_maps {
+  __typename: "Map";
+  id: string;
+  name: MapName;
+  type: MapType;
+}
+
+export interface Maps {
+  maps: (Maps_maps | null)[] | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: Heroes
 // ====================================================
 
@@ -64,6 +84,37 @@ export enum HeroName {
   Wrecking_Ball = "Wrecking_Ball",
   Zarya = "Zarya",
   Zenyatta = "Zenyatta",
+}
+
+export enum MapName {
+  Blizzard_World = "Blizzard_World",
+  Busan = "Busan",
+  Dorado = "Dorado",
+  Eichenwalde = "Eichenwalde",
+  Hanamura = "Hanamura",
+  Havana = "Havana",
+  Hollywood = "Hollywood",
+  Horizon_Lunar_Colony = "Horizon_Lunar_Colony",
+  Ilios = "Ilios",
+  Junkertown = "Junkertown",
+  Kings_Row = "Kings_Row",
+  Lijiang_Tower = "Lijiang_Tower",
+  Nepal = "Nepal",
+  Numbani = "Numbani",
+  Oasis = "Oasis",
+  Paris = "Paris",
+  Rialto = "Rialto",
+  Route_66 = "Route_66",
+  Temple_of_Anubis = "Temple_of_Anubis",
+  Volskaya_Industries = "Volskaya_Industries",
+  Watchpoint_Gibraltar = "Watchpoint_Gibraltar",
+}
+
+export enum MapType {
+  assault = "assault",
+  control = "control",
+  escort = "escort",
+  hybrid = "hybrid",
 }
 
 export enum Role {
