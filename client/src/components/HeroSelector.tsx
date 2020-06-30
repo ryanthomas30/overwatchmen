@@ -4,6 +4,7 @@ import { Heroes_heroes } from '../model'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 import { replaceUnderscores } from '../utility'
+
 const HeroGrid = styled.div`
 	display: grid;
 	width: 100%;

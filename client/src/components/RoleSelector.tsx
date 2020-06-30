@@ -2,15 +2,15 @@ import React from 'react'
 import { Header, Title, ResultGrid, RoleBadge, Card } from '.'
 import { useField, useFormikContext } from 'formik'
 
-interface RoleInterface {
+interface Props {
 	name: string
 }
 
-const RoleSelector = ({ name = 'role' } : any) => {
+const RoleSelector = ({ name = 'role' }: Props) => {
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
-	const handleSelect = (value:string) => {
+	const handleSelect = (value: string) => {
 		setFieldValue(name, value)
 	}
 	return (

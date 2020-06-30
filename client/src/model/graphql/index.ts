@@ -38,6 +38,10 @@ export interface Heroes {
   heroes: (Heroes_heroes | null)[] | null;
 }
 
+export interface HeroesVariables {
+  role?: string | null;
+}
+
 /* tslint:disable */
 /* eslint-disable */
 // @generated

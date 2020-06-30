@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery, gql } from '@apollo/client'
 import { Heroes, Heroes_heroes } from '../model'
 
 import { Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
 
 export const GET_HEROES = gql`
-	query Heroes {
-		heroes {
+	query Heroes($role: String) {
+		heroes(role: $role) {
 			id
 			name
 			role
@@ -28,18 +28,17 @@ const AddMatch = () => {
 		console.log('values:', values)
 	}
 
-	const { loading, error, data } = useQuery<Heroes>(GET_HEROES)
-	console.log('data:', data)
-	if (!loading) {
-		console.log('error:', error)
-		console.log('data:', data?.heroes)
-	}
+	const [role, setRole] = useState('')
+	const { loading, data } = useQuery<Heroes>(GET_HEROES, {
+		variables: { role },
+	})
 
 	return (
 		<Page>
 			<Form
 				initialValues={initialValues}
 				onSubmit={onSubmit}
+				validate={(values: typeof initialValues) => setRole(values.role)}
 			>
 				<Flexbox
 					align='center'
@@ -48,7 +47,7 @@ const AddMatch = () => {
 					marginBetween='medium'
 				>
 					<RoleSelector name='role' />
-					{ !loading &&
+					{ !loading && data?.heroes?.length !== 0 &&
 						<HeroSelector heroes={(data?.heroes?.map(hero => hero) as Heroes_heroes[] )} />
 					}
 					<MapSelector />
