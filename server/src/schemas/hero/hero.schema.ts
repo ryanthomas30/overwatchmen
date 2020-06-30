@@ -5,18 +5,24 @@ export const Hero = gql`
 
 	# Operations
 	extend type Query {
+		"""Get a hero by its ID."""
 		hero(heroId: ID!): Hero
+		"""Get all heroes."""
 		heroes(role: String): [Hero!]!
 	}
 
 	extend type Mutation {
+		"""Create a new hero."""
 		createHero(newHero: NewHero!): Hero!
 	}
 
 	# Model
 	type Hero {
+		"""The ID of the hero."""
 		id: ID!
+		"""The name of the hero."""
 		name: HeroName!
+		"""THe role of the hero."""
 		role: Role!
 	}
 

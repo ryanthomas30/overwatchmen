@@ -4,18 +4,24 @@ import { Context } from '@/context'
 export const Map = gql`
 	# Operations
 	extend type Query {
+		"""Get a map by its ID."""
 		map(mapId: ID!): Map
+		"""Get all maps."""
 		maps: [Map!]!
 	}
 
 	extend type Mutation {
+		"""Create a new map."""
 		createMap(newMap: NewMap!): Map!
 	}
 
 	# Model
 	type Map {
+		"""The ID of the map."""
 		id: ID!
+		"""The name of the map."""
 		name: MapName!
+		"""The game mode of the map."""
 		type: MapType!
 	}
 

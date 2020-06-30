@@ -1,10 +1,25 @@
 import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
+/**
+ * The game mode of the map.
+ */
 export enum MapType {
-	CONTROL = 'control', // King of the Hill
-	ESCORT = 'escort', // Payload
-	ASSAULT = 'assault', // 2CP
-	HYBRID = 'hybrid' // 1CP + Payload
+	/**
+	 * King of the Hill
+	 */
+	CONTROL = 'control',
+	/**
+	 * Payload
+	 */
+	ESCORT = 'escort',
+	/**
+	 * 2CP
+	 */
+	ASSAULT = 'assault',
+	/**
+	 * 1CP + Payload
+	 */
+	HYBRID = 'hybrid'
 }
 
 @Entity()

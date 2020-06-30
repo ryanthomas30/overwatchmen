@@ -6,6 +6,7 @@ export const Match = gql`
 	extend type Query {
 		"""Get a match by its ID."""
 		match(matchId: ID!): Match
+		"""Get all matches."""
 		matches: [Match]
 	}
 
