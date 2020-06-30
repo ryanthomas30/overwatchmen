@@ -1,9 +1,11 @@
 import React from 'react'
-import { Header, Title, HeroBadge, Card } from '.'
-import { Heroes_heroes } from '../model'
+import { useQuery, gql } from '@apollo/client'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
+
+import { Header, Title, HeroBadge, Card } from '.'
 import { replaceUnderscores } from '../utility'
+import { Heroes } from '../model'
 
 const HeroGrid = styled.div`
 	display: grid;
@@ -13,15 +15,29 @@ const HeroGrid = styled.div`
 	gap: 10px;
 `
 
+export const GET_HEROES = gql`
+	query Heroes($role: String) {
+		heroes(role: $role) {
+			id
+			name
+			role
+		}
+	}
+`
+
 interface Props {
 	name?: string
-	heroes: Heroes_heroes[]
 }
 
-const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
+const HeroSelector = ({ name = 'heroIds' }: Props) => {
 
 	const [field] = useField(name)
+	const [roleField] = useField('role')
 	const { setFieldValue } = useFormikContext()
+
+	const { loading, data } = useQuery<Heroes>(GET_HEROES, {
+		variables: { role: roleField.value },
+	})
 
 	const handleSelect = (value: string) => {
 		if (field.value.includes(value)) {
@@ -33,16 +49,18 @@ const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
 
 	return (
 		<>
-			<Header>
-				<Title
-					tag='h1'
-					italic
-				>
-					Heroes
-				</Title>
-			</Header>
+			{ data?.heroes.length !== 0 &&
+				<Header>
+					<Title
+						tag='h1'
+						italic
+					>
+						Heroes
+					</Title>
+				</Header>
+			}
 			<HeroGrid>
-				{heroes.map(hero =>(
+				{ !loading && data?.heroes.map((hero) => (
 					<Card
 						key={hero.id}
 						padding='small'
@@ -58,7 +76,8 @@ const HeroSelector = ({ name = 'heroIds', heroes }: Props) => {
 						<Title tag='h4' >
 							{replaceUnderscores(hero.name)}
 						</Title>
-					</Card>))}
+					</Card>
+				))}
 			</HeroGrid>
 		</>
 	)

@@ -30,7 +30,7 @@ interface Props {
 
 const Logo = ({ image = true, title = true, scale = 1, onClick }: Props) => {
 	const IMAGE_SIZE = 44
-	const TITLE_SIZE = 48
+	const TITLE_SIZE = 40
 	const MARGIN_BETWEEN = 12
 	return (
 		<Flexbox
@@ -43,7 +43,6 @@ const Logo = ({ image = true, title = true, scale = 1, onClick }: Props) => {
 			{title &&
 			<Title
 				size={TITLE_SIZE * scale}
-				italic
 				color='white'
 			>
 				Overwatchmen

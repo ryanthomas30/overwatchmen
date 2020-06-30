@@ -6,13 +6,13 @@ import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
 export const GET_MAPS = gql`
-  query Maps {
-    maps {
-      id
-      name
-      type
-    }
-  }
+	query Maps {
+		maps {
+		id
+		name
+		type
+		}
+	}
 `
 
 const MapGrid = styled.div`
@@ -31,11 +31,9 @@ const MapSelector = () => {
 		setFieldValue('mapId', map)
 	}
 
-	const { loading, error, data } = useQuery<Maps>(GET_MAPS)
-	if (!loading) {
-		console.log('error:', error)
-		console.log('data:', data?.maps)
-	}
+	const { loading, data } = useQuery<Maps>(GET_MAPS)
+
+	if (loading) return null
 
 	return (
 		<>
@@ -47,12 +45,13 @@ const MapSelector = () => {
 					Map
 				</Title>
 			</Header>
+
 			<MapGrid>
-				{data?.maps?.map(map => (
+				{ data?.maps.map(map => (
 					<MapCard
-						key={map?.name}
-						id={map?.id}
-						mapName={map?.name}
+						key={map.name}
+						id={map.id}
+						mapName={map.name}
 						handleSelect={handleSelect}
 						field={field}
 					/>

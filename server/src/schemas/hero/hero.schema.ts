@@ -6,7 +6,7 @@ export const Hero = gql`
 	# Operations
 	extend type Query {
 		hero(heroId: ID!): Hero
-		heroes(role: String): [Hero]
+		heroes(role: String): [Hero!]!
 	}
 
 	extend type Mutation {

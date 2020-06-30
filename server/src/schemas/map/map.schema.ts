@@ -5,7 +5,7 @@ export const Map = gql`
 	# Operations
 	extend type Query {
 		map(mapId: ID!): Map
-		maps: [Map]
+		maps: [Map!]!
 	}
 
 	extend type Mutation {

@@ -4,26 +4,6 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: Maps
-// ====================================================
-
-export interface Maps_maps {
-  __typename: "Map";
-  id: string;
-  name: MapName;
-  type: MapType;
-}
-
-export interface Maps {
-  maps: (Maps_maps | null)[] | null;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: Heroes
 // ====================================================
 
@@ -35,11 +15,31 @@ export interface Heroes_heroes {
 }
 
 export interface Heroes {
-  heroes: (Heroes_heroes | null)[] | null;
+  heroes: Heroes_heroes[];
 }
 
 export interface HeroesVariables {
   role?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Maps
+// ====================================================
+
+export interface Maps_maps {
+  __typename: "Map";
+  id: string;
+  name: MapName;
+  type: MapType;
+}
+
+export interface Maps {
+  maps: Maps_maps[];
 }
 
 /* tslint:disable */

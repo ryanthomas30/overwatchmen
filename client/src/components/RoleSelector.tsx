@@ -12,6 +12,7 @@ const RoleSelector = ({ name = 'role' }: Props) => {
 
 	const handleSelect = (value: string) => {
 		setFieldValue(name, value)
+		setFieldValue('heroIds', [])
 	}
 	return (
 		<>
