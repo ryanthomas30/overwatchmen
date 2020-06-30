@@ -13,7 +13,9 @@
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
 		"lint": "eslint src/**/*.ts",
-		"generate": "apollo schema:download && graphql-codegen"
+    "generate": "apollo schema:download && graphql-codegen",
+    "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
+    "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed"
 	},
 	"dependencies": {
 		"apollo-datasource": "^0.7.0",
@@ -26,6 +28,7 @@
 		"pg": "^8.2.0",
 		"reflect-metadata": "^0.1.13",
 		"typeorm": "^0.2.24",
+		"typeorm-seeding": "^1.6.1",
 		"typescript": "^3.8.3"
 	},
 	"devDependencies": {
