@@ -9,6 +9,6 @@ export class Hero extends BaseEntity {
 	@Column({ unique: true })
 	name!: string
 
-	@Column({ nullable: true })
+	@Column()
 	role!: Role
 }

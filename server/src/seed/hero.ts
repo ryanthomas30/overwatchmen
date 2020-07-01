@@ -38,7 +38,7 @@ const heroes = [
 ]
 
 export default class CreateHeroes implements Seeder {
-	public async run(factory: Factory, connection: Connection): Promise<any> {
+	public async run(factory: Factory, connection: Connection) {
 		await connection
 			.createQueryBuilder()
 			.insert()
