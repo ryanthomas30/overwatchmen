@@ -4,7 +4,8 @@ import styled, { ThemeContext } from 'styled-components'
 
 import { useFirebase } from '../firebase'
 import { CreateUser, CreateUserVariables } from '../model'
-import { Flexbox, Card, Logo, Title, Button } from '../components'
+import { Flexbox, Card, Logo, Title, LoginButton } from '../components'
+import genjiImage from '../assets/genji_art.jpg'
 
 const CREATE_USER = gql`
 	mutation CreateUser($newUser: NewUser!) {
@@ -20,7 +21,7 @@ const LoginCard = styled(Card)`
 `
 
 const LoginSection = styled(Flexbox)`
-	background-color: ${({ theme }) => theme.yellow};
+	background-color: ${({ theme }) => theme.lightBlue};
 	width: 60%;
 	height: 100%;
 	border-radius: 10px 0px 0px 10px;
@@ -78,19 +79,18 @@ const Login = () => {
 							<Title
 								size={22}
 								italic
-								color={theme.paleYellow}
+								color={theme.paleBlue}
 							>
 								Watch your SR drop
 							</Title>
 						</Flexbox>
-						<Button
-							label='Login'
+						<LoginButton
 							onClick={onLogin}
 						/>
 					</LoginSection>
 					<ImageSection>
 						<img
-							src='https://picsum.photos/280/400'
+							src={genjiImage}
 							object-fit='cover'
 							alt='login_image'
 						/>

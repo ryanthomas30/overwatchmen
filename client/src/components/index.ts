@@ -10,6 +10,7 @@ import HeroBadge from './HeroBadge'
 import HeroSelector from './HeroSelector'
 import Icon from './Icon'
 import Link from './Link'
+import LoginButton from './LoginButton'
 import Logo from './Logo'
 import MapCard from './MapCard'
 import MapSelector from './MapSelector'
@@ -34,6 +35,7 @@ export {
 	HeroSelector,
 	Icon,
 	Link,
+	LoginButton,
 	Logo,
 	MapCard,
 	MapSelector,

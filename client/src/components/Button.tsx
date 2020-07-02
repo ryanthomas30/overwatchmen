@@ -11,7 +11,7 @@ export interface ButtonProps {
 	label?: ReactNode
 	path?: string
 	onClick?: (event?: any) => void
-	icon?: IconProp
+	icon?: IconProp | ReactNode
 	color?: string
 	primary?: boolean
 	full?: boolean
@@ -25,13 +25,15 @@ const UnstyledButton = (props: ButtonProps) => {
 	const { children, label, path, onClick, full, disabled, icon, type = 'button', style, className } = props
 	const theme = useContext(ThemeContext)
 	const labelNode = (!!children || !!label) && <Flexbox>{children || label}</Flexbox>
-	const iconNode = !!icon && (
+	const iconNode = !!icon && typeof icon === 'string' ? (
 		<Flexbox>
 			<Icon
-				icon={icon}
+				icon={icon as IconProp}
 				color={theme.yellow}
 			/>
 		</Flexbox>
+	) : (
+		<>{icon}</>
 	)
 
 	const buttonInner = (
