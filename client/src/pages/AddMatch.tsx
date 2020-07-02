@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 
 import { DateTimeSelector, Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
 

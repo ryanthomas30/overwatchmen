@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
 import { Header, Title, HeroBadge, Card } from '.'
-import { replaceUnderscores } from '../utility'
+import { replaceUnderscores } from '../util'
 import { Heroes } from '../model'
 
 const HeroGrid = styled.div`

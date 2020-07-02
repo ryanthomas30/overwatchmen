@@ -1,9 +1,18 @@
 import React, { useContext } from 'react'
+import { useMutation, gql } from '@apollo/client'
 import styled, { ThemeContext } from 'styled-components'
-import { useFirebase } from '../firebase'
-import { StyledFirebaseAuth } from 'react-firebaseui'
 
-import { Flexbox, Card, Logo, Title } from '../components'
+import { useFirebase } from '../firebase'
+import { CreateUser, CreateUserVariables } from '../model'
+import { Flexbox, Card, Logo, Title, Button } from '../components'
+
+const CREATE_USER = gql`
+	mutation CreateUser($newUser: NewUser!) {
+		createUser(newUser: $newUser) {
+			id
+		}
+	}
+`
 
 const LoginCard = styled(Card)`
 	width: 700px;
@@ -28,10 +37,22 @@ const ImageSection = styled(Flexbox)`
 const Login = () => {
 	const theme = useContext(ThemeContext)
 	const firebase = useFirebase()
-	const uiConfig = {
-		signInFlow: 'popup',
-		signInSuccessUrl: '/',
-		signInOptions: [firebase.googleProvider.providerId],
+	const [createUser] = useMutation<CreateUser, CreateUserVariables>(CREATE_USER)
+
+	const onLogin = async () => {
+		const userCredentials = await firebase.googleSignIn()
+		const { additionalUserInfo, user } = userCredentials
+		if (additionalUserInfo?.isNewUser && user) {
+			createUser({
+				variables: {
+					newUser: {
+						id: user.uid,
+						email: user.email!,
+						fullName: user.displayName!,
+					},
+				},
+			})
+		}
 	}
 
 	return (
@@ -62,10 +83,9 @@ const Login = () => {
 								Watch your SR drop
 							</Title>
 						</Flexbox>
-
-						<StyledFirebaseAuth
-							uiConfig={uiConfig}
-							firebaseAuth={firebase.auth}
+						<Button
+							label='Login'
+							onClick={onLogin}
 						/>
 					</LoginSection>
 					<ImageSection>
@@ -75,7 +95,6 @@ const Login = () => {
 							alt='login_image'
 						/>
 					</ImageSection>
-
 				</LoginCard>
 			</Flexbox>
 		</div>

@@ -9,12 +9,24 @@
 
 export interface Heroes_heroes {
   __typename: "Hero";
+  /**
+   * The ID of the hero.
+   */
   id: string;
+  /**
+   * The name of the hero.
+   */
   name: HeroName;
+  /**
+   * THe role of the hero.
+   */
   role: Role;
 }
 
 export interface Heroes {
+  /**
+   * Get all heroes.
+   */
   heroes: Heroes_heroes[];
 }
 
@@ -33,13 +45,53 @@ export interface HeroesVariables {
 
 export interface Maps_maps {
   __typename: "Map";
+  /**
+   * The ID of the map.
+   */
   id: string;
+  /**
+   * The name of the map.
+   */
   name: MapName;
+  /**
+   * The game mode of the map.
+   */
   type: MapType;
 }
 
 export interface Maps {
+  /**
+   * Get all maps.
+   */
   maps: Maps_maps[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: CreateUser
+// ====================================================
+
+export interface CreateUser_createUser {
+  __typename: "User";
+  /**
+   * The ID of the user.
+   */
+  id: string;
+}
+
+export interface CreateUser {
+  /**
+   * Create a new user.
+   */
+  createUser: CreateUser_createUser;
+}
+
+export interface CreateUserVariables {
+  newUser: NewUser;
 }
 
 /* tslint:disable */
@@ -121,6 +173,12 @@ export enum Role {
   damage = "damage",
   support = "support",
   tank = "tank",
+}
+
+export interface NewUser {
+  id: string;
+  fullName: string;
+  email: string;
 }
 
 //==============================================================

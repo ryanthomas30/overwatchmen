@@ -1,11 +1,11 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm'
+import { Entity, BaseEntity, PrimaryColumn, Column, CreateDateColumn, OneToMany } from 'typeorm'
 import { Match } from '../match/match.entity'
 
 @Entity()
 export class User extends BaseEntity {
 
-	@PrimaryGeneratedColumn()
-	id!: number
+	@PrimaryColumn()
+	id!: string
 
 	@Column()
 	fullName!: string

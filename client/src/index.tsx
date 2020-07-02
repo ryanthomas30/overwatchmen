@@ -32,13 +32,13 @@ library.add(faTrash, faPlus)
 
 ReactDOM.render(
 	<React.StrictMode>
-		<FirebaseProvider value={new Firebase()} >
-			<ApolloProvider client={apolloClient} >
+		<ApolloProvider client={apolloClient} >
+			<FirebaseProvider value={new Firebase()} >
 				<Router history={history} >
 					<App />
 				</Router>
-			</ApolloProvider>
-		</FirebaseProvider>
+			</FirebaseProvider>
+		</ApolloProvider>
 	</React.StrictMode>,
 	document.getElementById('root'),
 )

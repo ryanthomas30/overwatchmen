@@ -27,6 +27,7 @@ export const User = gql`
 	}
 
 	input NewUser {
+		id: ID!
 		"""The user's full name."""
 		fullName: String!
 		"""The user's email address."""

@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+
 import { storeAuthUser, getAuthUser, removeAuthUser } from '../localStorage'
+
 import Firebase from '.'
 
 /* Firebase */
@@ -11,6 +13,7 @@ export const useFirebase = () => useContext(FirebaseContext) as unknown as Fireb
 export const useFirebaseAuthListener = () => {
 	const [firebaseUser, setFirebaseUser] = useState<firebase.User | null>(getAuthUser())
 	const firebase = useFirebase()
+
 	useEffect(() => {
 		const unsubscribe = firebase.auth.onAuthStateChanged(
 			(authUser) => {

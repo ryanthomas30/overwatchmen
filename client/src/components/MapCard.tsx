@@ -2,17 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import { Card, Flexbox, Title } from '.'
 import { FlexboxProps } from './Flexbox'
-import { replaceUnderscores } from '../utility'
+import { replaceUnderscores } from '../util'
 
 interface MapCardProps {
 	mapName?: string
-	handleSelect: (mapName?:string) => void
+	handleSelect: (mapName?: string) => void
 	field?: any
 	className?: string
 	id?: string
 }
 
-const MapCard = ({ mapName, handleSelect, field, className, id }:MapCardProps) => (
+const MapCard = ({ mapName, handleSelect, field, className, id }: MapCardProps) => (
 	<Card
 		center
 		onClick={() => { handleSelect(id) }}
