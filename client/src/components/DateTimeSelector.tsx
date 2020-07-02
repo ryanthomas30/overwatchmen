@@ -46,6 +46,7 @@ const DateTimeSelector = ({ name = 'endTime', className }: DateTimeProps) => {
 					timeCaption='Time'
 					dateFormat='MMMM d, yyyy h:mm aa'
 					customInput={<Input placeholder='Enter a date' />}
+					showPopperArrow={false}
 					className={className}
 				/>
 			</Flexbox>

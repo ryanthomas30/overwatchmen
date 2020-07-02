@@ -9,7 +9,7 @@ interface CardProps extends FlexboxProps{
 }
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-const Card = ({ active, key, ...rest } : CardProps) => (
+const Card = ({ active, key, ...rest }: CardProps) => (
 	<Flexbox {...rest} />
 )
 

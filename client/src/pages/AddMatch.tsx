@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 
-import { DateTimePicker, Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
+import { DateTimeSelector, Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
 
 interface FormValues {
 	skillRating: number
