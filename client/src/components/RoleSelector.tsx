@@ -7,7 +7,7 @@ interface Props {
 }
 
 const RoleSelector = ({ name = 'role' }: Props) => {
-	const [field] = useField(name)
+	const [field, { error, touched }] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
 	const handleSelect = (value: string) => {
@@ -16,12 +16,22 @@ const RoleSelector = ({ name = 'role' }: Props) => {
 	}
 	return (
 		<>
-			<Header>
+			<Header
+				align='baseline'
+				marginBetween='small'
+			>
 				<Title
 					tag='h1'
 					italic
 				>
 					Role
+				</Title>
+				<Title
+					tag='h3'
+					italic
+					color='#e06767'
+				>
+					{touched && error}
 				</Title>
 			</Header>
 			<SelectorGrid>

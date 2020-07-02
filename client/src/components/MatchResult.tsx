@@ -3,22 +3,32 @@ import { Header, Title, Card, SelectorGrid } from '.'
 import { useFormikContext, useField } from 'formik'
 import { theme } from '../constants'
 
-const MatchResult = ({ name = 'result' }:any) => {
-	const [field] = useField(name)
+const MatchResult = ({ name = 'result' }: any) => {
+	const [field, { error, touched }] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
-	const handleSelect = (value:string )=> {
+	const handleSelect = (value: string )=> {
 		setFieldValue(name, value)
 	}
 
 	return (
 		<>
-			<Header>
+			<Header
+				align='baseline'
+				marginBetween='small'
+			>
 				<Title
 					tag='h1'
 					italic
 				>
 					Match Result
+				</Title>
+				<Title
+					tag='h3'
+					italic
+					color='#e06767'
+				>
+					{touched && error}
 				</Title>
 			</Header>
 			<SelectorGrid>

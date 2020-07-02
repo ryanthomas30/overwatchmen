@@ -16,7 +16,7 @@ interface DateTimeProps {
 
 const DateTimeSelector = ({ name = 'endTime', className }: DateTimeProps) => {
 
-	const [field] = useField(name)
+	const [field, { error, touched }] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
 	const handleChange = (value: Date) => {
@@ -25,12 +25,22 @@ const DateTimeSelector = ({ name = 'endTime', className }: DateTimeProps) => {
 
 	return (
 		<>
-			<Header>
+			<Header
+				align='baseline'
+				marginBetween='small'
+			>
 				<Title
 					tag='h1'
 					italic
 				>
-					Skill Rating
+					Match Time
+				</Title>
+				<Title
+					tag='h3'
+					italic
+					color='#e06767'
+				>
+					{touched && error}
 				</Title>
 			</Header>
 			<Flexbox

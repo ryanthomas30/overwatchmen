@@ -8,22 +8,19 @@ interface Props extends ButtonProps {
 	className?: string
 }
 
-const UnstyledLoginButton = ({ className, label = 'Sign in with Google', ...other }: Props) => {
-	console.log('sign in button')
-	return (
-		<Button
-			label={label}
-			className={className}
-			icon={
-				<Google
-					height={24}
-					width={24}
-				/>
-			}
-			{...other}
-		/>
-	)
-}
+const UnstyledLoginButton = ({ className, label = 'Sign in with Google', ...other }: Props) => (
+	<Button
+		label={label}
+		className={className}
+		icon={
+			<Google
+				height={24}
+				width={24}
+			/>
+		}
+		{...other}
+	/>
+)
 
 const LoginButton = styled(UnstyledLoginButton)`
 	/* Button Text */
