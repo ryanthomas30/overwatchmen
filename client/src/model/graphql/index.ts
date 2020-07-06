@@ -72,6 +72,90 @@ export interface Maps {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: UserMatches
+// ====================================================
+
+export interface UserMatches_user_matches_heroes {
+  __typename: "Hero";
+  /**
+   * The ID of the hero.
+   */
+  id: string;
+  /**
+   * The name of the hero.
+   */
+  name: HeroName;
+}
+
+export interface UserMatches_user_matches_map {
+  __typename: "Map";
+  /**
+   * The ID of the map.
+   */
+  id: string;
+  /**
+   * The name of the map.
+   */
+  name: MapName;
+  /**
+   * The game mode of the map.
+   */
+  type: MapType;
+}
+
+export interface UserMatches_user_matches {
+  __typename: "Match";
+  /**
+   * The ID of the match.
+   */
+  id: string;
+  /**
+   * Whether the match was a win, loss, or draw.
+   */
+  result: MatchResult;
+  /**
+   * When the match was played.
+   */
+  endTime: any;
+  /**
+   * The list of heroes the user played in this match.
+   */
+  heroes: (UserMatches_user_matches_heroes | null)[] | null;
+  /**
+   * The role the user played in this match.
+   */
+  role: Role;
+  /**
+   * The map the match was played on.
+   */
+  map: UserMatches_user_matches_map | null;
+}
+
+export interface UserMatches_user {
+  __typename: "User";
+  /**
+   * The matches that the user has played.
+   */
+  matches: UserMatches_user_matches[];
+}
+
+export interface UserMatches {
+  /**
+   * Get a user by their ID.
+   */
+  user: UserMatches_user;
+}
+
+export interface UserMatchesVariables {
+  userId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: CreateMatch
 // ====================================================
 

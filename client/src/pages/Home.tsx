@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Card, Title, Page } from '../components'
+import { Card, Title, Page, RecentMatches } from '../components'
 
 const Home = () => (
 	<Page
@@ -21,6 +21,7 @@ const Home = () => (
 				Home
 			</Title>
 		</Card>
+		<RecentMatches />
 	</Page>
 )
 

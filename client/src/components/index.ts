@@ -17,6 +17,8 @@ import MapSelector from './MapSelector'
 import MatchResultSelector from './MatchResultSelector'
 import NumberInput from './NumberInput'
 import Page from './Page'
+import RecentMatchCard from './RecentMatchCard'
+import RecentMatches from './RecentMatches'
 import RoleBadge from './RoleBadge'
 import RoleSelector from './RoleSelector'
 import SelectorGrid from './SelectorGrid'
@@ -42,6 +44,8 @@ export {
 	MatchResultSelector,
 	NumberInput,
 	Page,
+	RecentMatchCard,
+	RecentMatches,
 	RoleBadge,
 	RoleSelector,
 	SelectorGrid,

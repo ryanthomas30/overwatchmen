@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 import { CreateMatch, CreateMatchVariables, Role, MatchResult } from '../model'
 import { getAuthUser } from '../localStorage'
 
+import { GET_USER_MATCHES } from '../components/RecentMatches'
 import { DateTimeSelector, Page, RoleSelector, Flexbox, MapSelector,
 	SkillRatingInput, Form, MatchResultSelector, HeroSelector, Button,
 } from '../components'
@@ -28,7 +29,11 @@ interface FormValues {
 }
 
 const AddMatch = () => {
+	const user = getAuthUser()
+
 	const [createMatch, { loading }] = useMutation<CreateMatch, CreateMatchVariables>(CREATE_MATCH, {
+		awaitRefetchQueries: true,
+		refetchQueries: [{ query: GET_USER_MATCHES, variables: { userId: user!.uid } }],
 		onCompleted: () => {
 			history.push('/app/home')
 		},
@@ -59,7 +64,6 @@ const AddMatch = () => {
 	})
 
 	const onSubmit = (values: typeof initialValues) => {
-		const user = getAuthUser()
 		createMatch({
 			variables: {
 				newMatch: {
