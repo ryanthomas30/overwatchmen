@@ -5,6 +5,7 @@ import Flexbox from './Flexbox'
 import tank from '../assets/roleIcons/tank.png'
 import damage from '../assets/roleIcons/damage.png'
 import support from '../assets/roleIcons/support.png'
+import { Role } from '../model'
 
 const roleMap = {
 	tank,
@@ -12,10 +13,8 @@ const roleMap = {
 	support,
 }
 
-type RoleName = 'tank' | 'damage' | 'support'
-
 interface Props {
-	role: RoleName
+	role: Role
 	active?: boolean
 	className?: string
 }

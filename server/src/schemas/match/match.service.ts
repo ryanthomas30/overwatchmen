@@ -16,7 +16,7 @@ interface NewMatch {
 }
 
 export class MatchService extends DataSource<ProducedContext> {
-	getOne(matchId:number) {
+	getOne(matchId: number) {
 		return Match.findOne({ where: { id: matchId } })
 	}
 

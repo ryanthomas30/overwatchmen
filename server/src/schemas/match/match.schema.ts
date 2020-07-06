@@ -34,8 +34,8 @@ export const Match = gql`
 	}
 
 	input NewMatch {
-		mapId: Int
-		heroIds: [Int]
+		mapId: ID
+		heroIds: [ID]
 		role: Role!
 		skillRating: Int
 		result: MatchResult!

@@ -72,6 +72,35 @@ export interface Maps {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateMatch
+// ====================================================
+
+export interface CreateMatch_addMatchToUser {
+  __typename: "Match";
+  /**
+   * The ID of the match.
+   */
+  id: string;
+}
+
+export interface CreateMatch {
+  /**
+   * Add a new match for a user.
+   */
+  addMatchToUser: CreateMatch_addMatchToUser;
+}
+
+export interface CreateMatchVariables {
+  newMatch: NewMatch;
+  userId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: CreateUser
 // ====================================================
 
@@ -81,6 +110,14 @@ export interface CreateUser_createUser {
    * The ID of the user.
    */
   id: string;
+  /**
+   * The user's email address.
+   */
+  email: string;
+  /**
+   * The user's full name.
+   */
+  fullName: string;
 }
 
 export interface CreateUser {
@@ -169,10 +206,25 @@ export enum MapType {
   hybrid = "hybrid",
 }
 
+export enum MatchResult {
+  draw = "draw",
+  loss = "loss",
+  win = "win",
+}
+
 export enum Role {
   damage = "damage",
   support = "support",
   tank = "tank",
+}
+
+export interface NewMatch {
+  mapId?: string | null;
+  heroIds?: (string | null)[] | null;
+  role: Role;
+  skillRating?: number | null;
+  result: MatchResult;
+  endTime: any;
 }
 
 export interface NewUser {

@@ -14,7 +14,7 @@ import LoginButton from './LoginButton'
 import Logo from './Logo'
 import MapCard from './MapCard'
 import MapSelector from './MapSelector'
-import MatchResult from './MatchResult'
+import MatchResultSelector from './MatchResultSelector'
 import NumberInput from './NumberInput'
 import Page from './Page'
 import RoleBadge from './RoleBadge'
@@ -39,7 +39,7 @@ export {
 	Logo,
 	MapCard,
 	MapSelector,
-	MatchResult,
+	MatchResultSelector,
 	NumberInput,
 	Page,
 	RoleBadge,

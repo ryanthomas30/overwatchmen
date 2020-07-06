@@ -1,24 +1,47 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+import { useMutation, gql } from '@apollo/client'
 import * as Yup from 'yup'
 
-import { DateTimeSelector, Page, RoleSelector, Flexbox, MapSelector, SkillRatingInput, Form, MatchResult, HeroSelector, Button } from '../components'
+import { CreateMatch, CreateMatchVariables, Role, MatchResult } from '../model'
+import { getAuthUser } from '../localStorage'
+
+import { DateTimeSelector, Page, RoleSelector, Flexbox, MapSelector,
+	SkillRatingInput, Form, MatchResultSelector, HeroSelector, Button,
+} from '../components'
+
+const CREATE_MATCH = gql`
+	mutation CreateMatch($newMatch: NewMatch!, $userId: ID!) {
+		addMatchToUser(newMatch: $newMatch, userId: $userId) {
+			id
+		}
+	}
+`
 
 interface FormValues {
-	role: string
+	role: Role
 	heroIds: string[]
 	mapId: string
 	skillRating: number
-	result: string
+	result: MatchResult
 	endTime: Date
 }
 
 const AddMatch = () => {
+	const [createMatch, { loading }] = useMutation<CreateMatch, CreateMatchVariables>(CREATE_MATCH, {
+		onCompleted: () => {
+			history.push('/app/home')
+		},
+	})
+
+	const history = useHistory()
+
 	const initialValues: FormValues = {
 		skillRating: 0,
 		heroIds: [],
 		mapId: '',
-		role: '',
-		result: '',
+		role: Role.tank,
+		result: MatchResult.win,
 		endTime: new Date(),
 	}
 
@@ -36,7 +59,15 @@ const AddMatch = () => {
 	})
 
 	const onSubmit = (values: typeof initialValues) => {
-		console.log('values:', values)
+		const user = getAuthUser()
+		createMatch({
+			variables: {
+				newMatch: {
+					...values,
+				},
+				userId: user!.uid,
+			},
+		})
 	}
 
 	return (
@@ -57,12 +88,12 @@ const AddMatch = () => {
 						<HeroSelector />
 						<MapSelector />
 						<SkillRatingInput />
-						<MatchResult />
+						<MatchResultSelector />
 						<DateTimeSelector />
 						<Button
 							type='submit'
 							primary
-							disabled={Object.values(errors).some(e => e !== '')}
+							disabled={Object.values(errors).some(e => e !== '') || loading}
 						>
 							Add Match
 						</Button>

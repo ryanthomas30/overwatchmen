@@ -11,6 +11,8 @@ const CREATE_USER = gql`
 	mutation CreateUser($newUser: NewUser!) {
 		createUser(newUser: $newUser) {
 			id
+			email
+			fullName
 		}
 	}
 `
@@ -43,6 +45,7 @@ const Login = () => {
 	const onLogin = async () => {
 		const userCredentials = await firebase.googleSignIn()
 		const { additionalUserInfo, user } = userCredentials
+
 		if (additionalUserInfo?.isNewUser && user) {
 			createUser({
 				variables: {

@@ -1,9 +1,15 @@
 import React from 'react'
 import { Header, Title, Card, SelectorGrid } from '.'
 import { useFormikContext, useField } from 'formik'
-import { theme } from '../constants'
 
-const MatchResult = ({ name = 'result' }: any) => {
+import { theme } from '../constants'
+import { MatchResult } from '../model'
+
+interface Props {
+	name?: string
+}
+
+const MatchResultSelector = ({ name = 'result' }: Props) => {
 	const [field, { error, touched }] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
@@ -35,12 +41,12 @@ const MatchResult = ({ name = 'result' }: any) => {
 				<Card
 					center
 					padding='medium'
-					active={field.value === 'win'}
-					onClick={() => handleSelect('win')}
+					active={field.value === MatchResult.win}
+					onClick={() => handleSelect(MatchResult.win)}
 				>
 					<Title
 						italic
-						color={field.value === 'win' ? 'white' : theme.gray}
+						color={field.value === MatchResult.win ? 'white' : theme.gray}
 					>
 						Win
 
@@ -49,12 +55,12 @@ const MatchResult = ({ name = 'result' }: any) => {
 				<Card
 					center
 					padding='medium'
-					active={field.value === 'loss'}
-					onClick={() => handleSelect('loss')}
+					active={field.value === MatchResult.loss}
+					onClick={() => handleSelect(MatchResult.loss)}
 				>
 					<Title
 						italic
-						color={field.value === 'loss' ? 'white' : theme.gray}
+						color={field.value === MatchResult.loss ? 'white' : theme.gray}
 					>
 						Loss
 					</Title>
@@ -62,12 +68,12 @@ const MatchResult = ({ name = 'result' }: any) => {
 				<Card
 					center
 					padding='medium'
-					active={field.value === 'draw'}
-					onClick={() => handleSelect('draw')}
+					active={field.value === MatchResult.draw}
+					onClick={() => handleSelect(MatchResult.draw)}
 				>
 					<Title
 						italic
-						color={field.value === 'draw' ? 'white' : theme.gray}
+						color={field.value === MatchResult.draw ? 'white' : theme.gray}
 					>
 						Draw
 					</Title>
@@ -77,4 +83,4 @@ const MatchResult = ({ name = 'result' }: any) => {
 	)
 }
 
-export default MatchResult
+export default MatchResultSelector

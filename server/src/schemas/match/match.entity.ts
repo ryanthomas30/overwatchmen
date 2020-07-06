@@ -36,16 +36,16 @@ export class Match extends BaseEntity {
 	})
 	result!: MatchResult
 
-	@Column('date')
+	@Column('timestamptz')
 	endTime!: Date
 
 	@ManyToOne(() => User, user => user.matches)
 	user!: User
 
-	@ManyToOne(() => Map)
+	@ManyToOne(() => Map, { eager: true })
 	map?: Map
 
-	@ManyToMany(() => Hero)
+	@ManyToMany(() => Hero, { eager: true })
 	@JoinTable({
 		name: 'match_hero',
 	})
