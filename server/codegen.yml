@@ -1,4 +1,6 @@
 schema: schema.json
+config:
+  useIndexSignature: true
 generates:
   ./src/generated/index.ts:
     plugins:

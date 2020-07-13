@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 
 /** All built-in and custom scalars, mapped to their actual values */
@@ -23,8 +24,11 @@ export enum CacheControlScope {
 
 export type Hero = {
   __typename?: 'Hero';
+  /** The ID of the hero. */
   id: Scalars['ID'];
+  /** The name of the hero. */
   name: HeroName;
+  /** THe role of the hero. */
   role: Role;
 };
 
@@ -65,8 +69,11 @@ export enum HeroName {
 
 export type Map = {
   __typename?: 'Map';
+  /** The ID of the map. */
   id: Scalars['ID'];
+  /** The name of the map. */
   name: MapName;
+  /** The game mode of the map. */
   type: MapType;
 };
 
@@ -129,7 +136,9 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Test mutation for health checks. */
   testMutation?: Maybe<Scalars['String']>;
+  /** Create a new hero. */
   createHero: Hero;
+  /** Create a new map. */
   createMap: Map;
   /** Add a new match for a user. */
   addMatchToUser: Match;
@@ -169,8 +178,8 @@ export type NewMap = {
 };
 
 export type NewMatch = {
-  mapId?: Maybe<Scalars['Int']>;
-  heroIds?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  mapId?: Maybe<Scalars['ID']>;
+  heroIds?: Maybe<Array<Maybe<Scalars['ID']>>>;
   role: Role;
   skillRating?: Maybe<Scalars['Int']>;
   result: MatchResult;
@@ -178,6 +187,7 @@ export type NewMatch = {
 };
 
 export type NewUser = {
+  id: Scalars['ID'];
   /** The user's full name. */
   fullName: Scalars['String'];
   /** The user's email address. */
@@ -188,12 +198,17 @@ export type Query = {
   __typename?: 'Query';
   /** Test query for health checks. */
   testQuery?: Maybe<Scalars['String']>;
+  /** Get a hero by its ID. */
   hero?: Maybe<Hero>;
-  heroes?: Maybe<Array<Maybe<Hero>>>;
+  /** Get all heroes. */
+  heroes: Array<Hero>;
+  /** Get a map by its ID. */
   map?: Maybe<Map>;
-  maps?: Maybe<Array<Maybe<Map>>>;
+  /** Get all maps. */
+  maps: Array<Map>;
   /** Get a match by its ID. */
   match?: Maybe<Match>;
+  /** Get all matches. */
   matches?: Maybe<Array<Maybe<Match>>>;
   /** Get a user by their ID. */
   user: User;
@@ -206,7 +221,7 @@ export type QueryHeroArgs = {
 
 
 export type QueryHeroesArgs = {
-  role?: Maybe<Role>;
+  role?: Maybe<Scalars['String']>;
 };
 
 
@@ -244,6 +259,12 @@ export type User = {
 };
 
 
+export type UserMatchesArgs = {
+  limit?: Maybe<Scalars['Int']>;
+};
+
+export type WithIndex<TObject> = TObject & Record<string, any>;
+export type ResolversObject<TObject> = WithIndex<TObject>;
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
@@ -320,7 +341,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 ) => TResult | Promise<TResult>;
 
 /** Mapping between all available schema types and the resolvers types */
-export type ResolversTypes = {
+export type ResolversTypes = ResolversObject<{
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
@@ -343,10 +364,10 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   CacheControlScope: CacheControlScope;
   Upload: ResolverTypeWrapper<Scalars['Upload']>;
-};
+}>;
 
 /** Mapping between all available schema types and the resolvers parents */
-export type ResolversParentTypes = {
+export type ResolversParentTypes = ResolversObject<{
   Query: {};
   String: Scalars['String'];
   ID: Scalars['ID'];
@@ -363,27 +384,27 @@ export type ResolversParentTypes = {
   NewUser: NewUser;
   Boolean: Scalars['Boolean'];
   Upload: Scalars['Upload'];
-};
+}>;
 
 export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
   name: 'DateTime';
 }
 
-export type HeroResolvers<ContextType = any, ParentType extends ResolversParentTypes['Hero'] = ResolversParentTypes['Hero']> = {
+export type HeroResolvers<ContextType = any, ParentType extends ResolversParentTypes['Hero'] = ResolversParentTypes['Hero']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['HeroName'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['Role'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
+}>;
 
-export type MapResolvers<ContextType = any, ParentType extends ResolversParentTypes['Map'] = ResolversParentTypes['Map']> = {
+export type MapResolvers<ContextType = any, ParentType extends ResolversParentTypes['Map'] = ResolversParentTypes['Map']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['MapName'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['MapType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
+}>;
 
-export type MatchResolvers<ContextType = any, ParentType extends ResolversParentTypes['Match'] = ResolversParentTypes['Match']> = {
+export type MatchResolvers<ContextType = any, ParentType extends ResolversParentTypes['Match'] = ResolversParentTypes['Match']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   map?: Resolver<Maybe<ResolversTypes['Map']>, ParentType, ContextType>;
   heroes?: Resolver<Maybe<Array<Maybe<ResolversTypes['Hero']>>>, ParentType, ContextType>;
@@ -392,40 +413,40 @@ export type MatchResolvers<ContextType = any, ParentType extends ResolversParent
   result?: Resolver<ResolversTypes['MatchResult'], ParentType, ContextType>;
   endTime?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
+}>;
 
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   testMutation?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   createHero?: Resolver<ResolversTypes['Hero'], ParentType, ContextType, RequireFields<MutationCreateHeroArgs, 'newHero'>>;
   createMap?: Resolver<ResolversTypes['Map'], ParentType, ContextType, RequireFields<MutationCreateMapArgs, 'newMap'>>;
   addMatchToUser?: Resolver<ResolversTypes['Match'], ParentType, ContextType, RequireFields<MutationAddMatchToUserArgs, 'newMatch' | 'userId'>>;
   createUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'newUser'>>;
-};
+}>;
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   testQuery?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   hero?: Resolver<Maybe<ResolversTypes['Hero']>, ParentType, ContextType, RequireFields<QueryHeroArgs, 'heroId'>>;
-  heroes?: Resolver<Maybe<Array<Maybe<ResolversTypes['Hero']>>>, ParentType, ContextType, RequireFields<QueryHeroesArgs, never>>;
+  heroes?: Resolver<Array<ResolversTypes['Hero']>, ParentType, ContextType, RequireFields<QueryHeroesArgs, never>>;
   map?: Resolver<Maybe<ResolversTypes['Map']>, ParentType, ContextType, RequireFields<QueryMapArgs, 'mapId'>>;
-  maps?: Resolver<Maybe<Array<Maybe<ResolversTypes['Map']>>>, ParentType, ContextType>;
+  maps?: Resolver<Array<ResolversTypes['Map']>, ParentType, ContextType>;
   match?: Resolver<Maybe<ResolversTypes['Match']>, ParentType, ContextType, RequireFields<QueryMatchArgs, 'matchId'>>;
   matches?: Resolver<Maybe<Array<Maybe<ResolversTypes['Match']>>>, ParentType, ContextType>;
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryUserArgs, 'userId'>>;
-};
+}>;
 
 export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
   name: 'Upload';
 }
 
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   fullName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  matches?: Resolver<Array<ResolversTypes['Match']>, ParentType, ContextType>;
+  matches?: Resolver<Array<ResolversTypes['Match']>, ParentType, ContextType, RequireFields<UserMatchesArgs, never>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
+}>;
 
-export type Resolvers<ContextType = any> = {
+export type Resolvers<ContextType = any> = ResolversObject<{
   DateTime?: GraphQLScalarType;
   Hero?: HeroResolvers<ContextType>;
   Map?: MapResolvers<ContextType>;
@@ -434,7 +455,7 @@ export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   Upload?: GraphQLScalarType;
   User?: UserResolvers<ContextType>;
-};
+}>;
 
 
 /**

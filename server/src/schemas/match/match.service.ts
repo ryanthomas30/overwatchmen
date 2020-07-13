@@ -1,8 +1,9 @@
 import { ApolloError } from 'apollo-server'
 import { DataSource } from 'apollo-datasource'
+import { ProducedContext } from '@/context'
+
 import { Match, Role, MatchResult } from './match.entity'
 import { User } from '../user/user.entity'
-import { ProducedContext } from '@/context'
 import { Map } from '../map/map.entity'
 import { Hero } from '../hero/hero.entity'
 
@@ -24,8 +25,16 @@ export class MatchService extends DataSource<ProducedContext> {
 		return Match.find()
 	}
 
-	getAllByUser(userId: string) {
-		return Match.find({ where: { user: userId } })
+	getAllByUser(userId: string, limit: number | null | undefined = 10) {
+		return Match.find({
+			where: {
+				user: userId,
+			},
+			order: {
+				endTime: 'DESC',
+			},
+			take: limit!,
+		})
 	}
 
 	async addToUser(newMatch: NewMatch, userId: string) {

@@ -27,7 +27,7 @@
           },
           {
             "name": "hero",
-            "description": "",
+            "description": "Get a hero by its ID.",
             "args": [
               {
                 "name": "heroId",
@@ -54,26 +54,34 @@
           },
           {
             "name": "heroes",
-            "description": "",
+            "description": "Get all heroes.",
             "args": [
               {
                 "name": "role",
                 "description": "",
                 "type": {
-                  "kind": "ENUM",
-                  "name": "Role",
+                  "kind": "SCALAR",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
               }
             ],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "Hero",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Hero",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -81,7 +89,7 @@
           },
           {
             "name": "map",
-            "description": "",
+            "description": "Get a map by its ID.",
             "args": [
               {
                 "name": "mapId",
@@ -108,15 +116,23 @@
           },
           {
             "name": "maps",
-            "description": "",
+            "description": "Get all maps.",
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "Map",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Map",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -151,7 +167,7 @@
           },
           {
             "name": "matches",
-            "description": "",
+            "description": "Get all matches.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -229,7 +245,7 @@
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": "The ID of the hero.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -245,7 +261,7 @@
           },
           {
             "name": "name",
-            "description": "",
+            "description": "The name of the hero.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -261,7 +277,7 @@
           },
           {
             "name": "role",
-            "description": "",
+            "description": "THe role of the hero.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -520,7 +536,7 @@
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": "The ID of the map.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -536,7 +552,7 @@
           },
           {
             "name": "name",
-            "description": "",
+            "description": "The name of the map.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -552,7 +568,7 @@
           },
           {
             "name": "type",
-            "description": "",
+            "description": "The game mode of the map.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -968,7 +984,18 @@
           {
             "name": "matches",
             "description": "The matches that the user has played.",
-            "args": [],
+            "args": [
+              {
+                "name": "limit",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1014,7 +1041,7 @@
           },
           {
             "name": "createHero",
-            "description": "",
+            "description": "Create a new hero.",
             "args": [
               {
                 "name": "newHero",
@@ -1045,7 +1072,7 @@
           },
           {
             "name": "createMap",
-            "description": "",
+            "description": "Create a new map.",
             "args": [
               {
                 "name": "newMap",
@@ -1245,7 +1272,7 @@
             "description": "",
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
@@ -1258,7 +1285,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "ID",
                 "ofType": null
               }
             },
@@ -1327,6 +1354,20 @@
         "description": "",
         "fields": null,
         "inputFields": [
+          {
+            "name": "id",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
           {
             "name": "fullName",
             "description": "The user's full name.",

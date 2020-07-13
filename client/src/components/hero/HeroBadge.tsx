@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { Flexbox } from '../'
 import { HeroName } from '../../model'
+import { replaceUnderscores } from '../../util'
 
 import { ReactComponent as Bastion } from '../../assets/playerIcons/bastion.svg'
 import { ReactComponent as Dva } from '../../assets/playerIcons/dva.svg'
@@ -79,6 +80,7 @@ const BaseHeroBadge = ({ hero, size = 72, className }: Props) => {
 			width={size}
 			padding={size / 6}
 			className={className}
+			title={replaceUnderscores(hero)}
 		>
 			<HeroSVG />
 		</Flexbox>
