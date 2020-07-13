@@ -44,10 +44,12 @@ const Main = () => {
 					<Button
 						label='Add Match'
 						path='/app/match/new'
+						flat
 					/>
 					<Button
 						label='Logout'
 						onClick={signOut}
+						flat
 					/>
 				</Flexbox>
 

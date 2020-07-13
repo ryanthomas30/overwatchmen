@@ -1,15 +1,15 @@
-import React from 'react'
-import { Header, Title, Card, SelectorGrid } from '.'
+import React, { FC } from 'react'
 import { useFormikContext, useField } from 'formik'
+import { Header, Title, Card, SelectorGrid } from '..'
 
-import { theme } from '../constants'
-import { MatchResult } from '../model'
+import { theme } from '../../constants'
+import { MatchResult } from '../../model'
 
 interface Props {
 	name?: string
 }
 
-const MatchResultSelector = ({ name = 'result' }: Props) => {
+export const MatchResultSelector: FC<Props> = ({ name = 'result' }) => {
 	const [field, { error, touched }] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
@@ -82,5 +82,3 @@ const MatchResultSelector = ({ name = 'result' }: Props) => {
 		</>
 	)
 }
-
-export default MatchResultSelector

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Input = styled.input`
+export const Input = styled.input`
 	width: -webkit-fill-available;
 	padding: 16px 20px;
 	border: none;
@@ -18,4 +18,3 @@ const Input = styled.input`
 	}
 `
 
-export default Input

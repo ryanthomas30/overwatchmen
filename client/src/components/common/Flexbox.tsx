@@ -33,6 +33,7 @@ export interface FlexboxProps {
 	align?: 'start' | 'end' | 'center' | 'baseline'
 	center?: boolean
 	wrap?: boolean
+	flex?: boolean | string | number
 	/* Margin */
 	margin?: Size
 	marginLeft?: Size
@@ -69,7 +70,7 @@ export interface FlexboxProps {
 
 type Size = 'small' | 'medium' | 'large' | number;
 
-const Flexbox = (props: FlexboxProps) => {
+const BaseFlexbox = (props: FlexboxProps) => {
 	const {
 		children,
 		justify = '',
@@ -204,9 +205,10 @@ const Flexbox = (props: FlexboxProps) => {
 	)
 }
 
-const StyledFlexbox = styled(Flexbox)`
+export const Flexbox = styled(BaseFlexbox)`
 	cursor: ${({ onClick }) => !!onClick && 'pointer'};
 	flex-direction: ${({ direction }) => direction || 'column'};
+	flex: ${({ flex }) => flex ? 1 : flex};
 	> *:not(:last-child) {
 		margin-bottom: ${({ direction, marginBetween }) => direction === 'column' || !direction ? getSize(marginBetween) : undefined};
 		margin-right: ${({ direction, marginBetween }) => direction === 'row' ? getSize(marginBetween) : undefined};
@@ -215,5 +217,3 @@ const StyledFlexbox = styled(Flexbox)`
 		padding-right: ${({ direction, paddingBetween }) => direction === 'row' ? getSize(paddingBetween) : undefined};
 	}
 `
-
-export default StyledFlexbox

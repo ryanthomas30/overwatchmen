@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useField } from 'formik'
 
 import { Flexbox, NumberInput, Header, Title } from '.'
@@ -7,7 +7,7 @@ interface Props {
 	name?: string
 }
 
-const SkillRatingInput = ({ name = 'skillRating' }: Props) => {
+export const SkillRatingInput: FC<Props> = ({ name = 'skillRating' }) => {
 	const [, { error, touched }] = useField(name)
 	return (
 		<>
@@ -42,5 +42,3 @@ const SkillRatingInput = ({ name = 'skillRating' }: Props) => {
 		</>
 	)
 }
-
-export default SkillRatingInput

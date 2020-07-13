@@ -1,10 +1,10 @@
-import React, { CSSProperties, ReactNode, useContext } from 'react'
+import React, { CSSProperties, ReactNode, useContext, FC } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
-import Flexbox from './Flexbox'
-import Icon from './Icon'
-import Link from './Link'
+import { Flexbox } from './Flexbox'
+import { Icon } from './Icon'
+import { Link } from './Link'
 
 export interface ButtonProps {
 	children?: ReactNode
@@ -13,6 +13,7 @@ export interface ButtonProps {
 	onClick?: (event?: any) => void
 	icon?: IconProp | ReactNode
 	color?: string
+	flat?: boolean
 	primary?: boolean
 	full?: boolean
 	disabled?: boolean
@@ -21,7 +22,7 @@ export interface ButtonProps {
 	style?: CSSProperties
 }
 
-const UnstyledButton = (props: ButtonProps) => {
+const BaseButton: FC<ButtonProps> = (props) => {
 	const { children, label, path, onClick, full, disabled, icon, type = 'button', style, className } = props
 	const theme = useContext(ThemeContext)
 	const labelNode = (!!children || !!label) && <Flexbox>{children || label}</Flexbox>
@@ -68,7 +69,7 @@ const UnstyledButton = (props: ButtonProps) => {
 	return buttonInner
 }
 
-const Button = styled(UnstyledButton)`
+export const Button = styled(BaseButton)`
 	user-select: none;
 	border-style: none;
 	cursor: pointer;
@@ -77,7 +78,7 @@ const Button = styled(UnstyledButton)`
 	min-width: 74px;
 	height: 44px;
 	background-color: ${({ theme, primary }) => primary ? theme.lightBlue : 'white'};
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	box-shadow: ${({ flat }) => !flat ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : undefined};
 	transition: all ease-in-out 200ms;
 	opacity: ${({ disabled }) => disabled ? 0.6 : 'inherit'};
 	&:focus {
@@ -85,14 +86,14 @@ const Button = styled(UnstyledButton)`
 	}
 	/* Button Text */
 	color: ${({ theme, primary }) => primary ? 'white' : theme.gray};
-	font-family: 'Koverwatch';
-	font-size: 24px;
-	letter-spacing: 2px;
-	font-style: italic;
+	font-family: 'Nunito Sans';
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	/* font-style: italic; */
 	white-space: nowrap;
 	&:hover {
 		color: ${({ theme, primary }) => primary ? 'white' : theme.yellow};
 	}
 `
-
-export default Button

@@ -1,7 +1,7 @@
-import React, { ReactNode, CSSProperties } from 'react'
+import React, { ReactNode, CSSProperties, FC } from 'react'
 
 import styled from 'styled-components'
-import { theme } from '../constants'
+import { theme } from '../../constants'
 
 type Props = {
 	children?: ReactNode
@@ -14,7 +14,7 @@ type Props = {
 	italic?: boolean
 }
 
-const Title = ({ children, tag = 'h1', className, style }: Props) => {
+const BaseTitle: FC<Props> = ({ children, tag = 'h1', className, style }) => {
 	const Element = tag!
 	return (
 		<Element
@@ -26,7 +26,7 @@ const Title = ({ children, tag = 'h1', className, style }: Props) => {
 	)
 }
 
-const styledTitle = styled(Title)`
+export const Title = styled(BaseTitle)`
 	margin: 0px;
 	color: ${({ color = theme.gray }) => color};
 	font-size: ${({ size }) => `${size}px`};
@@ -37,4 +37,3 @@ const styledTitle = styled(Title)`
 	font-weight: normal;
 `
 
-export default styledTitle

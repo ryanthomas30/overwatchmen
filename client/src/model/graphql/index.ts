@@ -129,6 +129,10 @@ export interface UserMatches_user_matches {
    * The map the match was played on.
    */
   map: UserMatches_user_matches_map | null;
+  /**
+   * The skill rating of the player at the end of this match.
+   */
+  skillRating: number;
 }
 
 export interface UserMatches_user {

@@ -1,11 +1,11 @@
-import React, { ChangeEvent, KeyboardEvent } from 'react'
+import React, { ChangeEvent, KeyboardEvent, FC } from 'react'
 import { useField, useFormikContext } from 'formik'
 import numeral from 'numeral'
 
-import Flexbox, { FlexboxProps } from './Flexbox'
-import Input from './Input'
+import { Flexbox, FlexboxProps } from './Flexbox'
+import { Input } from './Input'
 
-interface NumberInput extends FlexboxProps {
+interface Props extends FlexboxProps {
 	name: string
 	min?: number
 	max?: number
@@ -13,7 +13,7 @@ interface NumberInput extends FlexboxProps {
 	placeHolder?: string
 }
 
-const NumberInput = ({ placeHolder, name, min = 0, max = 5000, step = 10, ...other }: NumberInput) => {
+export const NumberInput: FC<Props> = ({ placeHolder, name, min = 0, max = 5000, step = 10, ...other }) => {
 	const [field] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
@@ -66,5 +66,3 @@ const NumberInput = ({ placeHolder, name, min = 0, max = 5000, step = 10, ...oth
 		</Flexbox>
 	)
 }
-
-export default NumberInput

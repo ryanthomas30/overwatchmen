@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
-import Button, { ButtonProps } from './Button'
+import { Button, ButtonProps } from './common'
 import { ReactComponent as Google } from '../assets/google.svg'
 
 interface Props extends ButtonProps {
 	className?: string
 }
 
-const UnstyledLoginButton = ({ className, label = 'Sign in with Google', ...other }: Props) => (
+const BaseLoginButton: FC<Props> = ({ className, label = 'Sign in with Google', ...other }) => (
 	<Button
 		label={label}
 		className={className}
@@ -22,7 +22,7 @@ const UnstyledLoginButton = ({ className, label = 'Sign in with Google', ...othe
 	/>
 )
 
-const LoginButton = styled(UnstyledLoginButton)`
+export const LoginButton = styled(BaseLoginButton)`
 	/* Button Text */
 	color: ${({ theme, primary }) => primary ? 'white' : theme.gray};
 	font-family: 'Koverwatch';
@@ -34,5 +34,3 @@ const LoginButton = styled(UnstyledLoginButton)`
 		color: ${({ theme, primary }) => primary ? 'white' : theme.yellow};
 	}
 `
-
-export default LoginButton

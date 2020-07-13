@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Formik, FormikConfig } from 'formik'
 
 const isFunction = (obj: any): obj is Function =>
 	typeof obj === 'function'
 
-const Form = ({ children, ...other }: FormikConfig<any>) => (
+export const Form: FC<FormikConfig<any>> = ({ children, ...other }) => (
 	<Formik {...other} >
 		{(props) =>
 			<form
@@ -22,5 +22,3 @@ const Form = ({ children, ...other }: FormikConfig<any>) => (
 		}
 	</Formik>
 )
-
-export default Form

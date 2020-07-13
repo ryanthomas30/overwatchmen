@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Card, Title, Page, RecentMatches } from '../components'
+import { Header, Title, Page, RecentMatches } from '../components'
 
 const Home = () => (
 	<Page
@@ -8,19 +8,14 @@ const Home = () => (
 		justify='center'
 		padding='large'
 	>
-		<Card
-			full
-			padding='medium'
-			direction='row'
-			justify='between'
-		>
+		<Header>
 			<Title
 				tag='h1'
 				italic
 			>
-				Home
+				Recent Matches
 			</Title>
-		</Card>
+		</Header>
 		<RecentMatches />
 	</Page>
 )

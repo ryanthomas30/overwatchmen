@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useQuery, gql } from '@apollo/client'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
-import { Header, Title, HeroBadge, Card } from '.'
-import { replaceUnderscores } from '../util'
-import { Heroes } from '../model'
+import { Header, Title, HeroBadge, Card } from '..'
+import { replaceUnderscores } from '../../util'
+import { Heroes } from '../../model'
 
 const HeroGrid = styled.div`
 	display: grid;
@@ -29,7 +29,7 @@ interface Props {
 	name?: string
 }
 
-const HeroSelector = ({ name = 'heroIds' }: Props) => {
+export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 
 	const [field] = useField(name)
 	const [roleField] = useField('role')
@@ -82,5 +82,3 @@ const HeroSelector = ({ name = 'heroIds' }: Props) => {
 		</>
 	)
 }
-
-export default HeroSelector

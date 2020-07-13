@@ -1,21 +1,16 @@
-import React from 'react'
+import React, { FC } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
-import Input from './Input'
-import Flexbox from './Flexbox'
-import Header from './Header'
-import Title from './Title'
+import { Flexbox, Input, Header, Title } from './common'
 
 interface DateTimeProps {
 	name?: string
 	className?: string
 }
 
-const DateTimeSelector = ({ name = 'endTime', className }: DateTimeProps) => {
-
+export const DateTimeSelector: FC<DateTimeProps> = ({ name = 'endTime', className }) => {
 	const [field, { error, touched }] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
@@ -63,8 +58,3 @@ const DateTimeSelector = ({ name = 'endTime', className }: DateTimeProps) => {
 		</>
 	)
 }
-
-const StyledDateTimeSelector = styled(DateTimeSelector)`
-`
-
-export default StyledDateTimeSelector

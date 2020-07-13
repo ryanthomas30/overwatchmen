@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import { CreateMatch, CreateMatchVariables, Role, MatchResult } from '../model'
 import { getAuthUser } from '../localStorage'
 
-import { GET_USER_MATCHES } from '../components/RecentMatches'
+import { GET_USER_MATCHES } from '../components/match/RecentMatches'
 import { DateTimeSelector, Page, RoleSelector, Flexbox, MapSelector,
 	SkillRatingInput, Form, MatchResultSelector, HeroSelector, Button,
 } from '../components'

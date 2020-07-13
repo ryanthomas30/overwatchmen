@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FC } from 'react'
 
-import logo from '../assets/overwatchmen_logo.png'
-import Flexbox from './Flexbox'
-import Title from './Title'
+import logo from '../../assets/overwatchmen_logo.png'
+import { Flexbox } from './Flexbox'
+import { Title } from './Title'
 
 interface LogoComponentProps {
 	size: number
@@ -28,7 +28,7 @@ interface Props {
 	onClick?: (event?: any) => void
 }
 
-const Logo = ({ image = true, title = true, scale = 1, onClick }: Props) => {
+export const Logo: FC<Props> = ({ image = true, title = true, scale = 1, onClick }) => {
 	const IMAGE_SIZE = 44
 	const TITLE_SIZE = 40
 	const MARGIN_BETWEEN = 12
@@ -51,5 +51,3 @@ const Logo = ({ image = true, title = true, scale = 1, onClick }: Props) => {
 		</Flexbox>
 	)
 }
-
-export default Logo

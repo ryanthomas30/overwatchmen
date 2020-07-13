@@ -1,14 +1,14 @@
-import React from 'react'
-import { Header, Title, SelectorGrid, RoleBadge, Card } from '.'
+import React, { FC } from 'react'
+import { Header, Title, SelectorGrid, RoleBadge, Card } from '..'
 import { useField, useFormikContext } from 'formik'
 
-import { Role } from '../model'
+import { Role } from '../../model'
 
 interface Props {
 	name: string
 }
 
-const RoleSelector = ({ name = 'role' }: Props) => {
+export const RoleSelector: FC<Props> = ({ name = 'role' }) => {
 	const [field, { error, touched }] = useField(name)
 	const { setFieldValue } = useFormikContext()
 
@@ -16,6 +16,7 @@ const RoleSelector = ({ name = 'role' }: Props) => {
 		setFieldValue(name, value)
 		setFieldValue('heroIds', [])
 	}
+
 	return (
 		<>
 			<Header
@@ -71,4 +72,3 @@ const RoleSelector = ({ name = 'role' }: Props) => {
 		</>
 	)
 }
-export default RoleSelector

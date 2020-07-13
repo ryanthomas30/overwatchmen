@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
-import { Maps } from '../model'
-import { Header, Title, MapCard } from '.'
+import { Maps } from '../../model'
+import { Header, Title, MapCard } from '..'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
@@ -23,7 +23,7 @@ const MapGrid = styled.div`
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 `
 
-const MapSelector = () => {
+export const MapSelector = () => {
 	const [field] = useField('mapId')
 	const { setFieldValue } = useFormikContext()
 
@@ -60,5 +60,3 @@ const MapSelector = () => {
 		</>
 	)
 }
-
-export default MapSelector

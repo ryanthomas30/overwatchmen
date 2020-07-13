@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import styled from 'styled-components'
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
@@ -8,7 +8,7 @@ interface IconProps extends FontAwesomeIconProps {
 	className?: string
 }
 
-const UnstyledIcon = ({ color = '#827F7F', className, ...other }: IconProps) => (
+const BaseIcon: FC<IconProps> = ({ color = '#827F7F', className, ...other }) => (
 	<FontAwesomeIcon
 		color={color}
 		className={className}
@@ -16,8 +16,7 @@ const UnstyledIcon = ({ color = '#827F7F', className, ...other }: IconProps) => 
 	/>
 )
 
-const Icon = styled(UnstyledIcon)`
+export const Icon = styled(BaseIcon)`
 	cursor: pointer;
 `
 
-export default Icon
