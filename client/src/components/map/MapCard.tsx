@@ -27,6 +27,7 @@ import Route_66 from '../../assets/maps/route-66.jpg'
 import Temple_of_Anubis from '../../assets/maps/temple-of-anubis.jpg'
 import Volskaya_Industries from '../../assets/maps/volskaya-industries.jpg'
 import Watchpoint_Gibraltar from '../../assets/maps/watchpoint-gibraltar.jpg'
+import Overwatch_Image from '../../assets/overwatch_image.jpg'
 
 interface MapCardProps {
 	mapName: MapName
@@ -58,7 +59,7 @@ const mapImages = {
 	Temple_of_Anubis,
 	Volskaya_Industries,
 	Watchpoint_Gibraltar,
-	default: '',
+	default: Overwatch_Image,
 }
 
 const BaseMapCard: FC<MapCardProps> = ({ mapName, handleSelect, field, className, id }) => (
@@ -87,19 +88,21 @@ export const MapCardContent: FC<MapCardContentProps> = ({ mapName, active }) => 
 			src={mapImages[mapName || 'default']}
 			style={{ objectFit: 'cover' }}
 		/>
-		<MapTitleCard
-			active={active}
-			paddingVertical={7}
-			paddingHorizontal={12}
-		>
-
-			<Title
-				tag='h2'
-				color='white'
+		{ mapName &&
+			<MapTitleCard
+				active={active}
+				paddingVertical={7}
+				paddingHorizontal={12}
 			>
-				{replaceUnderscores(mapName)}
-			</Title>
-		</MapTitleCard>
+
+				<Title
+					tag='h2'
+					color='white'
+				>
+					{replaceUnderscores(mapName)}
+				</Title>
+			</MapTitleCard>
+		}
 	</Flexbox>
 )
 

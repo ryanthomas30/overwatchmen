@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-import { Card, Title, Header, Flexbox, MapCardContent, RoleBadge, HeroBadge } from '../'
+import { Card, Title, Header, Flexbox, MapCardContent, RoleBadge, HeroBadge, Divider } from '../'
 import { theme } from '../../constants'
 import { UserMatches_user_matches, MatchResult } from '../../model'
 
@@ -9,10 +9,7 @@ interface Props {
 	match: UserMatches_user_matches
 }
 
-const HoverableCard = styled(Card)`
-	width: 300px;
-	height: 350px;
-	text-align: center;
+const MatchCard = styled(Card)`
 	overflow: hidden;
 	position: relative;
 `
@@ -33,9 +30,7 @@ const getResultColor = (result: MatchResult) => {
 export const RecentMatchCard: FC<Props> = ({ match }) => {
 	console.log('match:', match)
 	return (
-		<HoverableCard
-			direction='column'
-		>
+		<MatchCard>
 			<MapCardContent mapName={match.map?.name} />
 			<Flexbox
 				flex
@@ -48,11 +43,12 @@ export const RecentMatchCard: FC<Props> = ({ match }) => {
 					padding='small'
 					marginBetween='medium'
 				>
-					<Header marginBetween='small' >
+					<Header justify='between' >
 						<RoleBadge
 							role={match.role}
-							size={54}
+							size={44}
 						/>
+						<Divider padding='small' />
 						<Title>
 							{match.skillRating}
 						</Title>
@@ -62,10 +58,11 @@ export const RecentMatchCard: FC<Props> = ({ match }) => {
 						justify='start'
 						marginBetween='small'
 					>
-						{match.heroes?.slice(0, 5).map(hero => (
+						{match.heroes?.slice(0, 4).map(hero => (
 							<HeroBadge
+								key={hero?.name!}
 								hero={hero?.name!}
-								size={44}
+								size={36}
 							/>
 						))}
 					</Header>
@@ -83,6 +80,6 @@ export const RecentMatchCard: FC<Props> = ({ match }) => {
 					</Title>
 				</Header>
 			</Flexbox>
-		</HoverableCard>
+		</MatchCard>
 	)
 }

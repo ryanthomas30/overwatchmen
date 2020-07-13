@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
-import { Flexbox, RecentMatchCard } from '../index'
 import { useQuery, gql } from '@apollo/client'
+import styled from 'styled-components'
+
+import { Flexbox, RecentMatchCard } from '../index'
 import { getAuthUser } from '../../localStorage'
 import { UserMatches, UserMatchesVariables } from '../../model'
 
@@ -26,6 +28,7 @@ export const GET_USER_MATCHES = gql`
 		}
 	}
 `
+
 export const RecentMatches: FC = () => {
 	const user = getAuthUser()
 	const { loading, data } = useQuery<UserMatches, UserMatchesVariables>(GET_USER_MATCHES, {
@@ -36,20 +39,22 @@ export const RecentMatches: FC = () => {
 	if (loading) return null
 
 	return (
-		<Flexbox
-			full='horizontal'
-			direction='row'
-			paddingVertical='medium'
-			justify='start'
-			marginBetween='medium'
-			wrap
-		>
+		<RecentMatchGrid>
 			{data?.user.matches.map(match => (
 				<RecentMatchCard
 					key={match.id}
 					match={match}
 				/>
 			))}
-		</Flexbox>
+		</RecentMatchGrid>
 	)
 }
+
+const RecentMatchGrid = styled.div`
+	display: grid;
+	width: 100%;
+	height: 100%;
+	gap: 24px;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 300px
+`

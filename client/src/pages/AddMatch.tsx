@@ -22,7 +22,7 @@ const CREATE_MATCH = gql`
 interface FormValues {
 	role: Role
 	heroIds: string[]
-	mapId: string
+	mapId: string | null
 	skillRating: number
 	result: MatchResult
 	endTime: Date
@@ -44,7 +44,7 @@ const AddMatch = () => {
 	const initialValues: FormValues = {
 		skillRating: 0,
 		heroIds: [],
-		mapId: '',
+		mapId: null,
 		role: Role.tank,
 		result: MatchResult.win,
 		endTime: new Date(),

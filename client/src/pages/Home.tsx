@@ -7,6 +7,7 @@ const Home = () => (
 		align='center'
 		justify='center'
 		padding='large'
+		marginBetween='medium'
 	>
 		<Header>
 			<Title

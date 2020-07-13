@@ -4,6 +4,7 @@
 
 export * from './Button'
 export * from './Card'
+export * from './Divider'
 export * from './Flexbox'
 export * from './Form'
 export * from './Header'

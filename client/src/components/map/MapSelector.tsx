@@ -8,18 +8,18 @@ import { useField, useFormikContext } from 'formik'
 export const GET_MAPS = gql`
 	query Maps {
 		maps {
-		id
-		name
-		type
+			id
+			name
+			type
 		}
 	}
 `
 
 const MapGrid = styled.div`
-	display:grid;
-	width:100%;
-	height:100%;
-	gap:10px;
+	display: grid;
+	width: 100%;
+	height: 100%;
+	gap: 10px;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 `
 
