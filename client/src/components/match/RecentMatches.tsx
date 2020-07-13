@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { RecentMatchCard } from '../index'
 import { getAuthUser } from '../../localStorage'
 import { UserMatches, UserMatchesVariables } from '../../model'
+import SparkChart from './SparkChart'
 
 export const GET_USER_MATCHES = gql`
 	query UserMatches($userId: ID!) {
@@ -39,14 +40,17 @@ export const RecentMatches: FC = () => {
 	if (loading) return null
 
 	return (
-		<RecentMatchGrid>
-			{data?.user.matches.map(match => (
-				<RecentMatchCard
-					key={match.id}
-					match={match}
-				/>
-			))}
-		</RecentMatchGrid>
+		<>
+			<RecentMatchGrid>
+				{data?.user.matches.map(match => (
+					<RecentMatchCard
+						key={match.id}
+						match={match}
+					/>
+				))}
+			</RecentMatchGrid>
+			<SparkChart recentMatches={data?.user.matches} />
+		</>
 	)
 }
 
