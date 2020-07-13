@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { useQuery, gql } from '@apollo/client'
 import styled from 'styled-components'
 
-import { Flexbox, RecentMatchCard } from '../index'
+import { RecentMatchCard } from '../index'
 import { getAuthUser } from '../../localStorage'
 import { UserMatches, UserMatchesVariables } from '../../model'
 
@@ -56,5 +56,5 @@ const RecentMatchGrid = styled.div`
 	height: 100%;
 	gap: 24px;
 	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: 300px
+	grid-template-rows: 330px
 `

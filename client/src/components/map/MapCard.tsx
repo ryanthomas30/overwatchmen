@@ -96,7 +96,7 @@ export const MapCardContent: FC<MapCardContentProps> = ({ mapName, active }) => 
 			>
 
 				<Title
-					tag='h2'
+					tag='h3'
 					color='white'
 				>
 					{replaceUnderscores(mapName)}
@@ -122,7 +122,7 @@ const MapTitleCard = styled(BaseMapTitleCard)`
 	position: absolute;
 	bottom: 15px;
 	left: 0px;
-	border-radius: 0 8px 8px 0;
+	border-radius: 0 6px 6px 0;
 	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 `
 

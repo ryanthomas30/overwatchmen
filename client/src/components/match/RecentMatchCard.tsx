@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import moment from 'moment'
 
 import { Card, Title, Header, Flexbox, MapCardContent, RoleBadge, HeroBadge, Divider } from '../'
 import { theme } from '../../constants'
@@ -8,11 +9,6 @@ import { UserMatches_user_matches, MatchResult } from '../../model'
 interface Props {
 	match: UserMatches_user_matches
 }
-
-const MatchCard = styled(Card)`
-	overflow: hidden;
-	position: relative;
-`
 
 const getResultColor = (result: MatchResult) => {
 	switch (result) {
@@ -28,7 +24,7 @@ const getResultColor = (result: MatchResult) => {
 }
 
 export const RecentMatchCard: FC<Props> = ({ match }) => {
-	console.log('match:', match)
+	const hasHeroes = match.heroes?.length !== 0
 	return (
 		<MatchCard>
 			<MapCardContent mapName={match.map?.name} />
@@ -43,43 +39,72 @@ export const RecentMatchCard: FC<Props> = ({ match }) => {
 					padding='small'
 					marginBetween='medium'
 				>
-					<Header justify='between' >
+					<Header marginBetween='small' >
 						<RoleBadge
 							role={match.role}
-							size={44}
+							size={48}
 						/>
-						<Divider padding='small' />
-						<Title>
+						<Title italic >
 							{match.skillRating}
 						</Title>
 					</Header>
 					<Header
 						wrap
-						justify='start'
+						justify={hasHeroes ? 'end' : 'center'}
 						marginBetween='small'
 					>
-						{match.heroes?.slice(0, 4).map(hero => (
+						{ hasHeroes ? match.heroes?.slice(0, 4).map(hero => (
 							<HeroBadge
 								key={hero?.name!}
 								hero={hero?.name!}
 								size={36}
 							/>
-						))}
+						)) : <Label>No Heroes</Label>}
 					</Header>
 				</Flexbox>
-				<Header
-					style={{ backgroundColor: getResultColor(match.result) }}
-					justify='center'
-					paddingVertical={4}
+				<Flexbox
+					full='horizontal'
+					marginBetween='small'
 				>
-					<Title
-						tag='h4'
-						color='white'
+					<Header
+						justify='end'
+						paddingHorizontal='small'
 					>
-						{match.result}
-					</Title>
-				</Header>
+						<TimeLabel title={moment(match.endTime).format('M/D/YYYY, h:mmA')} >
+							{moment(match.endTime).fromNow(true)}
+						</TimeLabel>
+					</Header>
+					<Header
+						style={{ backgroundColor: getResultColor(match.result) }}
+						justify='center'
+						paddingVertical={4}
+					>
+						<Title
+							tag='h4'
+							color='white'
+						>
+							{match.result}
+						</Title>
+					</Header>
+				</Flexbox>
 			</Flexbox>
 		</MatchCard>
 	)
 }
+
+const MatchCard = styled(Card)`
+	overflow: hidden;
+	position: relative;
+`
+
+const Label = styled.label`
+	color: #A8A8A8;
+	font-size: 14px;
+	font-style: italic;
+	font-family: 'Nunito Sans';
+`
+
+const TimeLabel = styled(Label)`
+	font-size: 12px;
+`
+
