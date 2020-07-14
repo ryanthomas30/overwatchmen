@@ -261,6 +261,7 @@ export type User = {
 
 export type UserMatchesArgs = {
   limit?: Maybe<Scalars['Int']>;
+  role?: Maybe<Scalars['String']>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;

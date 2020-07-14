@@ -1,6 +1,7 @@
 import { ApolloError } from 'apollo-server'
 import { DataSource } from 'apollo-datasource'
 import { ProducedContext } from '@/context'
+import { removeUndefined } from '@/util'
 
 import { Match, Role, MatchResult } from './match.entity'
 import { User } from '../user/user.entity'
@@ -25,11 +26,12 @@ export class MatchService extends DataSource<ProducedContext> {
 		return Match.find()
 	}
 
-	getAllByUser(userId: string, limit: number | null | undefined = 10) {
+	getAllByUser(userId: string, limit: number | null | undefined = 10, role?: Role) {
 		return Match.find({
-			where: {
+			where: removeUndefined({
 				user: userId,
-			},
+				role,
+			}),
 			order: {
 				endTime: 'DESC',
 			},

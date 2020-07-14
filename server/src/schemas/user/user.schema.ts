@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server'
+import { Role } from '../match/match.entity'
 import { Context } from '@/context'
 import { Resolvers } from '@/generated'
 
@@ -24,7 +25,7 @@ export const User = gql`
 		"""The user's email address."""
 		email: String!
 		"""The matches that the user has played."""
-		matches(limit: Int): [Match!]!
+		matches(limit: Int, role: String): [Match!]!
 	}
 
 	input NewUser {
@@ -47,6 +48,6 @@ export const userResolvers: Resolvers<Context> = {
 	},
 	User: {
 		// @ts-ignore Codegen issue
-		matches: ({ id }, { limit }, { dataSources }) => dataSources.matchService.getAllByUser(id, limit),
+		matches: ({ id }, { limit, role }, { dataSources }) => dataSources.matchService.getAllByUser(id, limit, role as Role),
 	},
 }

@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
 
-import { Card, Title, Header, Flexbox, MapCardContent, RoleBadge, HeroBadge, Divider } from '../'
+import { Card, Title, Header, Flexbox, MapCardContent, RoleBadge, HeroBadge } from '../'
 import { theme } from '../../constants'
 import { UserMatches_user_matches, MatchResult } from '../../model'
 
@@ -50,7 +50,7 @@ export const RecentMatchCard: FC<Props> = ({ match }) => {
 					</Header>
 					<Header
 						wrap
-						justify={hasHeroes ? 'end' : 'center'}
+						justify={hasHeroes ? 'start' : 'center'}
 						marginBetween='small'
 					>
 						{ hasHeroes ? match.heroes?.slice(0, 4).map(hero => (

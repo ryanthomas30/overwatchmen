@@ -9,8 +9,8 @@ import SparkChart from './SparkChart'
 
 export const GET_USER_MATCHES = gql`
 	query UserMatches($userId: ID!) {
-		user(userId:$userId) {
-			matches {
+		user(userId: $userId) {
+			matches(limit: 5) {
 				id
 				result
 				endTime
