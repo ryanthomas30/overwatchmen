@@ -26,6 +26,17 @@ export const User = gql`
 		email: String!
 		"""The matches that the user has played."""
 		matches(limit: Int, role: String): [Match!]!
+		"""The current skill rating of the player by role."""
+		skillRating: SkillRating
+	}
+
+	type SkillRating {
+		"""SR for tank."""
+		tank: Int
+		"""SR for damage."""
+		damage: Int
+		"""SR for support."""
+		support: Int
 	}
 
 	input NewUser {
@@ -41,6 +52,7 @@ export const userResolvers: Resolvers<Context> = {
 	Query: {
 		// @ts-ignore Codegen issue
 		user: (_, { userId }, { dataSources }) => dataSources.userService.getOne(userId),
+
 	},
 	Mutation: {
 		// @ts-ignore Codegen issue
@@ -49,5 +61,6 @@ export const userResolvers: Resolvers<Context> = {
 	User: {
 		// @ts-ignore Codegen issue
 		matches: ({ id }, { limit, role }, { dataSources }) => dataSources.matchService.getAllByUser(id, limit, role as Role),
+		skillRating: ({ id }, _, { dataSources }) => dataSources.matchService.getSkillRatingByUser(id),
 	},
 }

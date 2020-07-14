@@ -40,6 +40,7 @@ export const MatchResultSelector: FC<Props> = ({ name = 'result' }) => {
 			<SelectorGrid>
 				<Card
 					center
+					transition
 					padding='medium'
 					active={field.value === MatchResult.win}
 					onClick={() => handleSelect(MatchResult.win)}
@@ -49,11 +50,11 @@ export const MatchResultSelector: FC<Props> = ({ name = 'result' }) => {
 						color={field.value === MatchResult.win ? 'white' : theme.gray}
 					>
 						Win
-
 					</Title>
 				</Card>
 				<Card
 					center
+					transition
 					padding='medium'
 					active={field.value === MatchResult.loss}
 					onClick={() => handleSelect(MatchResult.loss)}
@@ -67,6 +68,7 @@ export const MatchResultSelector: FC<Props> = ({ name = 'result' }) => {
 				</Card>
 				<Card
 					center
+					transition
 					padding='medium'
 					active={field.value === MatchResult.draw}
 					onClick={() => handleSelect(MatchResult.draw)}

@@ -22,7 +22,7 @@ export const Match = gql`
 		"""The map the match was played on."""
 		map: Map
 		"""The list of heroes the user played in this match."""
-		heroes: [Hero]
+		heroes: [Hero!]!
 		"""The role the user played in this match."""
 		role: Role!
 		"""The skill rating of the player at the end of this match."""

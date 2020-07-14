@@ -115,7 +115,7 @@ export type Match = {
   /** The map the match was played on. */
   map?: Maybe<Map>;
   /** The list of heroes the user played in this match. */
-  heroes?: Maybe<Array<Maybe<Hero>>>;
+  heroes: Array<Hero>;
   /** The role the user played in this match. */
   role: Role;
   /** The skill rating of the player at the end of this match. */
@@ -245,6 +245,16 @@ export enum Role {
   Support = 'support'
 }
 
+export type SkillRating = {
+  __typename?: 'SkillRating';
+  /** SR for tank. */
+  tank?: Maybe<Scalars['Int']>;
+  /** SR for damage. */
+  damage?: Maybe<Scalars['Int']>;
+  /** SR for support. */
+  support?: Maybe<Scalars['Int']>;
+};
+
 
 export type User = {
   __typename?: 'User';
@@ -256,6 +266,8 @@ export type User = {
   email: Scalars['String'];
   /** The matches that the user has played. */
   matches: Array<Match>;
+  /** The current skill rating of the player by role. */
+  skillRating?: Maybe<SkillRating>;
 };
 
 
@@ -357,6 +369,7 @@ export type ResolversTypes = ResolversObject<{
   MatchResult: MatchResult;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   User: ResolverTypeWrapper<User>;
+  SkillRating: ResolverTypeWrapper<SkillRating>;
   Mutation: ResolverTypeWrapper<{}>;
   NewHero: NewHero;
   NewMap: NewMap;
@@ -378,6 +391,7 @@ export type ResolversParentTypes = ResolversObject<{
   Int: Scalars['Int'];
   DateTime: Scalars['DateTime'];
   User: User;
+  SkillRating: SkillRating;
   Mutation: {};
   NewHero: NewHero;
   NewMap: NewMap;
@@ -408,7 +422,7 @@ export type MapResolvers<ContextType = any, ParentType extends ResolversParentTy
 export type MatchResolvers<ContextType = any, ParentType extends ResolversParentTypes['Match'] = ResolversParentTypes['Match']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   map?: Resolver<Maybe<ResolversTypes['Map']>, ParentType, ContextType>;
-  heroes?: Resolver<Maybe<Array<Maybe<ResolversTypes['Hero']>>>, ParentType, ContextType>;
+  heroes?: Resolver<Array<ResolversTypes['Hero']>, ParentType, ContextType>;
   role?: Resolver<ResolversTypes['Role'], ParentType, ContextType>;
   skillRating?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   result?: Resolver<ResolversTypes['MatchResult'], ParentType, ContextType>;
@@ -435,6 +449,13 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryUserArgs, 'userId'>>;
 }>;
 
+export type SkillRatingResolvers<ContextType = any, ParentType extends ResolversParentTypes['SkillRating'] = ResolversParentTypes['SkillRating']> = ResolversObject<{
+  tank?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  damage?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  support?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+}>;
+
 export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
   name: 'Upload';
 }
@@ -444,6 +465,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   fullName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   matches?: Resolver<Array<ResolversTypes['Match']>, ParentType, ContextType, RequireFields<UserMatchesArgs, never>>;
+  skillRating?: Resolver<Maybe<ResolversTypes['SkillRating']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 }>;
 
@@ -454,6 +476,7 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   Match?: MatchResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  SkillRating?: SkillRatingResolvers<ContextType>;
   Upload?: GraphQLScalarType;
   User?: UserResolvers<ContextType>;
 }>;

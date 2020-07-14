@@ -5,3 +5,4 @@
 export * from './MatchResultSelector'
 export * from './RecentMatchCard'
 export * from './RecentMatches'
+export * from './SparkChart'

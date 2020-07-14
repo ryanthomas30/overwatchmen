@@ -5,6 +5,7 @@ import { Card, Flexbox, Title } from '..'
 import { FlexboxProps } from '../common/Flexbox'
 import { replaceUnderscores } from '../../util'
 import { MapName } from '../../model'
+import { theme } from '../../constants'
 
 import Blizzard_World from '../../assets/maps/blizzard-world.jpg'
 import Busan from '../../assets/maps/busan.jpg'
@@ -118,12 +119,13 @@ const BaseMapTitleCard: FC<MapTitleCardProps> = ({ active, children, ...other })
 )
 
 const MapTitleCard = styled(BaseMapTitleCard)`
-	background-color: ${({ active, theme }) => active ? theme.yellow : theme.gray};
+	background-color: ${({ active }) => active ? theme.yellow : theme.gray};
 	position: absolute;
 	bottom: 15px;
 	left: 0px;
 	border-radius: 0 6px 6px 0;
 	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	transition: ${theme.transition};
 `
 
 export const MapCard = styled(BaseMapCard)`

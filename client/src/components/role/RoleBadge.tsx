@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
-import styled from 'styled-components'
 
-import { Flexbox } from '..'
+import { Badge, BadgeProps } from '..'
 import { Role } from '../../model'
 
 import tank from '../../assets/roleIcons/tank.png'
@@ -14,36 +13,20 @@ const roleMap = {
 	support,
 }
 
-interface Props {
+interface Props extends BadgeProps {
 	role: Role
-	active?: boolean
-	size?: number
-	className?: string
 }
 
-const BaseRoleBadge: FC<Props> = ({ role, size = 72, className }) => {
+export const RoleBadge: FC<Props> = ({ role, ...other }) => {
 	const icon = roleMap[role]
 	return (
-		<Flexbox
-			align='center'
-			justify='center'
-			height={size}
-			width={size}
-			padding={size / 6}
-			className={className}
-		>
+		<Badge {...other} >
 			<img
 				src={icon}
 				alt={`${role}_icon`}
 				height='100%'
 				width='100%'
 			/>
-		</Flexbox>
+		</Badge>
 	)
 }
-
-export const RoleBadge = styled(BaseRoleBadge)`
-	border-radius: 50%;
-	overflow: hidden;
-	background-color: ${({ theme, active }) => active ? theme.yellow : theme.gray};
-`

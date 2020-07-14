@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 
-import { Flexbox } from '../'
+import { Badge, BadgeProps } from '../'
 import { HeroName } from '../../model'
 import { replaceUnderscores } from '../../util'
 
@@ -61,35 +60,22 @@ const heroMap = {
 	'Wrecking_Ball': OverwatchLogo,
 	Zarya,
 	Zenyatta,
+	default: OverwatchLogo,
 }
 
-interface Props {
-	hero: HeroName
-	active?: boolean
-	className?: string
-	size?: number
+interface Props extends BadgeProps {
+	hero?: HeroName | 'default'
 }
 
-const BaseHeroBadge = ({ hero, size = 72, className }: Props) => {
+export const HeroBadge = ({ hero = 'default', ...other }: Props) => {
 	const HeroSVG = heroMap[hero]
 	return (
-		<Flexbox
-			align='center'
-			justify='center'
-			height={size}
-			width={size}
-			padding={size / 6}
-			className={className}
+		<Badge
 			title={replaceUnderscores(hero)}
+			{...other}
 		>
 			<HeroSVG />
-		</Flexbox>
+		</Badge>
 	)
 }
-
-export const HeroBadge = styled(BaseHeroBadge)`
-	border-radius: 50%;
-	overflow: hidden;
-	background-color: ${({ theme, active }) => active ? theme.yellow : theme.gray};
-`
 

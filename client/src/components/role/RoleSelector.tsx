@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import { Header, Title, SelectorGrid, RoleBadge, Card } from '..'
 import { useField, useFormikContext } from 'formik'
 
+import { Header, Title, SelectorGrid, RoleBadge, Card } from '..'
 import { Role } from '../../model'
 
 interface Props {
@@ -40,6 +40,7 @@ export const RoleSelector: FC<Props> = ({ name = 'role' }) => {
 			<SelectorGrid>
 				<Card
 					center
+					transition
 					padding='medium'
 					onClick={() => handleSelect(Role.tank)}
 				>
@@ -50,6 +51,7 @@ export const RoleSelector: FC<Props> = ({ name = 'role' }) => {
 				</Card>
 				<Card
 					center
+					transition
 					padding='medium'
 					onClick={() => handleSelect(Role.damage)}
 				>
@@ -60,6 +62,7 @@ export const RoleSelector: FC<Props> = ({ name = 'role' }) => {
 				</Card>
 				<Card
 					center
+					transition
 					padding='medium'
 					onClick={() => handleSelect(Role.support)}
 				>

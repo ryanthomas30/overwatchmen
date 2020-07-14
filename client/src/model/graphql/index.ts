@@ -75,7 +75,7 @@ export interface Maps {
 // GraphQL query operation: UserMatches
 // ====================================================
 
-export interface UserMatches_user_matches_heroes {
+export interface UserMatches_user_tankMatches_heroes {
   __typename: "Hero";
   /**
    * The ID of the hero.
@@ -87,7 +87,7 @@ export interface UserMatches_user_matches_heroes {
   name: HeroName;
 }
 
-export interface UserMatches_user_matches_map {
+export interface UserMatches_user_tankMatches_map {
   __typename: "Map";
   /**
    * The ID of the map.
@@ -103,7 +103,7 @@ export interface UserMatches_user_matches_map {
   type: MapType;
 }
 
-export interface UserMatches_user_matches {
+export interface UserMatches_user_tankMatches {
   __typename: "Match";
   /**
    * The ID of the match.
@@ -120,7 +120,7 @@ export interface UserMatches_user_matches {
   /**
    * The list of heroes the user played in this match.
    */
-  heroes: (UserMatches_user_matches_heroes | null)[] | null;
+  heroes: UserMatches_user_tankMatches_heroes[];
   /**
    * The role the user played in this match.
    */
@@ -128,7 +128,127 @@ export interface UserMatches_user_matches {
   /**
    * The map the match was played on.
    */
-  map: UserMatches_user_matches_map | null;
+  map: UserMatches_user_tankMatches_map | null;
+  /**
+   * The skill rating of the player at the end of this match.
+   */
+  skillRating: number;
+}
+
+export interface UserMatches_user_damageMatches_heroes {
+  __typename: "Hero";
+  /**
+   * The ID of the hero.
+   */
+  id: string;
+  /**
+   * The name of the hero.
+   */
+  name: HeroName;
+}
+
+export interface UserMatches_user_damageMatches_map {
+  __typename: "Map";
+  /**
+   * The ID of the map.
+   */
+  id: string;
+  /**
+   * The name of the map.
+   */
+  name: MapName;
+  /**
+   * The game mode of the map.
+   */
+  type: MapType;
+}
+
+export interface UserMatches_user_damageMatches {
+  __typename: "Match";
+  /**
+   * The ID of the match.
+   */
+  id: string;
+  /**
+   * Whether the match was a win, loss, or draw.
+   */
+  result: MatchResult;
+  /**
+   * When the match was played.
+   */
+  endTime: any;
+  /**
+   * The list of heroes the user played in this match.
+   */
+  heroes: UserMatches_user_damageMatches_heroes[];
+  /**
+   * The role the user played in this match.
+   */
+  role: Role;
+  /**
+   * The map the match was played on.
+   */
+  map: UserMatches_user_damageMatches_map | null;
+  /**
+   * The skill rating of the player at the end of this match.
+   */
+  skillRating: number;
+}
+
+export interface UserMatches_user_supportMatches_heroes {
+  __typename: "Hero";
+  /**
+   * The ID of the hero.
+   */
+  id: string;
+  /**
+   * The name of the hero.
+   */
+  name: HeroName;
+}
+
+export interface UserMatches_user_supportMatches_map {
+  __typename: "Map";
+  /**
+   * The ID of the map.
+   */
+  id: string;
+  /**
+   * The name of the map.
+   */
+  name: MapName;
+  /**
+   * The game mode of the map.
+   */
+  type: MapType;
+}
+
+export interface UserMatches_user_supportMatches {
+  __typename: "Match";
+  /**
+   * The ID of the match.
+   */
+  id: string;
+  /**
+   * Whether the match was a win, loss, or draw.
+   */
+  result: MatchResult;
+  /**
+   * When the match was played.
+   */
+  endTime: any;
+  /**
+   * The list of heroes the user played in this match.
+   */
+  heroes: UserMatches_user_supportMatches_heroes[];
+  /**
+   * The role the user played in this match.
+   */
+  role: Role;
+  /**
+   * The map the match was played on.
+   */
+  map: UserMatches_user_supportMatches_map | null;
   /**
    * The skill rating of the player at the end of this match.
    */
@@ -140,7 +260,15 @@ export interface UserMatches_user {
   /**
    * The matches that the user has played.
    */
-  matches: UserMatches_user_matches[];
+  tankMatches: UserMatches_user_tankMatches[];
+  /**
+   * The matches that the user has played.
+   */
+  damageMatches: UserMatches_user_damageMatches[];
+  /**
+   * The matches that the user has played.
+   */
+  supportMatches: UserMatches_user_supportMatches[];
 }
 
 export interface UserMatches {
@@ -180,6 +308,54 @@ export interface CreateMatch {
 
 export interface CreateMatchVariables {
   newMatch: NewMatch;
+  userId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: UserSkillRating
+// ====================================================
+
+export interface UserSkillRating_user_skillRating {
+  __typename: "SkillRating";
+  /**
+   * SR for tank.
+   */
+  tank: number | null;
+  /**
+   * SR for damage.
+   */
+  damage: number | null;
+  /**
+   * SR for support.
+   */
+  support: number | null;
+}
+
+export interface UserSkillRating_user {
+  __typename: "User";
+  /**
+   * The ID of the user.
+   */
+  id: string;
+  /**
+   * The current skill rating of the player by role.
+   */
+  skillRating: UserSkillRating_user_skillRating | null;
+}
+
+export interface UserSkillRating {
+  /**
+   * Get a user by their ID.
+   */
+  user: UserSkillRating_user;
+}
+
+export interface UserSkillRatingVariables {
   userId: string;
 }
 

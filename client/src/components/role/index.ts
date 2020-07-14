@@ -4,3 +4,4 @@
 
 export * from './RoleBadge'
 export * from './RoleSelector'
+export * from './SkillRatingCards'

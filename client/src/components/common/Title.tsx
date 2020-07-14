@@ -35,5 +35,6 @@ export const Title = styled(BaseTitle)`
 	letter-spacing: 1px;
 	font-style: ${({ italic }) => italic ? 'italic' : 'normal'};
 	font-weight: normal;
+	transition: ${theme.transition};
 `
 

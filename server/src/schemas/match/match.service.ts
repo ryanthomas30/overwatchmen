@@ -39,6 +39,42 @@ export class MatchService extends DataSource<ProducedContext> {
 		})
 	}
 
+	// HACK: Either memoize or use query builder at some point
+	async getSkillRatingByUser(userId: string) {
+		const tankMatch = await Match.findOne({
+			where: {
+				user: userId,
+				role: Role.TANK,
+			},
+			order: {
+				endTime: 'DESC',
+			},
+		})
+		const damageMatch = await Match.findOne({
+			where: {
+				user: userId,
+				role: Role.DAMAGE,
+			},
+			order: {
+				endTime: 'DESC',
+			},
+		})
+		const supportMatch = await Match.findOne({
+			where: {
+				user: userId,
+				role: Role.SUPPORT,
+			},
+			order: {
+				endTime: 'DESC',
+			},
+		})
+		return {
+			tank: tankMatch?.skillRating,
+			damage: damageMatch?.skillRating,
+			support: supportMatch?.skillRating,
+		}
+	}
+
 	async addToUser(newMatch: NewMatch, userId: string) {
 
 		const { mapId, heroIds, ...newMatchDetails } = newMatch

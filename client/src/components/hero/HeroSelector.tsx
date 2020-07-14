@@ -7,14 +7,6 @@ import { Header, Title, HeroBadge, Card } from '..'
 import { replaceUnderscores } from '../../util'
 import { Heroes } from '../../model'
 
-const HeroGrid = styled.div`
-	display: grid;
-	width: 100%;
-	height: 100%;
-	grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-	gap: 10px;
-`
-
 export const GET_HEROES = gql`
 	query Heroes($role: String) {
 		heroes(role: $role) {
@@ -65,6 +57,7 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 						key={hero.id}
 						padding='small'
 						center
+						transition
 						marginBetween='small'
 						onClick={()=> { handleSelect(hero.id) }}
 					>
@@ -82,3 +75,11 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 		</>
 	)
 }
+
+const HeroGrid = styled.div`
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+	gap: 10px;
+`

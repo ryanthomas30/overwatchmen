@@ -4,10 +4,10 @@ import moment from 'moment'
 
 import { Card, Title, Header, Flexbox, MapCardContent, RoleBadge, HeroBadge } from '../'
 import { theme } from '../../constants'
-import { UserMatches_user_matches, MatchResult } from '../../model'
+import { UserMatches_user_tankMatches, UserMatches_user_damageMatches, UserMatches_user_supportMatches, MatchResult } from '../../model'
 
 interface Props {
-	match: UserMatches_user_matches
+	match: UserMatches_user_tankMatches | UserMatches_user_damageMatches | UserMatches_user_supportMatches
 }
 
 const getResultColor = (result: MatchResult) => {
@@ -24,15 +24,15 @@ const getResultColor = (result: MatchResult) => {
 }
 
 export const RecentMatchCard: FC<Props> = ({ match }) => {
-	const hasHeroes = match.heroes?.length !== 0
+	const heroes = match.heroes.slice(0, 4)
+	const hasHeroes = heroes.length !== 0
 	return (
-		<MatchCard>
+		<MatchCard wrap={false} >
 			<MapCardContent mapName={match.map?.name} />
 			<Flexbox
 				flex
 				full='horizontal'
 			>
-
 				<Flexbox
 					flex
 					full
@@ -49,14 +49,13 @@ export const RecentMatchCard: FC<Props> = ({ match }) => {
 						</Title>
 					</Header>
 					<Header
-						wrap
 						justify={hasHeroes ? 'start' : 'center'}
 						marginBetween='small'
 					>
-						{ hasHeroes ? match.heroes?.slice(0, 4).map(hero => (
+						{ hasHeroes && heroes ? heroes?.map(hero => (
 							<HeroBadge
-								key={hero?.name!}
-								hero={hero?.name!}
+								key={hero?.name}
+								hero={hero?.name}
 								size={36}
 							/>
 						)) : <Label>No Heroes</Label>}
