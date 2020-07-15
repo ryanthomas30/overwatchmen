@@ -38,7 +38,7 @@
     "prestart": "yarn generate",
     "generate": "apollo codegen:generate src/model/graphql/index.ts --target typescript --outputFlat",
     "barrel:components": "barrelsby -d src/components -D true -e .spec.ts .tests.ts -q -S -l all",
-    "deploy": "firebase deploy"
+    "deploy": "yarn build && firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
