@@ -4,10 +4,10 @@
 	"private": true,
 	"scripts": {
 		"start": "yarn build && yarn serve",
-		"serve": "node dist/index.js",
+		"serve": "cross-env NODE_ENV=production node dist/index.js",
 		"serve:dev": "cross-env NODE_ENV=development yarn serve",
 		"serve:production": "cross-env NODE_ENV=production yarn serve",
-		"dev": "yarn build && concurrently \"tsc -w\" \"nodemon\" -n tsc,nodemon -c cyan,green",
+		"dev": "yarn build && concurrently \"tsc -w\" \" cross-env NODE_ENV=development nodemon\" -n tsc,nodemon -c cyan,green",
 		"build": "tsc -p tsconfig.json",
 		"test": "jest",
 		"test:watch": "jest --watch",

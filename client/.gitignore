@@ -24,3 +24,7 @@ yarn-error.log*
 
 # Firebase
 .firebase
+
+# local .env* files
+.env.local
+.env.*.local

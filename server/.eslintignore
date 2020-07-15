@@ -1,2 +1,3 @@
 jest.config.js
+ormconfig.js
 /dist/

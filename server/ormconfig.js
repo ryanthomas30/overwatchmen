@@ -1,7 +1,6 @@
-  
-{
-  "type": "postgres",
-	"url": "postgres://ayqydmyu:rP13tNMvfHMkF42NYDqMtvJeNfzfkdXN@otto.db.elephantsql.com:5432/ayqydmyu",
+module.exports = {
+	"type": "postgres",
+	"url": process.env.DB_URL,
 	"synchronize": true,
 	"logging": false,
 	"entities": ["dist/**/*.entity.js"],
@@ -10,7 +9,7 @@
 	"cli": {
 		"entitiesDir": "src/entity",
 		"migrationsDir": "src/migration",
-		"subscribersDir": "src/subscriber"
-  },
-  "seeds": ["src/seed/**/*{.ts,.js}"]
- }
+		"subscribersDir": "src/subscriber",
+	},
+	"seeds": ["src/seed/**/*{.ts,.js}"],
+}
