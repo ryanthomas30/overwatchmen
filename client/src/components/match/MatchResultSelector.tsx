@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { useFormikContext, useField } from 'formik'
-import { Header, Title, Card, SelectorGrid } from '..'
+import { Flexbox, Header, Title, Card, SelectorGrid } from '..'
 
 import { theme } from '../../constants'
 import { MatchResult } from '../../model'
@@ -18,7 +18,10 @@ export const MatchResultSelector: FC<Props> = ({ name = 'result' }) => {
 	}
 
 	return (
-		<>
+		<Flexbox
+			full='horizontal'
+			marginBetween='medium'
+		>
 			<Header
 				align='baseline'
 				marginBetween='small'
@@ -81,6 +84,6 @@ export const MatchResultSelector: FC<Props> = ({ name = 'result' }) => {
 					</Title>
 				</Card>
 			</SelectorGrid>
-		</>
+		</Flexbox>
 	)
 }

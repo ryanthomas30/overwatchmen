@@ -19,6 +19,8 @@ import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 /* Stylesheet */
 import './styles/index.scss'
+import 'react-lazy-load-image-component/src/effects/opacity.css'
+import 'react-tippy/dist/tippy.css'
 
 /* Root Component */
 import App from './App'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import { Maps } from '../../model'
-import { Header, Title, MapCard } from '..'
+import { Flexbox, Header, Title, MapCard } from '..'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
@@ -13,14 +13,6 @@ export const GET_MAPS = gql`
 			type
 		}
 	}
-`
-
-const MapGrid = styled.div`
-	display: grid;
-	width: 100%;
-	height: 100%;
-	gap: 10px;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 `
 
 export const MapSelector = () => {
@@ -36,7 +28,10 @@ export const MapSelector = () => {
 	if (loading) return null
 
 	return (
-		<>
+		<Flexbox
+			full='horizontal'
+			marginBetween='medium'
+		>
 			<Header>
 				<Title
 					tag='h1'
@@ -57,6 +52,14 @@ export const MapSelector = () => {
 					/>
 				))}
 			</MapGrid>
-		</>
+		</Flexbox>
 	)
 }
+
+const MapGrid = styled.div`
+	display: grid;
+	width: 100%;
+	height: 100%;
+	gap: 10px;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+`

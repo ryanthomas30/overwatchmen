@@ -94,6 +94,7 @@ export const Button = styled(BaseButton)`
 	letter-spacing: 1px;
 	white-space: nowrap;
 	&:hover {
-		color: ${({ primary }) => primary ? 'white' : theme.yellow};
+		color: ${({ primary }) => primary ? 'white' : '#272727'};
+		background-color: ${({ primary }) => primary ? '#2C96FF' : '#FAFAFA'};
 	}
 `

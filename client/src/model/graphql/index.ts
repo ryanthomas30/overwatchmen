@@ -4,66 +4,46 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: Heroes
+// GraphQL query operation: UserSkillRating
 // ====================================================
 
-export interface Heroes_heroes {
-  __typename: "Hero";
+export interface UserSkillRating_user_skillRating {
+  __typename: "SkillRating";
   /**
-   * The ID of the hero.
+   * SR for tank.
+   */
+  tank: number | null;
+  /**
+   * SR for damage.
+   */
+  damage: number | null;
+  /**
+   * SR for support.
+   */
+  support: number | null;
+}
+
+export interface UserSkillRating_user {
+  __typename: "User";
+  /**
+   * The ID of the user.
    */
   id: string;
   /**
-   * The name of the hero.
+   * The current skill rating of the player by role.
    */
-  name: HeroName;
-  /**
-   * THe role of the hero.
-   */
-  role: Role;
+  skillRating: UserSkillRating_user_skillRating | null;
 }
 
-export interface Heroes {
+export interface UserSkillRating {
   /**
-   * Get all heroes.
+   * Get a user by their ID.
    */
-  heroes: Heroes_heroes[];
+  user: UserSkillRating_user;
 }
 
-export interface HeroesVariables {
-  role?: string | null;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: Maps
-// ====================================================
-
-export interface Maps_maps {
-  __typename: "Map";
-  /**
-   * The ID of the map.
-   */
-  id: string;
-  /**
-   * The name of the map.
-   */
-  name: MapName;
-  /**
-   * The game mode of the map.
-   */
-  type: MapType;
-}
-
-export interface Maps {
-  /**
-   * Get all maps.
-   */
-  maps: Maps_maps[];
+export interface UserSkillRatingVariables {
+  userId: string;
 }
 
 /* tslint:disable */
@@ -292,6 +272,74 @@ export interface UserMatchesVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: Heroes
+// ====================================================
+
+export interface Heroes_heroes {
+  __typename: "Hero";
+  /**
+   * The ID of the hero.
+   */
+  id: string;
+  /**
+   * The name of the hero.
+   */
+  name: HeroName;
+  /**
+   * THe role of the hero.
+   */
+  role: Role;
+}
+
+export interface Heroes {
+  /**
+   * Get all heroes.
+   */
+  heroes: Heroes_heroes[];
+}
+
+export interface HeroesVariables {
+  role?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Maps
+// ====================================================
+
+export interface Maps_maps {
+  __typename: "Map";
+  /**
+   * The ID of the map.
+   */
+  id: string;
+  /**
+   * The name of the map.
+   */
+  name: MapName;
+  /**
+   * The game mode of the map.
+   */
+  type: MapType;
+}
+
+export interface Maps {
+  /**
+   * Get all maps.
+   */
+  maps: Maps_maps[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: CreateMatch
 // ====================================================
 
@@ -312,54 +360,6 @@ export interface CreateMatch {
 
 export interface CreateMatchVariables {
   newMatch: NewMatch;
-  userId: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: UserSkillRating
-// ====================================================
-
-export interface UserSkillRating_user_skillRating {
-  __typename: "SkillRating";
-  /**
-   * SR for tank.
-   */
-  tank: number | null;
-  /**
-   * SR for damage.
-   */
-  damage: number | null;
-  /**
-   * SR for support.
-   */
-  support: number | null;
-}
-
-export interface UserSkillRating_user {
-  __typename: "User";
-  /**
-   * The ID of the user.
-   */
-  id: string;
-  /**
-   * The current skill rating of the player by role.
-   */
-  skillRating: UserSkillRating_user_skillRating | null;
-}
-
-export interface UserSkillRating {
-  /**
-   * Get a user by their ID.
-   */
-  user: UserSkillRating_user;
-}
-
-export interface UserSkillRatingVariables {
   userId: string;
 }
 

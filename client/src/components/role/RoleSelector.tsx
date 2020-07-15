@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { useField, useFormikContext } from 'formik'
 
-import { Header, Title, SelectorGrid, RoleBadge, Card } from '..'
+import { Flexbox, Header, Title, SelectorGrid, RoleBadge, Card } from '..'
 import { Role } from '../../model'
 
 interface Props {
@@ -18,7 +18,10 @@ export const RoleSelector: FC<Props> = ({ name = 'role' }) => {
 	}
 
 	return (
-		<>
+		<Flexbox
+			full='horizontal'
+			marginBetween='medium'
+		>
 			<Header
 				align='baseline'
 				marginBetween='small'
@@ -72,6 +75,6 @@ export const RoleSelector: FC<Props> = ({ name = 'role' }) => {
 					/>
 				</Card>
 			</SelectorGrid>
-		</>
+		</Flexbox>
 	)
 }

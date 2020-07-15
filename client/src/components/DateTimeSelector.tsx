@@ -19,7 +19,10 @@ export const DateTimeSelector: FC<DateTimeProps> = ({ name = 'endTime', classNam
 	}
 
 	return (
-		<>
+		<Flexbox
+			full='horizontal'
+			marginBetween='medium'
+		>
 			<Header
 				align='baseline'
 				marginBetween='small'
@@ -55,6 +58,6 @@ export const DateTimeSelector: FC<DateTimeProps> = ({ name = 'endTime', classNam
 					className={className}
 				/>
 			</Flexbox>
-		</>
+		</Flexbox>
 	)
 }

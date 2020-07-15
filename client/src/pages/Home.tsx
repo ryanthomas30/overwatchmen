@@ -1,23 +1,11 @@
 import React from 'react'
 
-import { useQuery, gql } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 
 import { getAuthUser } from '../localStorage'
 import { Flexbox, Header, Title, Page, RecentMatches, SkillRatingCards } from '../components'
 import { UserSkillRating, UserSkillRatingVariables } from '../model'
-
-export const GET_USER_SR = gql`
-	query UserSkillRating($userId: ID!) {
-		user(userId: $userId) {
-			id
-			skillRating {
-				tank
-				damage
-				support
-			}
-		}
-	}
-`
+import { GET_USER_SR } from '../apollo'
 
 const Home = () => {
 	const user = getAuthUser()

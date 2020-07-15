@@ -20,7 +20,10 @@ interface Props extends BadgeProps {
 export const RoleBadge: FC<Props> = ({ role, ...other }) => {
 	const icon = roleMap[role]
 	return (
-		<Badge {...other} >
+		<Badge
+			{...other}
+			title={role.charAt(0).toUpperCase() + role.slice(1)}
+		>
 			<img
 				src={icon}
 				alt={`${role}_icon`}

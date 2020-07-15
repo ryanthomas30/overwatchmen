@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 import { Card, Flexbox, Title } from '..'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { FlexboxProps } from '../common/Flexbox'
 import { replaceUnderscores } from '../../util'
 import { MapName } from '../../model'
@@ -66,6 +67,7 @@ const mapImages = {
 const BaseMapCard: FC<MapCardProps> = ({ mapName, handleSelect, field, className, id }) => (
 	<Card
 		center
+		height={160}
 		onClick={() => { handleSelect(id) }}
 		className={className}
 	>
@@ -82,11 +84,16 @@ interface MapCardContentProps {
 }
 
 export const MapCardContent: FC<MapCardContentProps> = ({ mapName, active }) => (
-	<Flexbox style={{ position: 'relative' }} >
-		<img
+	<Flexbox
+		full
+		style={{ position: 'relative' }}
+	>
+		<LazyLoadImage
 			width='100%'
+			height='100%'
 			alt={mapName}
 			src={mapImages[mapName || 'default']}
+			effect='opacity'
 			style={{ objectFit: 'cover' }}
 		/>
 		{ mapName &&

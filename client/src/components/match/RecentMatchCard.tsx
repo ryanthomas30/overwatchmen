@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { Tooltip } from 'react-tippy'
 import moment from 'moment'
 
 import { Card, Title, Header, Flexbox, MapCardContent, RoleBadge, HeroBadge } from '../'
@@ -73,9 +74,14 @@ export const RecentMatchCard: FC<Props> = ({ match }) => {
 						justify='end'
 						paddingHorizontal='small'
 					>
-						<TimeLabel title={moment(match.endTime).format('M/D/YYYY, h:mmA')} >
-							{moment(match.endTime).fromNow(true)}
-						</TimeLabel>
+						<Tooltip
+							title={moment(match.endTime).format('M/D/YYYY, h:mm A')}
+							size='small'
+						>
+							<TimeLabel>
+								{moment(match.endTime).fromNow(true)}
+							</TimeLabel>
+						</Tooltip>
 					</Header>
 					<Header
 						style={{ backgroundColor: getResultColor(match.result) }}

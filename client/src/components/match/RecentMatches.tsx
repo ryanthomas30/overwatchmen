@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { useQuery, gql } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import styled from 'styled-components'
 
 import { RecentMatchCard, Header, Title, LoadingBoundary, PlaceHolder, RoleBadge, Flexbox, SparkChart } from '..'
@@ -7,62 +7,7 @@ import { getAuthUser } from '../../localStorage'
 import { UserMatches, UserMatchesVariables, UserMatches_user_tankMatches,
 	UserMatches_user_damageMatches, UserMatches_user_supportMatches, Role,
 } from '../../model'
-
-export const GET_USER_MATCHES = gql`
-	query UserMatches($userId: ID!) {
-		user(userId: $userId) {
-			id
-			tankMatches: matches(limit: 5, role: "tank") {
-				id
-				result
-				endTime
-				heroes {
-					id
-					name
-				}
-				role
-				map {
-					id
-					name
-					type
-				}
-				skillRating
-			}
-			damageMatches: matches(limit: 5, role: "damage") {
-				id
-				result
-				endTime
-				heroes {
-					id
-					name
-				}
-				role
-				map {
-					id
-					name
-					type
-				}
-				skillRating
-			}
-			supportMatches: matches(limit: 5, role: "support") {
-				id
-				result
-				endTime
-				heroes {
-					id
-					name
-				}
-				role
-				map {
-					id
-					name
-					type
-				}
-				skillRating
-			}
-		}
-	}
-`
+import { GET_USER_MATCHES } from '../../apollo'
 
 type MatchType = UserMatches_user_tankMatches | UserMatches_user_damageMatches | UserMatches_user_supportMatches
 

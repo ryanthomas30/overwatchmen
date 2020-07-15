@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import { CreateMatch, CreateMatchVariables, Role, MatchResult } from '../model'
 import { getAuthUser } from '../localStorage'
 
-import { GET_USER_MATCHES } from '../components/match/RecentMatches'
+import { GET_USER_MATCHES } from '../apollo'
 import { DateTimeSelector, Page, RoleSelector, Flexbox, MapSelector,
 	SkillRatingInput, Form, MatchResultSelector, HeroSelector, Button,
 } from '../components'
@@ -33,7 +33,7 @@ const AddMatch = () => {
 
 	const [createMatch, { loading }] = useMutation<CreateMatch, CreateMatchVariables>(CREATE_MATCH, {
 		awaitRefetchQueries: true,
-		refetchQueries: [{ query: GET_USER_MATCHES, variables: { userId: user!.uid } }],
+		refetchQueries: [{ query: GET_USER_MATCHES, variables: { userId: user?.uid || '0' } }],
 		onCompleted: () => {
 			history.push('/app/home')
 		},
@@ -86,7 +86,7 @@ const AddMatch = () => {
 						align='center'
 						justify='center'
 						padding='large'
-						marginBetween='medium'
+						marginBetween='large'
 					>
 						<RoleSelector name='role' />
 						<HeroSelector />
@@ -97,6 +97,7 @@ const AddMatch = () => {
 						<Button
 							type='submit'
 							primary
+							full
 							disabled={Object.values(errors).some(e => e !== '') || loading}
 						>
 							Add Match

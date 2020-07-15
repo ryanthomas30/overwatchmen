@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
-import { Header, Title, HeroBadge, Card, LoadingBoundary, PlaceHolder } from '..'
+import { Flexbox, Header, Title, HeroBadge, Card, LoadingBoundary, PlaceHolder } from '..'
 import { replaceUnderscores } from '../../util'
 import { Heroes, Role } from '../../model'
 
@@ -55,7 +55,10 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 	}
 
 	return (
-		<>
+		<Flexbox
+			full='horizontal'
+			marginBetween='medium'
+		>
 			{ data?.heroes.length !== 0 &&
 				<Header>
 					<Title
@@ -98,7 +101,7 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 					))}
 				</LoadingBoundary>
 			</HeroGrid>
-		</>
+		</Flexbox>
 	)
 }
 

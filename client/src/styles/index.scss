@@ -36,14 +36,13 @@ code {
 		overflow-y: scroll;
 		color: #212121;
 		background-color: #F2F2F2;
-		// background: url('../assets/overwatchBackground.png') center center no-repeat fixed;
-		// background-size: cover;
-		// background-attachment: local;
 	}
 
 	@import './DateTimeSelector.scss';
 	@import './Shimmer.scss';
 }
+
+@import './Tippy.scss';
 
 h1, h2, h3, h4 {
 	font-family: 'Koverwatch';
