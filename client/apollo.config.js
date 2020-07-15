@@ -1,6 +1,6 @@
 module.exports = {
 	client: {
 		name: 'Overwatchmen Web',
-		service: 'overwatchmen',
+		service: 'overwatchmen@development',
 	},
 }
