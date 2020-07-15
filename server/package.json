@@ -15,7 +15,8 @@
 		"lint": "eslint src/**/*.ts",
 		"generate": "apollo schema:download && graphql-codegen",
 		"seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
-		"seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed"
+		"seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed",
+		"push-image": "gcloud builds submit --tag us.gcr.io/overwatchmen-8e34c/overwatchmen-server"
 	},
 	"dependencies": {
 		"apollo-datasource": "^0.7.0",

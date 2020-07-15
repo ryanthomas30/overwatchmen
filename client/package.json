@@ -29,14 +29,16 @@
     "yup": "^0.29.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+	 "start": "react-scripts start",
+	 "serve": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.ts",
     "prestart": "yarn generate",
     "generate": "apollo codegen:generate src/model/graphql/index.ts --target typescript --outputFlat",
-    "barrel:components": "barrelsby -d src/components -D true -e .spec.ts .tests.ts -q -S -l all"
+    "barrel:components": "barrelsby -d src/components -D true -e .spec.ts .tests.ts -q -S -l all",
+    "deploy": "firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -69,6 +71,7 @@
     "@types/yup": "^0.29.3",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
-    "barrelsby": "^2.2.0"
+    "barrelsby": "^2.2.0",
+    "serve": "^11.3.2"
   }
 }

@@ -65,8 +65,9 @@ export const GET_USER_MATCHES = gql`
 export const RecentMatches: FC = () => {
 	const user = getAuthUser()
 	const { loading, data } = useQuery<UserMatches, UserMatchesVariables>(GET_USER_MATCHES, {
+		skip: !user,
 		variables: {
-			userId: user!.uid,
+			userId: user?.uid || '0',
 		},
 	})
 	if (loading) return null

@@ -25,12 +25,14 @@ const BaseLoginButton: FC<Props> = ({ className, label = 'Sign in with Google', 
 export const LoginButton = styled(BaseLoginButton)`
 	/* Button Text */
 	color: ${({ theme, primary }) => primary ? 'white' : theme.gray};
-	font-family: 'Koverwatch';
-	font-size: 20px;
-	letter-spacing: 2px;
-	font-style: italic;
+	font-family: 'Nunito Sans';
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
 	white-space: nowrap;
 	&:hover {
-		color: ${({ theme, primary }) => primary ? 'white' : theme.yellow};
+		color: #272727;
+		background-color: #FAFAFA;
 	}
 `

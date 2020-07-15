@@ -13,27 +13,26 @@ interface SparkChartProps {
 	supportMatches?: UserMatches_user_supportMatches[]
 }
 
-const SparkChart: FC<SparkChartProps> = ({ tankMatches, damageMatches, supportMatches }) => {
+const SparkChart: FC<SparkChartProps> = ({ tankMatches = [], damageMatches = [], supportMatches = [] }) => {
 	const tankData: ChartPoint[] = tankMatches?.map(({ skillRating, endTime }) => ({
 		y: skillRating,
 		x: moment(endTime).format('M/D @ h:mmA'),
 	})) || []
+
 	const damageData: ChartPoint[] = damageMatches?.map(({ skillRating, endTime }) => ({
 		y: skillRating,
 		x: moment(endTime).format('M/D @ h:mmA'),
 	})) || []
+
 	const supportData: ChartPoint[] = supportMatches?.map(({ skillRating, endTime }) => ({
 		y: skillRating,
 		x: moment(endTime).format('M/D @ h:mmA'),
 	})) || []
 
-	// const tankSr = tankMatches?.map(match => Number(match.skillRating)) || [0]
-	// const damageSr = damageMatches?.map(match => Number(match.skillRating)) || [0]
-	// const supportSr = supportMatches?.map(match => Number(match.skillRating)) || [0]
-	const labels = [...tankMatches!, ...damageMatches!, ...supportMatches!]
+	const labels = [...tankMatches, ...damageMatches, ...supportMatches]
 		.sort((a, b) => moment(a.endTime).diff(b.endTime))
 		.map(match => moment(match.endTime).format('M/D @ h:mmA'))
-	console.log('labels:', labels)
+
 	const data: ChartData<ChartJSChartData> = {
 		labels,
 		datasets: [

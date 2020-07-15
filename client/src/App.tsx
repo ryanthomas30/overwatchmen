@@ -17,6 +17,7 @@ import { useFirebaseAuthListener, AuthProvider } from './firebase'
 
 const App = () => {
 	const firebaseUser = useFirebaseAuthListener()
+	console.log('process.env:', process.env)
 	return (
 		<AuthProvider value={firebaseUser} >
 			<ThemeProvider theme={theme} >

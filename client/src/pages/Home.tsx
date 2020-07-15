@@ -22,8 +22,9 @@ export const GET_USER_SR = gql`
 const Home = () => {
 	const user = getAuthUser()
 	const { loading, data } = useQuery<UserSkillRating, UserSkillRatingVariables>(GET_USER_SR, {
+		skip: !user,
 		variables: {
-			userId: user!.uid,
+			userId: user?.uid || '0',
 		},
 	})
 	if (loading) return null

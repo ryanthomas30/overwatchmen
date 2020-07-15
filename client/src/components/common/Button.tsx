@@ -2,6 +2,7 @@ import React, { CSSProperties, ReactNode, useContext, FC } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
+import { theme } from '../../constants'
 import { Flexbox } from './Flexbox'
 import { Icon } from './Icon'
 import { Link } from './Link'
@@ -77,23 +78,22 @@ export const Button = styled(BaseButton)`
 	border-radius: 10px;
 	min-width: 74px;
 	height: 44px;
-	background-color: ${({ theme, primary }) => primary ? theme.lightBlue : 'white'};
+	background-color: ${({ primary }) => primary ? theme.lightBlue : 'white'};
 	box-shadow: ${({ flat }) => !flat ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : undefined};
-	transition: all ease-in-out 200ms;
+	transition: ${theme.transition};
 	opacity: ${({ disabled }) => disabled ? 0.6 : 'inherit'};
 	&:focus {
 		outline: none;
 	}
 	/* Button Text */
-	color: ${({ theme, primary }) => primary ? 'white' : theme.gray};
+	color: ${({ primary }) => primary ? 'white' : theme.gray};
 	font-family: 'Nunito Sans';
 	font-size: 14px;
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	/* font-style: italic; */
 	white-space: nowrap;
 	&:hover {
-		color: ${({ theme, primary }) => primary ? 'white' : theme.yellow};
+		color: ${({ primary }) => primary ? 'white' : theme.yellow};
 	}
 `
