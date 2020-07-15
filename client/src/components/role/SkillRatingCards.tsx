@@ -19,7 +19,7 @@ interface Props {
 	support?: number | null
 }
 
-export const SkillRatingCards: FC<Props> = ({ tank, damage, support }) => (
+export const SkillRatingCards: FC<Props> = ({ tank = '--', damage = '--', support = '--' }) => (
 	<SelectorGrid>
 		<Card
 			center

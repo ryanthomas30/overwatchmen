@@ -5,7 +5,7 @@ import { useField, useFormikContext } from 'formik'
 
 import { Header, Title, HeroBadge, Card } from '..'
 import { replaceUnderscores } from '../../util'
-import { Heroes } from '../../model'
+import { Heroes, Role } from '../../model'
 
 export const GET_HEROES = gql`
 	query Heroes($role: String) {
@@ -19,6 +19,19 @@ export const GET_HEROES = gql`
 
 interface Props {
 	name?: string
+}
+
+const getHeroCount = (role: Role): number => {
+	switch (role) {
+		case Role.tank:
+			return 8
+		case Role.damage:
+			return 17
+		case Role.support:
+			return 7
+		default:
+			return 8
+	}
 }
 
 export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
@@ -39,6 +52,16 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 		}
 	}
 
+	const placeHolder = Array.from(Array(getHeroCount(roleField.value)), (_, i) => (
+		<Card
+			flat
+			shimmer
+			key={i}
+		>
+			&nbsp;
+		</Card>
+	))
+
 	return (
 		<>
 			{ data?.heroes.length !== 0 &&
@@ -52,7 +75,7 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 				</Header>
 			}
 			<HeroGrid>
-				{ !loading && data?.heroes.map((hero) => (
+				{ !loading ? data?.heroes.map((hero) => (
 					<Card
 						key={hero.id}
 						padding='small'
@@ -70,7 +93,7 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 							{replaceUnderscores(hero.name)}
 						</Title>
 					</Card>
-				))}
+				)) : placeHolder}
 			</HeroGrid>
 		</>
 	)
@@ -81,5 +104,6 @@ const HeroGrid = styled.div`
 	width: 100%;
 	height: 100%;
 	grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+	grid-template-rows: 130px;
 	gap: 10px;
 `

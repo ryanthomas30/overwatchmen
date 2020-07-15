@@ -54,6 +54,7 @@ export interface FlexboxProps {
 	paddingBetween?: Size
 	onClick?: (event?: any) => void
 	onBlur?: (event?: any) => void
+	shimmer?: boolean
 	title?: string
 	type?: 'button' | 'reset' | 'submit'
 	tag?: 'div' | 'span' | 'form' | 'button'
@@ -105,6 +106,7 @@ const BaseFlexbox = (props: FlexboxProps) => {
 		onClick,
 		onBlur,
 		/* Misc */
+		shimmer,
 		title,
 		type,
 		tag = 'div',
@@ -194,7 +196,7 @@ const BaseFlexbox = (props: FlexboxProps) => {
 	return (
 		<Element
 			style={styleObject}
-			className={className}
+			className={`${className}${shimmer ? ' shimmer' : ''}`}
 			title={title}
 			onClick={onClick}
 			onBlur={onBlur}
