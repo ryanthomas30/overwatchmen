@@ -16,7 +16,7 @@ export const Auth = (ComposedComponent: any, title?: string) => {
 				setLoginRedirect('')
 				history.push(loginRedirect)
 			}
-		})
+		}, [authUser, history, loginRedirect, match.path])
 
 		if (!authUser) {
 			return <Redirect to='/' />

@@ -13,7 +13,7 @@ interface SparkChartProps {
 	supportMatches?: UserMatches_user_supportMatches[]
 }
 
-const SparkChart: FC<SparkChartProps> = ({ tankMatches = [], damageMatches = [], supportMatches = [] }) => {
+export const SparkChart: FC<SparkChartProps> = ({ tankMatches = [], damageMatches = [], supportMatches = [] }) => {
 	const tankData: ChartPoint[] = tankMatches?.map(({ skillRating, endTime }) => ({
 		y: skillRating,
 		x: moment(endTime).format('M/D @ h:mmA'),
@@ -69,5 +69,3 @@ const SparkChart: FC<SparkChartProps> = ({ tankMatches = [], damageMatches = [],
 		</Card>
 	)
 }
-
-export default SparkChart

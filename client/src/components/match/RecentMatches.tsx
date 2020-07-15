@@ -2,14 +2,16 @@ import React, { FC } from 'react'
 import { useQuery, gql } from '@apollo/client'
 import styled from 'styled-components'
 
-import { RecentMatchCard, Header, Title } from '../'
+import { RecentMatchCard, Header, Title, LoadingBoundary, PlaceHolder, RoleBadge, Flexbox, SparkChart } from '..'
 import { getAuthUser } from '../../localStorage'
-import { UserMatches, UserMatchesVariables } from '../../model'
-import SparkChart from './SparkChart'
+import { UserMatches, UserMatchesVariables, UserMatches_user_tankMatches,
+	UserMatches_user_damageMatches, UserMatches_user_supportMatches, Role,
+} from '../../model'
 
 export const GET_USER_MATCHES = gql`
 	query UserMatches($userId: ID!) {
 		user(userId: $userId) {
+			id
 			tankMatches: matches(limit: 5, role: "tank") {
 				id
 				result
@@ -62,6 +64,10 @@ export const GET_USER_MATCHES = gql`
 	}
 `
 
+type MatchType = UserMatches_user_tankMatches | UserMatches_user_damageMatches | UserMatches_user_supportMatches
+
+const CARD_HEIGHT = 330
+
 export const RecentMatches: FC = () => {
 	const user = getAuthUser()
 	const { loading, data } = useQuery<UserMatches, UserMatchesVariables>(GET_USER_MATCHES, {
@@ -70,72 +76,133 @@ export const RecentMatches: FC = () => {
 			userId: user?.uid || '0',
 		},
 	})
-	if (loading) return null
+
+	const matchCardGrid = (matches?: MatchType[]) => {
+		if (!loading && (!matches || matches?.length) === 0) {
+			return (
+				<Header
+					center
+					padding='medium'
+				>
+					<Label>No Recent Matches</Label>
+				</Header>
+			)
+		}
+		const matchCards = matches?.map(match => (
+			<div key={match.id}>
+				<RecentMatchCard
+					match={match}
+				/>
+			</div>
+		))
+		return (
+			<RecentMatchGrid>
+				<MatchLoadingBoundary loading={loading} >
+					{matchCards}
+				</MatchLoadingBoundary>
+			</RecentMatchGrid>
+		)
+	}
 
 	return (
-		<>
-			<Header>
-				<Title
-					tag='h2'
-					italic
-				>
-					Tank
-				</Title>
-			</Header>
-			<RecentMatchGrid>
-				{data?.user.tankMatches.map(match => (
-					<RecentMatchCard
-						key={match.id}
-						match={match}
+		<Flexbox
+			full='horizontal'
+			marginBetween='large'
+		>
+			<Flexbox
+				full='horizontal'
+				marginBetween='small'
+			>
+				<Header marginBetween='small' >
+					<RoleBadge
+						role={Role.tank}
+						size={32}
 					/>
-				))}
-			</RecentMatchGrid>
-			<Header>
-				<Title
-					tag='h2'
-					italic
-				>
-					Damage
-				</Title>
-			</Header>
-			<RecentMatchGrid>
-				{data?.user.damageMatches.map(match => (
-					<RecentMatchCard
-						key={match.id}
-						match={match}
+					<Title
+						tag='h2'
+						italic
+					>
+						Tank
+					</Title>
+				</Header>
+				{matchCardGrid(data?.user?.tankMatches)}
+			</Flexbox>
+			<Flexbox
+				full='horizontal'
+				marginBetween='small'
+			>
+				<Header marginBetween='small' >
+					<RoleBadge
+						role={Role.damage}
+						size={32}
 					/>
-				))}
-			</RecentMatchGrid>
-			<Header>
-				<Title
-					tag='h2'
-					italic
-				>
-					Support
-				</Title>
-			</Header>
-			<RecentMatchGrid>
-				{data?.user.supportMatches.map(match => (
-					<RecentMatchCard
-						key={match.id}
-						match={match}
+					<Title
+						tag='h2'
+						italic
+					>
+						Damage
+					</Title>
+				</Header>
+				{matchCardGrid(data?.user?.damageMatches)}
+			</Flexbox>
+			<Flexbox
+				full='horizontal'
+				marginBetween='small'
+			>
+				<Header marginBetween='small' >
+					<RoleBadge
+						role={Role.support}
+						size={32}
 					/>
-				))}
-			</RecentMatchGrid>
+					<Title
+						tag='h2'
+						italic
+					>
+						Support
+					</Title>
+				</Header>
+				{matchCardGrid(data?.user?.supportMatches)}
+			</Flexbox>
 			<SparkChart
 				tankMatches={data?.user.tankMatches}
 				damageMatches={data?.user.damageMatches}
 				supportMatches={data?.user.supportMatches}
 			/>
-		</>
+		</Flexbox>
 	)
 }
+
+interface MatchLoadingBoundaryProps {
+	loading?: boolean
+}
+
+const MatchLoadingBoundary: FC<MatchLoadingBoundaryProps> = ({ children, loading }) => (
+	<LoadingBoundary
+		loading={loading}
+		fallBack={
+			<PlaceHolder
+				count={5}
+				height={CARD_HEIGHT}
+			/>
+		}
+	>
+		{children}
+	</LoadingBoundary>
+)
 
 const RecentMatchGrid = styled.div`
 	display: grid;
 	width: 100%;
 	height: 100%;
 	gap: 24px;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: 330px
+	grid-template-columns: repeat(auto-fit, minmax(240px, 240px));
+	grid-auto-flow: row;
+	grid-template-rows: ${CARD_HEIGHT}px;
+`
+
+const Label = styled.label`
+	color: #A8A8A8;
+	font-size: 14px;
+	font-style: italic;
+	font-family: 'Nunito Sans';
 `

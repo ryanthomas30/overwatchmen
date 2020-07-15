@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client'
 import styled from 'styled-components'
 import { useField, useFormikContext } from 'formik'
 
-import { Header, Title, HeroBadge, Card } from '..'
+import { Header, Title, HeroBadge, Card, LoadingBoundary, PlaceHolder } from '..'
 import { replaceUnderscores } from '../../util'
 import { Heroes, Role } from '../../model'
 
@@ -16,6 +16,8 @@ export const GET_HEROES = gql`
 		}
 	}
 `
+
+const CARD_HEIGHT = 130
 
 interface Props {
 	name?: string
@@ -40,7 +42,7 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 	const [roleField] = useField('role')
 	const { setFieldValue } = useFormikContext()
 
-	const { loading, data } = useQuery<Heroes>(GET_HEROES, {
+	const { data, loading } = useQuery<Heroes>(GET_HEROES, {
 		variables: { role: roleField.value },
 	})
 
@@ -51,16 +53,6 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 			setFieldValue(name, [...field.value, value])
 		}
 	}
-
-	const placeHolder = Array.from(Array(getHeroCount(roleField.value)), (_, i) => (
-		<Card
-			flat
-			shimmer
-			key={i}
-		>
-			&nbsp;
-		</Card>
-	))
 
 	return (
 		<>
@@ -75,25 +67,36 @@ export const HeroSelector: FC<Props> = ({ name = 'heroIds' }) => {
 				</Header>
 			}
 			<HeroGrid>
-				{ !loading ? data?.heroes.map((hero) => (
-					<Card
-						key={hero.id}
-						padding='small'
-						center
-						transition
-						marginBetween='small'
-						onClick={()=> { handleSelect(hero.id) }}
-					>
-						<HeroBadge
-							hero={hero.name}
-							active={field.value.includes(hero.id)}
-							size={72}
+				<LoadingBoundary
+					loading={loading}
+					fallBack={
+						<PlaceHolder
+							count={getHeroCount(roleField.value)}
+							height={CARD_HEIGHT}
 						/>
-						<Title tag='h4' >
-							{replaceUnderscores(hero.name)}
-						</Title>
-					</Card>
-				)) : placeHolder}
+					}
+				>
+					{ data?.heroes.map((hero) => (
+						<Card
+							key={hero.id}
+							height={CARD_HEIGHT}
+							padding='small'
+							center
+							transition
+							marginBetween='small'
+							onClick={()=> { handleSelect(hero.id) }}
+						>
+							<HeroBadge
+								hero={hero.name}
+								active={field.value.includes(hero.id)}
+								size={72}
+							/>
+							<Title tag='h4' >
+								{replaceUnderscores(hero.name)}
+							</Title>
+						</Card>
+					))}
+				</LoadingBoundary>
 			</HeroGrid>
 		</>
 	)
@@ -104,6 +107,5 @@ const HeroGrid = styled.div`
 	width: 100%;
 	height: 100%;
 	grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-	grid-template-rows: 130px;
 	gap: 10px;
 `

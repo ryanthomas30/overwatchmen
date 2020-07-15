@@ -258,6 +258,10 @@ export interface UserMatches_user_supportMatches {
 export interface UserMatches_user {
   __typename: "User";
   /**
+   * The ID of the user.
+   */
+  id: string;
+  /**
    * The matches that the user has played.
    */
   tankMatches: UserMatches_user_tankMatches[];

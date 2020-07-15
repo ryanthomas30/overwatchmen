@@ -3,7 +3,7 @@ import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 
 import { getAuthUser } from '../localStorage'
-import { Header, Title, Page, RecentMatches, SkillRatingCards } from '../components'
+import { Flexbox, Header, Title, Page, RecentMatches, SkillRatingCards } from '../components'
 import { UserSkillRating, UserSkillRatingVariables } from '../model'
 
 export const GET_USER_SR = gql`
@@ -27,36 +27,47 @@ const Home = () => {
 			userId: user?.uid || '0',
 		},
 	})
-	if (loading) return null
 	return (
 		<Page
 			align='center'
 			justify='center'
 			padding='large'
-			marginBetween='medium'
+			marginBetween='large'
 		>
-			<Header>
-				<Title
-					tag='h1'
-					italic
-				>
-					Current Skill Rating
-				</Title>
-			</Header>
-			<SkillRatingCards
-				tank={data?.user.skillRating?.tank}
-				damage={data?.user.skillRating?.damage}
-				support={data?.user.skillRating?.support}
-			/>
-			<Header>
-				<Title
-					tag='h1'
-					italic
-				>
-					Recent Matches
-				</Title>
-			</Header>
-			<RecentMatches />
+			<Flexbox
+				full='horizontal'
+				marginBetween='medium'
+			>
+				<Header>
+					<Title
+						tag='h1'
+						italic
+					>
+						Current Skill Rating
+					</Title>
+				</Header>
+
+				<SkillRatingCards
+					tank={data?.user.skillRating?.tank}
+					damage={data?.user.skillRating?.damage}
+					support={data?.user.skillRating?.support}
+					loading={loading}
+				/>
+			</Flexbox>
+			<Flexbox
+				full='horizontal'
+				marginBetween='medium'
+			>
+				<Header>
+					<Title
+						tag='h1'
+						italic
+					>
+						Recent Matches
+					</Title>
+				</Header>
+				<RecentMatches />
+			</Flexbox>
 		</Page>
 	)
 }

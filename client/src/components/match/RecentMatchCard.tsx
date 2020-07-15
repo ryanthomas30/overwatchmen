@@ -27,15 +27,18 @@ export const RecentMatchCard: FC<Props> = ({ match }) => {
 	const heroes = match.heroes.slice(0, 4)
 	const hasHeroes = heroes.length !== 0
 	return (
-		<MatchCard wrap={false} >
+		<MatchCard
+			wrap={false}
+			full='vertical'
+		>
 			<MapCardContent mapName={match.map?.name} />
 			<Flexbox
-				flex
 				full='horizontal'
+				justify='between'
+				flex
 			>
 				<Flexbox
-					flex
-					full
+					full='horizontal'
 					padding='small'
 					marginBetween='medium'
 				>
@@ -64,6 +67,7 @@ export const RecentMatchCard: FC<Props> = ({ match }) => {
 				<Flexbox
 					full='horizontal'
 					marginBetween='small'
+					justify='end'
 				>
 					<Header
 						justify='end'

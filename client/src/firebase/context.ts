@@ -25,7 +25,7 @@ export const useFirebaseAuthListener = () => {
 		return () => {
 			unsubscribe()
 		}
-	})
+	}, [firebase.auth])
 	return firebaseUser
 }
 /* Session Management */

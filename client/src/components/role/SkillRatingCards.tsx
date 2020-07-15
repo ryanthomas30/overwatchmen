@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { Title, SelectorGrid, Card, RoleBadge } from '..'
+import { Title, SelectorGrid, Card, RoleBadge, LoadingBoundary, PlaceHolder } from '..'
 
 import { Role } from '../../model'
 
@@ -17,57 +17,68 @@ interface Props {
 	 * Support skill rating.
 	 */
 	support?: number | null
+	loading?: boolean
 }
 
-export const SkillRatingCards: FC<Props> = ({ tank = '--', damage = '--', support = '--' }) => (
+export const SkillRatingCards: FC<Props> = ({ tank = '--', damage = '--', support = '--', loading }) => (
 	<SelectorGrid>
-		<Card
-			center
-			padding='medium'
-			marginBetween='small'
-			direction='row'
+		<LoadingBoundary
+			loading={loading}
+			fallBack={
+				<PlaceHolder
+					count={3}
+					height={120}
+				/>
+			}
 		>
-			<RoleBadge
-				role={Role.tank}
-			/>
-			<Title
-				italic
-				size={44}
+			<Card
+				center
+				padding='medium'
+				marginBetween='small'
+				direction='row'
 			>
-				{tank}
-			</Title>
-		</Card>
-		<Card
-			center
-			padding='medium'
-			marginBetween='small'
-			direction='row'
-		>
-			<RoleBadge
-				role={Role.damage}
-			/>
-			<Title
-				italic
-				size={44}
+				<RoleBadge
+					role={Role.tank}
+				/>
+				<Title
+					italic
+					size={44}
+				>
+					{tank}
+				</Title>
+			</Card>
+			<Card
+				center
+				padding='medium'
+				marginBetween='small'
+				direction='row'
 			>
-				{damage}
-			</Title>
-		</Card>
-		<Card
-			center
-			padding='medium'
-			marginBetween='small'
-			direction='row'
-		>
-			<RoleBadge
-				role={Role.support}
-			/>
-			<Title
-				italic
-				size={48}
+				<RoleBadge
+					role={Role.damage}
+				/>
+				<Title
+					italic
+					size={44}
+				>
+					{damage}
+				</Title>
+			</Card>
+			<Card
+				center
+				padding='medium'
+				marginBetween='small'
+				direction='row'
 			>
-				{support}
-			</Title>
-		</Card>
+				<RoleBadge
+					role={Role.support}
+				/>
+				<Title
+					italic
+					size={48}
+				>
+					{support}
+				</Title>
+			</Card>
+		</LoadingBoundary>
 	</SelectorGrid>
 )
