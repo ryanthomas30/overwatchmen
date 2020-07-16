@@ -16,16 +16,19 @@ export const useFirebaseAuthListener = () => {
 
 	useEffect(() => {
 		const unsubscribe = firebase.auth.onAuthStateChanged(
-			async (authUser) => {
+			(authUser) => {
 				setFirebaseUser(authUser)
-				const token = await firebase.getToken()
-				if (authUser && token) {
-					storeAuthUser(authUser)
-					setToken(token)
-				} else {
-					removeAuthUser()
-					removeToken()
-				}
+				/* eslint-disable no-unused-expressions */
+				firebase.getToken()?.then((token) => {
+					if (authUser && token) {
+						storeAuthUser(authUser)
+						setToken(token)
+					} else {
+						removeAuthUser()
+						removeToken()
+					}
+				})
+				/* eslint-enable no-unused-expressions */
 			},
 		)
 		return () => {
