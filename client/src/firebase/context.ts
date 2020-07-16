@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-import { storeAuthUser, getAuthUser, removeAuthUser } from '../localStorage'
+import { storeAuthUser, getAuthUser, removeAuthUser, setToken, removeToken } from '../localStorage'
 
 import Firebase from '.'
 
@@ -16,16 +16,22 @@ export const useFirebaseAuthListener = () => {
 
 	useEffect(() => {
 		const unsubscribe = firebase.auth.onAuthStateChanged(
-			(authUser) => {
+			async (authUser) => {
 				setFirebaseUser(authUser)
-				if (authUser) storeAuthUser(authUser)
-				else removeAuthUser()
+				const token = await firebase.getToken()
+				if (authUser && token) {
+					storeAuthUser(authUser)
+					setToken(token)
+				} else {
+					removeAuthUser()
+					removeToken()
+				}
 			},
 		)
 		return () => {
 			unsubscribe()
 		}
-	}, [firebase.auth])
+	}, [firebase.auth, firebase])
 	return firebaseUser
 }
 /* Session Management */

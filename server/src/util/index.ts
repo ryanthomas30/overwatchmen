@@ -9,3 +9,6 @@ export const removeUndefined = (obj: ObjectLiteral) => {
 	Object.keys(obj).forEach(key => obj[key] === undefined && delete obj[key])
 	return obj
 }
+
+export const isDevelopment = () => process.env.NODE_ENV === 'development'
+export const isProduction = () => process.env.NODE_ENV === 'production'

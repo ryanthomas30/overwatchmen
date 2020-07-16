@@ -48,5 +48,9 @@ class Firebase {
 		if (this.auth.currentUser) return this.auth.currentUser.updatePassword(password)
 	}
 
+	getToken() {
+		return this.auth.currentUser?.getIdToken(true)
+	}
+
 }
 export default Firebase

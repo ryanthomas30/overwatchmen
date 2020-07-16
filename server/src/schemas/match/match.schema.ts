@@ -12,7 +12,7 @@ export const Match = gql`
 
 	extend type Mutation {
 		"""Add a new match for a user."""
-		addMatchToUser(newMatch: NewMatch!, userId: ID!): Match!
+		addMatchToUser(newMatch: NewMatch!, userId: ID!): Match! @hasUserId
 	}
 
 	# Model

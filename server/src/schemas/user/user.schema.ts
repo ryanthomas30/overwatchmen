@@ -8,7 +8,7 @@ export const User = gql`
 	# Operations
 	extend type Query {
 		"""Get a user by their ID."""
-		user(userId: ID!): User!
+		user(userId: ID!): User! @hasUserId
 	}
 
 	extend type Mutation {
