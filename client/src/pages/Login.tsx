@@ -5,6 +5,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { useFirebase } from '../firebase'
 import { CreateUser, CreateUserVariables } from '../model'
 import { Flexbox, Card, Logo, Title, LoginButton } from '../components'
+import { theme } from '../constants'
 import genjiImage from '../assets/genji_art.jpg'
 
 const CREATE_USER = gql`
@@ -26,14 +27,14 @@ const LoginSection = styled(Flexbox)`
 	background-color: ${({ theme }) => theme.lightBlue};
 	width: 60%;
 	height: 100%;
-	border-radius: 10px 0px 0px 10px;
+	border-radius: ${theme.borderRadius} 0px 0px ${theme.borderRadius};
 `
 
 const ImageSection = styled(Flexbox)`
 	background-color: white;
 	width: 40%;
 	height: 100%;
-	border-radius: 0px 10px 10px 0px;
+	border-radius: 0px ${theme.borderRadius} ${theme.borderRadius} 0px;
 	overflow: hidden;
 `
 

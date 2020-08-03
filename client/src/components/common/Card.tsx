@@ -15,7 +15,7 @@ const BaseCard: FC<CardProps> = ({ ...other }) => (
 )
 
 export const Card = styled(BaseCard)`
-	border-radius: 15px;
+	border-radius: ${theme.borderRadius};
 	background-color: ${({ active }) => active ? theme.yellow : 'white'};
 	box-shadow: ${({ flat = false }) => !flat ? '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' : undefined };
 	${({ transition, active }) => transition &&

@@ -3,13 +3,13 @@
 	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 	sans-serif;
 	border: none;
-	border-radius: 10px;
+	border-radius: $border-radius;
 	background-color: transparent;
 
 	.react-datepicker__header {
 		background-color: #218FFE;
 		border: none;
-		border-radius: 10px 10px 0px 0px;
+		border-radius: $border-radius $border-radius 0px 0px;
 	}
 
 	
@@ -25,13 +25,13 @@
 	.react-datepicker__time-container {
 		margin-left: 12px;
 		border: none;
-		border-radius: 0px 0px 10px 10px;
+		border-radius: 0px 0px $border-radius $border-radius;
 		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 		width: 100px;
 	}
 	
 	.react-datepicker__time {
-		border-radius: 10px;
+		border-radius: $border-radius;
 		width: 100%;
 	}
 	.react-datepicker__time-box {
@@ -52,7 +52,7 @@
 	.react-datepicker__month-container {
 		background-color: white;
 		margin-left: 6px;
-		border-radius: 10px;
+		border-radius: $border-radius;
 		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 	}
 

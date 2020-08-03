@@ -75,7 +75,7 @@ export const Button = styled(BaseButton)`
 	border-style: none;
 	cursor: pointer;
 	padding: 0px 20px;
-	border-radius: 10px;
+	border-radius: 6px;
 	min-width: 74px;
 	height: 44px;
 	background-color: ${({ primary }) => primary ? theme.lightBlue : 'white'};

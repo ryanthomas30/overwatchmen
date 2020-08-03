@@ -9,4 +9,5 @@ export const theme = {
 	red: '#E06767',
 	green: '#43B581',
 	transition: 'all ease-in-out 150ms',
+	borderRadius: '8px',
 }

@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 
+import { theme } from '../../constants'
+
 export const Input = styled.input`
 	width: -webkit-fill-available;
 	padding: 16px 20px;
 	border: none;
-	border-radius: 10px;
+	border-radius: ${theme.borderRadius};
 	background-color: #FEFEFE;
 	transition: all 200ms ease-in-out;
 	font-family: 'Koverwatch';
